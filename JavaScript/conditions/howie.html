@@ -10,10 +10,12 @@
         function isYoung (x, name){
             if(x<=17) return name + " is young";
             if(x<=65) return name + " is mature";
-            return name + "is ancient";
+            return name + " is ancient";
         }
 
-        console.log((18, howie));
+        console.log(isYoung(18, "howie"));
+        console.log(isYoung(1, "baby"));
+        console.log(isYoung(70, "mummy"));
 
         
     </script>
