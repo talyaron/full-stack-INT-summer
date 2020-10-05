@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</conditions>
 </head>
+
 <body>
     <script>
 
-//create a function that get a person's age, and tells him if he is young (17), mature (17-65), old (65), ancient(greate than 100)
+        let x = 0;
+        let y = 4;
 
-//then invoke the function several time with several ages, and print to the console.
+        if (x > 1) {
+            console.log('the number you gave is greater then 1')
+        } else {
+            console.log('The number you gave is less than or equal to 1')
+        }
 
-let x=68
+        //create a function that get a person's age, and tells him if he is young (17), mature (17-65), old (65), ancient(greate than 100)
 
-if (x<17){ console.log("young")}
-if (17<x<65){ console.log("mature")}
-if (x>65){ console.log("old")}
-if (x>100) { console.log("ancient")}
+        //then invoke the function several time with several ages, and print to the console.
 
+        let x = 68
+        function tellAge(Age) {
+            if (Age < 17) { return "young" }
+            if (Age > 17 && x < 65) { return "mature" }
+            if (Age > 65) { return "old" }
+            if (Age > 100) { return "ancient" }
+        }
+
+        console.log(tellAge(x))
     </script>
 </body>
+
 </html>
