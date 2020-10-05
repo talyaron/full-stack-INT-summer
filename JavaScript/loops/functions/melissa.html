@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //functions are a bunch of code that can run many times
+
+        function multi(x, y){
+            return x*y;
+        }
+        //invoking a function 
+
+        let a = multi(4,5);
+        console.log(a);
+
+        a = multi(30,2);
+        console.log(a)
+
+        function biggerNumber(a,b){
+            //some logic I can reuse
+            if(a>b) return a;
+            if(b>a) return b;
+            return 'They are both equal'
+        }
+
+        let b = biggerNumber(3,7);
+        console.log(b)
+
+        //create a function and invoke it and write to the console
+        // the function will return the square of the number that was give. eg: got 6, will return 36
+
+        function square(a){
+            return a*a;
+        }
+        
+        let s=square(5);
+        console.log(a);
+
+    </script>
+</body>
+</html>
