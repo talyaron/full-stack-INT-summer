@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //create a function that get a person's age, and tells him if he is young (17), mature (17-65), old (65), ancient(greate than 100)
+
+        //then invoke the function several time with several ages, and print to the console.
+
+        function ageReader(a) {
+            if (a < 17) {
+                return ("you are young");
+            }
+            if (17 < a < 65) {
+                return ("you are mature");
+            }
+            if (65 < a < 100) {
+                return ("you are old");
+            }
+            if (a > 100) {
+                return ("you are ancient");
+            }
+        }
+        let b = ageReader(5);
+        console.log(b);
+        b = ageReader(25);
+        console.log(b);
+    </script>
+</body>
+
+</html>
