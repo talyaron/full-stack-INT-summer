@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
 
-        let x = 78;
+        let x = 65;
+        function tellAge(age) {
+            if (age < 17) {
+                return 'you are younger than 17';
+            }
+            if (age >= 17 && age <= 65) {
+                return 'your age is between 17 and 65'
+            } 
 
-         if (x > 17) {
-            console.log('you are older than 17')
-        } else {
-            console.log('you are young')
+            if (age > 65 && age<= 100) {
+                return 'you are old'
+            } 
+            if (age > 100) {
+                return 'you are ancient'
+            } 
         }
 
-        if (17> x > 65) {
-            console.log('the number you gave is greater then 1')
-        } else {
-            console.log('you are not between 17 and 65')
-        }
+        console.log(tellAge(x));
+        console.log(tellAge(34))
+        console.log(tellAge(110))
 
-        if (x > 65) {
-            console.log('you are old')
-        } else {
-            console.log('you are not old')
-        }
-
-        if (x > 100) {
-            console.log('you are ancient')
-        } else {
-            console.log('you are not ancient')
-        }
 
     </script>
 </body>
+
 </html>
