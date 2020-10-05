@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let x = 0;
+        let y = 4;
+
+        if (x > 1) {
+            console.log('the number you gave is greater then 1')
+        } else {
+            console.log('The number you gave is less than or equal to 1')
+        }
+
+        if (x === 0) { console.log('x equal zero') }
+        if( x<= 0){
+            //...
+        }
+
+        if('Hi' === 'Hi'){ console.log('hi equal hi')}
+
+        if (x !== 0) { 
+            // not equal 
+        }
+
+        if( 2 == '2'){ console.log('2 equal 2 .... == ')}
+        if( 2 === '2'){ console.log('2 equal 2 .... === ')}
+
+        console.log(x)
+
+
+        //create a function that get a person's age, and tells him if he is young (17), mature (17-65), old (65), ancient(greate than 100)
+
+        //then invoke the function several time with several ages, and print to the console.
+
+        function old(age){
+            if(age<17) return("Young");
+            else if(age<65) return("Mature");
+            else if(age<100) return("Old");
+            else return("Ancient");
+        }
+
+        console.log(old(78))
+    </script>
+
+</body>
+</html>
