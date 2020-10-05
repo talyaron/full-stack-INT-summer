@@ -7,13 +7,33 @@
 </head>
 <body>
     <script>
-        if (x<17) {console.log 'you are young'}
-        if(18<x<65) {console.log 'you are mature'}
-        if(65<x<100) {console.log 'you are old'}
-        if(x>100) {console.log 'you are ancient'}
 
-        let x=78
-        
+        let x = 78;
+
+         if (x > 17) {
+            console.log('you are older than 17')
+        } else {
+            console.log('you are young')
+        }
+
+        if (17> x > 65) {
+            console.log('the number you gave is greater then 1')
+        } else {
+            console.log('you are not between 17 and 65')
+        }
+
+        if (x > 65) {
+            console.log('you are old')
+        } else {
+            console.log('you are not old')
+        }
+
+        if (x > 100) {
+            console.log('you are ancient')
+        } else {
+            console.log('you are not ancient')
+        }
+
     </script>
 </body>
 </html>
