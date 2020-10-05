@@ -8,10 +8,8 @@
 <body>
     <script>
 
-<<<<<<< HEAD
-=======
         //functions are a bach of code that can run many times
-        //a declaration
+
         function multi(x, y){
             return x*y;
         }
@@ -22,21 +20,24 @@
         console.log(a);
 
         a = multi(30,2);
-        console.log(a)
+        console.log(a);
 
-        function biggerNumber(a,b){
-            //some logic I can reuse
+        function biggerNumber(a,b) {
+            //some logic can be reused
             if(a>b) return a;
             if(b>a) return b;
-            return 'They are both equal'
+            return "they are both equal";
         }
-
         let b = biggerNumber(7,7);
-        console.log(b)
+        console.log(b);
 
-        //create a function and invoke it and write to the console
-        // the function will return the power of 2 of the number that was given. eg: got 6, will return 36
->>>>>>> main
+        //create a function and invoke it to the console
+        // the function will return the power of 2 of the number that was given ex. got 6 will return 36
+        function square(c) {
+            return c*c;
+        }
+        let d = square(6);
+        console.log(d);
     </script>
 </body>
 </html>
