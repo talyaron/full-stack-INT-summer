@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function tellAge(a){
+            let age="";
+            if(a<17){
+                age="young";
+            }
+            else if(a>=17 && a<65){
+                age="mature";
+            }
+            else if(a>=65 && a<100){
+                age="old";
+            }
+            else if(a>=100){
+                age="ancient";
+            }
+            else age="not a valid age";
+            return age;
+        }
+
+        let person1=15;
+        console.log("person 1 is 15. They are "+tellAge(person1));
+
+        let person2=103;
+        console.log("person 2 is 103. They are "+tellAge(person2));
+
+        let person3=75;
+        console.log("person 3 is 79. They are "+tellAge(person3));
+
+        let person4=32;
+        console.log("person 4 is 32. They are "+tellAge(person4));
+
+    </script>
+</body>
+</html>
