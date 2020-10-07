@@ -22,14 +22,18 @@
             },
             staff: {
                 director: 'Debbie',
-            madricha: 'Elina'
+                madricha: 'Elina'
             },
-            holiday:{
+            holiday: {
                 first: 'rosh hashana',
                 second: 'yom kippor',
                 third: 'sukkot'
-            }
+            },
+            sayHello: function () { 
+                console.log(`Hi, my name is ${this.staff.director}, and I live in ${this.address.city}`) },
         }
+        aardvark.sayHello();
+        //an object
 
         console.log(aardvark);
         console.log(aardvark.name);
