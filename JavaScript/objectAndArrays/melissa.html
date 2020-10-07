@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
 
+    <script>
 
-
-        let aardvark = {
-            manager: 'Debbie',
-            managerInfo: 'woman, lives in Israel, Jewish',
-            courseYear: '1'
+        let program = {
+            name: "Aardvark Israel",
+            programYear: 2020,
+            location: "Jerusalem",
+            Manager: {
+                name: "Debbie",
+                hairColor: "brunette",
+                age: "40"
+            },
+            sayHello: function () {
+                console.log(`Hi, my name is ${this.manager.name}, and I live in ${this.location}`)
+            }
         }
 
-        console.log(aardvark);
+        program.sayHello()
+    </script>
 
-        console.log(aardvark.manager);
-        console.log(aardvark['manager']);
-      
+
 
 
 </body>
+
 </html>
