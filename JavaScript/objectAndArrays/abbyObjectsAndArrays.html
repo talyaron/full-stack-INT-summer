@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         let Aardvark = {
             Director: "Debbie",
-            Location:"Jerusalem",
-            Buildings:{
-                Building1:"JTower (the best building)",
-                Building2:"Ussiskin"},   
+            Location: "Jerusalem",
+            Buildings: {
+                Building1: "JTower (the best building)",
+                Building2: "Ussiskin"
+            },
             Students: "86",
             ProgramDates: "2020-2021",
-            Cost: "expensive",
-            LineOfCommunication: "WhatsApp",
-            NumberOfCounselors: "5",
             Counselors: {
                 Counselor1: "Omer",
                 Counselor2: "Yoav",
@@ -25,12 +25,30 @@
                 Counselor4: "Noga",
                 Counselor5: "Nitzan"
             },
-            Weather: "hot",
-            Language: "English",
-            }
+            sayHello: function () {
+                console.log(`Hi, the director's name is ${this.Director}, and she lives in ${this.location}`)
+            },
+        }
         console.log(Aardvark);
-        console.log(Aardvark.Buildings.Building1);
-        console.log(Aardvark.Location);
+        Aardvark.sayHello();
+
+let foods = [ 'acai bowls', 'strawberries', 'chicken', 'chocolate', 'omlet'] //array
+
+for(let i = 0; i < foods.length; i++){
+    console.log(foods[i])
+}
+console.log('-----------')
+
+for(let i in foods){
+    console.log(foods[i])
+}
+console.log('-----------')
+
+foods.forEach(foods=>{
+    console.log(foods)
+})
+
     </script>
 </body>
+
 </html>

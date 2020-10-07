@@ -22,14 +22,18 @@
             },
             staff: {
                 director: 'Debbie',
-            madricha: 'Elina'
+                madricha: 'Elina'
             },
-            holiday:{
+            holiday: {
                 first: 'rosh hashana',
                 second: 'yom kippor',
                 third: 'sukkot'
-            }
+            },
+            sayHello: function () { 
+                console.log(`Hi, my name is ${this.staff.director}, and I live in ${this.address.city}`) },
         }
+        aardvark.sayHello();
+        //an object
 
         console.log(aardvark);
         console.log(aardvark.name);
@@ -41,6 +45,26 @@
         console.log(aardvark.holiday.first);
         console.log(aardvark.holiday.second);
         console.log(aardvark.holiday.third);
+
+        let food = [ 'sushi', 'pasta', 'poke bowl', 'bagels', 'salad', 'donuts and pastries'] //array
+
+        console.log(food[0])
+        console.log(food.length) // the number of elements in an array
+        console.log(food)
+
+        for(let i = 0; i < food.length; i++){
+            console.log(food[i])
+        }
+        console.log('-----------')
+
+        for(let i in food){
+            console.log(food[i])
+        }
+        console.log('-----------')
+
+        food.forEach(food=>{
+            console.log(food)
+        })
 
     </script>
 </body>

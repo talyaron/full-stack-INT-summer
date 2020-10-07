@@ -16,11 +16,29 @@
             jerusalemManager:"Natalie",
             director:{
                 name:"Debbie",
+                country:"Israel",
                 hairColor:"brown",
-                role: "no one really knows"
-            }
+                role: "no one really knows",
+            },
+            sayInfo: function(){
+                    console.log(`Hi my name is ${ this.director.name } and I live in ${this.director.country}`);
+                }
         }
-        console.log(program);
+        let favoriteFoods=["Mac n cheese","blueberries", "cinnamon bun ben & jerry's", "peanut butter", "bagels","tortilla chips"];
+        for(let i=0;i<favoriteFoods.length;i++){
+            console.log(favoriteFoods[i]);
+        }
+        console.log("-----------------------");
+
+        for(let i in favoriteFoods){
+            console.log(favoriteFoods[i]);
+        }
+        
+        console.log("-----------------------");
+
+        favoriteFoods.forEach(food=>{
+            console.log(food);
+        })
     </script>
 </body>
 </html>
