@@ -36,11 +36,34 @@
         //an object
 
         debbie.sayHello()
+        console.log('____________________')
 
         //ex:
+        let foods = [ 'Pizza', 'Sushi', 'Pasta', 'Smoothies','Pancakes', 'Tacos'] //array
 
-        //take information about aardvark, and store as an object,
-        //for instance, name of a the manager, info on Debi etc, year of your course..
+        console.log(foods[0])
+        console.log(foods[1])
+        console.log(foods[2])
+        console.log(foods[3])
+        console.log(foods[4])
+        console.log(foods[5])
+        //console.log(foods.length) // the number of elements in an array
+        console.log('____________________')
+        console.log(foods)
+
+        for(let i = 0; i < foods.length; i++){
+            console.log(foods[i])
+        }
+        console.log('____________________')
+
+        for(let i in foods){
+            console.log(foods[i])
+        }
+        console.log('__________________')
+
+        foods.forEach(foods=>{
+            console.log(foods)
+        })
     </script>
 </body>
 </html>
