@@ -7,6 +7,7 @@
 </head>
 <body>
     <script>
+<<<<<<< Updated upstream
         let x = 33;
         console.log('start')
         function tellAge(Age) {
@@ -14,6 +15,30 @@
             if (Age > 17 && Age < 65) { return "mature" }
             if (Age > 65) { return "old" }
             if (Age > 100) { return "ancient" }
+=======
+
+        let x = 0;
+        let y = 4;
+
+        if (x > 1) {
+            console.log('the number you gave is greater then 1')
+        } else {
+            console.log('The number you gave is less than or equal to 1')
+        }
+
+        //create a function that get a person's age, and tells him if he is young (17), mature (17-65), old (65), ancient(greate than 100)
+
+        //then invoke the function several time with several ages, and print to the console.
+
+        // do it like this (not like above):
+
+        let x = 68
+        function tellAge(x) {
+            if (x < 17) { return "young" }
+            if (x > 17 && x < 65) { return "mature" }
+            if (x > 65) { return "old" }
+            if (x > 100) { return "ancient" }
+>>>>>>> Stashed changes
         }
 
         console.log(tellAge(x))
