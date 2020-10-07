@@ -16,11 +16,15 @@
             jerusalemManager:"Natalie",
             director:{
                 name:"Debbie",
+                country:"Israel",
                 hairColor:"brown",
-                role: "no one really knows"
-            }
+                role: "no one really knows",
+            },
+            sayInfo: function(){
+                    console.log(`Hi my name is ${ this.director.name } and I live in ${this.director.country}`);
+                }
         }
-        console.log(program);
+        program.sayInfo();
     </script>
 </body>
 </html>

@@ -7,23 +7,26 @@
 </head>
 <body>
     <script>
-        let Aardvark = {
-            Manager: {
-                Name: "Debbie",
-                Age: 56,
-                Hair_color: "Black",
+        let aardvark = {
+            manager: {
+                name: "Debbie",
+                age: 56,
+                hair_color: "Black",
             },
-            Dates: {
-                Year: 2020,
-                Semester: "Fall-Winter"
-            }
+            dates: {
+                year: 2020,
+                semester: "Fall-Winter"
+            },
+            sayHello: function(){
+                console.log(`Hello, the manager's name is ${this.manager.name}`)
+            },
 
 
 
 
         }
 
-        console.log(Aardvark)
+        aardvark.sayHello()
 
     </script>
 </body>

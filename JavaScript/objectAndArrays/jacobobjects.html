@@ -12,24 +12,6 @@
 
         let x = 3;
 
-        let howie = {
-            name: 'Howie',
-            lastName: 'Sheral',
-            address: {
-                city: 'Miami',
-                street: 'some street',
-                houseNumber: 6
-            }
-        } //an object
-
-        console.log(howie);
-
-        console.log(howie.lastName);
-        console.log(howie['name']);
-        console.log(howie.address['city']);
-        console.log(howie.address.city);
-
-
         //ex:
 
         //take information about aardvark, and store as an object,
@@ -44,11 +26,14 @@
                 country: "Israel",
                 street: "Yafo"
             },
-            seger: "unfortunately"
+            seger: "unfortunately",
+            sayGreeting: function () {
+                console.log(`Hi, my name is ${this.madrich}, and I live in ${this.location.city}`)
+            }
         }
-
         console.log(aardvark.madrich)
         console.log(aardvark.location.city)
+        aardvark.sayGreeting()
 
     </script>
 </body>
