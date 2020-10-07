@@ -10,24 +10,31 @@
 
         let x = 3;
 
-        let Debbie = {
+        let aardvark = {
             name:'Debbie',
             lastName:'Goldsmith',
             address:{
                 city:'Jerusalem',
                 street:'Yafo',
-                houseNumber:'6',
-            information: {
+                houseNumber:'6',},
+            information:{ 
                 age:'52',
-            }
-            }
-        } //an object
+                favoriteFood: 'falafel'},
 
-        console.log(Debbie);
+               
+            sayHello:function(){
+                console.log(`Hi, my name is ${this.name}, and I live in ${this.address.city}`)},
+            }
+        
+        //an object
 
-        console.log(Debbie.lastName);
-        console.log(Debbie.address.city);
-        console.log(Debbie.information.age);
+        console.log(aardvark);
+
+        console.log(aardvark.lastName);
+        console.log(aardvark.address.city.age);
+        console.log(aardvark.information.favoriteFood)
+        aardvark.sayHello()
+    
 
 
         //ex:
