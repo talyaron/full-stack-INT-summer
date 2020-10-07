@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = 'root'></div>
+  
+    <script>
+        const colors = ['white', 'black', 'green', 'blue', 'purple']
+        const root = document.getElementById('root');
+        let html = '';
+
+        colors.forEach(color=>{
+
+            html += `<p> ${color}</p>`;
+        })
+
+        console.log(html);
+
+        root.innerHTML = html;  
+
+    
+    </script>
+</body>
+</html>
