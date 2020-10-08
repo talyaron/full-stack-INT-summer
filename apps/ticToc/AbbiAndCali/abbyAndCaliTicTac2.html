@@ -23,7 +23,7 @@
         display: none;
     }
 
-    .clown .img{
+    .clown .img {
         display: none;
     }
 
@@ -79,6 +79,12 @@
 
         console.dir(imgs)
 
+        const images = [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png",
+            "https://images-na.ssl-images-amazon.com/images/I/711WthZ6hiL._AC_SL1500_.jpg"];
+
+            let isFirstPlayer = true;
+
         imgs.forEach(img => {
             img.addEventListener('click', e => {
 
@@ -86,24 +92,30 @@
                 const image = e.target.children[0];
 
                 image.style.display = 'block'
+                
+                if(isFirstPlayer == true) {
+                    image.src = images[0];
+                    isFirstPlayer = false;
+                } else {
+                    image.src = images[1];
+                    isFirstPlayer = true
+                }
 
             })
         })
         let counter = 0;
 
-        const img = document.getElementsByClassName('.smiley')
-        const images = [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png",
-            "https://images-na.ssl-images-amazon.com/images/I/711WthZ6hiL._AC_SL1500_.jpg"]
-        let counter = 0;
-            if (counter === 0) {
-                img.src = images[1];
-                counter = 1;
-            } else {
-                img.src = images[0];
-                counter = 0;
-            }
-        })
+        // const img = document.getElementsByClassName('.smiley')
+       
+
+        // if (counter === 0) {
+        //     img.src = images[1];
+        //     counter = 1;
+        // } else {
+        //     img.src = images[0];
+        //     counter = 0;
+        // }
+
     </script>
 
 
