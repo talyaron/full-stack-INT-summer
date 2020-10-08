@@ -19,6 +19,7 @@
 <body>
     <div id='first'> </div>
 
+
     <div> </div>
     <div></div>
     <script>
@@ -29,12 +30,12 @@
 
 
 
-        first.addEventListener('click', (e) => {
+        first.addEventListener('keydown', (e) => {
             first.style.background = getRandomColor();
         })
 
-        first.addEventListener('mouseover',()=>{
-            first.style.transform = `rotate(${Math.random()*90}deg)`
+        first.addEventListener('dblclick',()=>{
+            first.style.transform = `rotate(${Math.random()*45}deg)`
         })
 
 let borderThicknes = 0;
