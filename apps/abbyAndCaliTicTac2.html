@@ -23,6 +23,10 @@
         display: none;
     }
 
+    .clown .img{
+        display: none;
+    }
+
     img {
         width: 150px;
         height: 150px;
@@ -38,6 +42,7 @@
         margin-left: 20px;
     }
 </style>
+
 
 <body>
     <div class="wrapper">
@@ -71,10 +76,9 @@
     </div>
     <script>
         const imgs = document.querySelectorAll('.box');
-        const images = [
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png",
-            "https://images-na.ssl-images-amazon.com/images/I/711WthZ6hiL._AC_SL1500_.jpg"]
+
         console.dir(imgs)
+
         imgs.forEach(img => {
             img.addEventListener('click', e => {
 
@@ -82,14 +86,24 @@
                 const image = e.target.children[0];
 
                 image.style.display = 'block'
+
             })
         })
-        const smiley = document.querySelectorAll('.smiley');
-        smiley.addEventListener('click', () => {
-            console.dir(e)
-            const image = e.target.children[1];
+        let counter = 0;
 
-            image.style.display = 'block'})
+        const img = document.getElementsByClassName('.smiley')
+        const images = [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png",
+            "https://images-na.ssl-images-amazon.com/images/I/711WthZ6hiL._AC_SL1500_.jpg"]
+        let counter = 0;
+            if (counter === 0) {
+                img.src = images[1];
+                counter = 1;
+            } else {
+                img.src = images[0];
+                counter = 0;
+            }
+        })
     </script>
 
 
