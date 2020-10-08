@@ -6,23 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    <div id='root'></div>
+    <div id='word'></div>
 
     <script>
-      const foods = ['white cheese','banana','meat balls', 'steak'];
+      const foods = ['pizza','sushi','smoothie', 'pasta', 'mango'];
 
-      const root = document.getElementById('root')
+      const word = document.getElementById('word')
 
       let html = '';
-        console.log(html)
+
       foods.forEach(food=>{
-          html += `<p>${food}</p>`;  //appending
-          console.log(html)
-      });
+          html += `<p>${food}</p>`;  
+      })  
 
       console.log( html);
 
-      root.innerHTML = html;
+      word.innerHTML = html;
     </script>
 </body>
 </html>
