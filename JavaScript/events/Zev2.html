@@ -31,11 +31,18 @@
 </body>
 <script>
     const first = document.getElementById('first');
+<<<<<<< Updated upstream
     let width = .1;
     first.addEventListener('click', (e) => {
         console.log(width)
         first.style.transform = `scale(${width})`;
         width += .1;
+=======
+    let width = 0.1;
+    first.addEventListener('click', (e) => {
+        first.style.transform = `scale(${width})`;
+        width++;
+>>>>>>> Stashed changes
     })
 </script>
 
