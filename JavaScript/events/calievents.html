@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 300px;
+        height: 300px;
+        background-color:pink;
+        border-radius: 15px;
+        transition: all 200ms;
+    }
+</style>
+
+<body>
+    <div id='first'> </div>
+
+
+    
+    <script>
+
+// https://developer.mozilla.org/en-US/docs/Web/Events  
+
+        const first = document.getElementById('first');
+
+
+
+        first.addEventListener('keydown', (e) => {
+            first.style.background = getRandomColor();
+        })
+
+        first.addEventListener('dblclick',()=>{
+            first.style.transform = `rotate(${Math.random()*45}deg)`
+        })
+
+let borderThicknes = 0;
+        first.addEventListener('mouseover',()=>{
+            first.style.border = `${borderThicknes}px solid purple`;
+            borderThicknes++;
+        })
+
+
+    </script>
+</body>
+
+</html>
