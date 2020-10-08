@@ -20,7 +20,7 @@
     <div id='events'></div>
     <div id='second'></div>
     <div id='third'></div>
-    <div></div>
+    <div id='fourth'></div>
     <script>
         const events = document.getElementById('events');
 
@@ -32,14 +32,20 @@
             events.style.transform = `rotate(${Math.random() * 360}deg)`;
         })
 
-        third.addEventListener('click', () => {
-            third.style.transform = `shake('#theElement').effect('shake', .6)`;
+        let borderRadius = 40;
+        second.addEventListener('click',()=>{
+            second.style.borderRadius = `${borderRadius}px`;
+            borderRadius++;
         })
 
-        let borderradius = 8;
-        second.addEventListener('mouseleave', () => {
-            second.style.border = `${borderradius}8px`;
-            borderradius--;
+        third.addEventListener('keyup', () => {
+            third.style.transform = `shake('#theElement').effect('shake', 100)`;
+        })
+
+        let borderThicknes = 0;
+        fourth.addEventListener('mouseleave',()=>{
+            fourth.style.border = `${borderThicknes}px solid black`;
+            borderThicknes++;
         })
 
 
