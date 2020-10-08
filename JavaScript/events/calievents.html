@@ -8,8 +8,8 @@
 </head>
 <style>
     div {
-        width: 80px;
-        height: 80px;
+        width: 300px;
+        height: 300px;
         background-color:pink;
         border-radius: 15px;
         transition: all 200ms;
@@ -20,8 +20,7 @@
     <div id='first'> </div>
 
 
-    <div> </div>
-    <div></div>
+    
     <script>
 
 // https://developer.mozilla.org/en-US/docs/Web/Events  
@@ -40,21 +39,10 @@
 
 let borderThicknes = 0;
         first.addEventListener('mouseover',()=>{
-            first.style.border = `${borderThicknes}px solid black`;
+            first.style.border = `${borderThicknes}px solid purple`;
             borderThicknes++;
         })
 
-
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-
-            // #a345da
-        }
 
     </script>
 </body>
