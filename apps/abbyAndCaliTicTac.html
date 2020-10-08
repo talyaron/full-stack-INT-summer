@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: 200px 200px 200px;
+        grid-template-rows: 200px 200px 200px;
+        gap: 5px;
+    }
+
+    .box {
+        background-color: pink;
+        width: 100%;
+    }
+    .box img {
+        display: none;
+    }
+    img {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        margin-top: 25px;
+        margin-left: 20px;
+    }
+
+    #clown {
+        width: 150px;
+        height: 150px;
+        margin-top: 25px;
+        margin-left: 20px;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="box"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png" />
+        </div>
+        <div class="box"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png" />
+        </div>
+        <div class="box"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png" />
+        </div>
+        <div class="box"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png" />
+        </div>
+        <div class="box"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png" />
+        </div>
+        <div class="box"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png" />
+        </div>
+        <div class="box"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png" />
+        </div>
+        <div class="box"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png" />
+        </div>
+        <div class="box"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png" />
+        </div>
+    </div>
+    <script>
+        const imgs = document.querySelectorAll('.box');
+
+        console.dir(imgs)
+
+        imgs.forEach(img => {
+            img.addEventListener('click', e => {
+
+                console.dir(e)
+                const image = e.target.children[0];
+
+                image.style.display = 'block'
+
+            })
+        })
+
+
+    </script>
+
+</body>
+
+</html>
