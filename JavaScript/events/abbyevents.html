@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        border-radius: 60px;
+        transition: all 200ms;
+    }
+</style>
+
+<body>
+    <div id='first'> </div>
+
+    <div id='second'></div>
+    <div id='third'></div>
+    <script>
+
+// https://developer.mozilla.org/en-US/docs/Web/Events  
+
+        const first = document.getElementById('first');
+        const second = document.getElementById('second');
+        const third = document.getElementById('third')
+
+
+
+        first.addEventListener('click', (e) => {
+            first.style.background = getRandomColor();
+        })
+
+let borderRadius = 60;
+        second.addEventListener('click',()=>{
+            second.style.borderRadius = `${borderRadius}px`;
+            borderRadius++;
+        })
+        first.addEventListener('click', (e) => {
+            first.style.background = getRandomColor();
+        })
+        let header = '';
+        third.addEventListener('click', (e) => {
+            third.header = "hi"();
+        })
+
+        let borderThicknes = 10;
+        third.addEventListener('mouseup',()=>{
+            third.style.border = `${borderThicknes}px solid purple`;
+            borderThicknes--;
+        })
+
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+    </script>
+</body>
+
+</html>
