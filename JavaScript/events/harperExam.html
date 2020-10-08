@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="image">
+        <img src="https://cdn.shoplightspeed.com/shops/626275/files/18687152/600x600x1/stickers-northwest-sticker-smiley-face.jpg">
+    </div>
+    <div id="message"><p>You are kidding!</p></div>
+    <p id="clicked"></p>
+    <style>
+        div{
+            height:fit-content;
+            width:fit-content;
+        }
+        img{
+            height:200px;
+            width:200px;
+        }
+        #message{
+            display:none;
+        }
+        
+    </style>
+    <script>
+        const smile=document.getElementById("image");
+        const message=document.getElementById("message");
+        const clicked=document.getElementById("clicked");
+        let num=0;
+        smile.addEventListener('click',()=>{
+            message.style.display="block";
+            num++;
+            clicked.innerHTML=`You have clicked the smiley ${num} time(s)`;
+        })
+
+    </script>
+</body>
+</html>
