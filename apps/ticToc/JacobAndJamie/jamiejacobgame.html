@@ -10,7 +10,7 @@
     .wrapper {
         display: grid;
         grid-template-columns: 100px 100px 100px;
-        grid-template-rows: 100px 100px 100px ;
+        grid-template-rows: 100px 100px 100px;
         gap: 5px;
         position: relative;
         top: 200px;
@@ -52,21 +52,17 @@
         <div class="item">
             <img
                 src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-           
+
         </div>
         <div class="item">
             <img
                 src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-           
+
         </div>
         <div class="item">
             <img
                 src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-           
-        </div>
-        <div class="item">
-            <img
-                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+
         </div>
         <div class="item">
             <img
@@ -75,62 +71,40 @@
         <div class="item">
             <img
                 src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-           
         </div>
-        
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+
+        </div>
+
     </div>
+
+    <script>
+        const imgs = document.querySelectorAll('.item');
+        console.dir(imgs)
+        const images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSHZ9sV-245dYf2qoFA9IjqxNeHR5Q_U_koPA&usqp=CAU"]
+
+        let isFirstPlayer = true;
+        imgs.forEach(img => {
+            img.addEventListener('click', e => {
+                console.dir(e)
+                const image = e.target.children[0];
+
+                image.style.display = 'block'
+
+                if (isFirstPlayer == true) {
+                    image.src = images[0];
+                    isFirstPlayer = false;
+                } else {
+                    image.src = images[1];
+                    isFirstPlayer = true
+
+                }
+            })
+        })
+   
+    </script>
 </body>
-<script>
-    const imgs = document.querySelectorAll('.item');
-    console.dir(imgs)
-    const images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSHZ9sV-245dYf2qoFA9IjqxNeHR5Q_U_koPA&usqp=CAU"]
-
-    let isFirstPlayer = true;
-    imgs.forEach(img=> {
-        img.addEventListener('click',e=> { console.dir(e)
-        const image = e.target.children[0];
-
-        image.style.display = 'block'
-
-        if(isFirstPlayer ==true){
-            image.src = images [0];
-            isFirstPlayer = false;
-        } else {
-            image.src = images[1];
-            isFirstPlayer=true
-
-        }  
-    })
-    // const imgs = document.querySelectorAll('.item');
-
-    // console.dir(imgs)
-
-    // imgs.forEach(img => {
-    //     img.addEventListener('click', e => {
-
-    //         console.dir(e)
-    //         const image = e.target.children[0];
-
-    //         image.style.display = 'block'})
-   // })
-    
-    // const img = document.getElementById('aa')
-
-    // const images = [
-    //     'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU',
-    //     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQcAAAC/CAMAAADEm+k5AAAAjVBMVEX///8AOLgAGrMAMbf6+v1hdMgAHrPn7PgAJrW5wOQANbcAL7YAKrUALbYAM7cAILTd4vPz9vyfrN1AXcLs8PoAI7SBktTGzusRQLpyhc+tuuQ7WcEoTL5KZcW0v+VQacbP1u4AAK0vUb+SoNmnsd+ap9vg5fQcRrxZcch5i9Fqgc6Mm9fX3PEMPrq+x+hbxl9vAAAEHUlEQVR4nO3d2XaiQBQFUASDCChqHBIz2Ylmjv//eR3qXDQaotKm62p59kNWs5YPl9NCjaDnERERERERERGRFXXKeT7lvBrlmAMwB2AOwByAOQBzAOYAzAGYAzAHYA7AHIA5AHMA5gDMAZgDMAdgDsAcgDkAcwDmAMwBmAMwB/ACynlnlNPedkBERLSrmXYBh2HyZ6JdwkG4T+61SzgE40FtMNYuQl89iWtxUtcuQ90w/RztpUPtMrQ9hmbYGz5qF6LsLjA5BHfahega+TIP4o+0S1F1EUsO8YV2KZp60WJiLOppF6Onu4zhM4iudjlqLlu4SZq/rUvtcrR00Gamrynazo52QUrOzRchOF/+4yQ1M7SYHa+D1jOba5ekohYvbgu4UcQf2iVpeEBjkebNRBd3iOhBuyj7+uHXboN0JMK+clX2nSXmUriWw2tzkSTOrit1G6X6I2kzx30cj6XtHJV/vnHsnax66Idlip5kKsdp0ass/bQfHv1EzW2228L7Rtmt9mns76q9dwztK+2T+AXv/vYT3cJ/1z6J3/Da2jOG1qv2KfyKbnGHSCNI1o4Lxb0yWTvOjr2xEDM0Dq1p05gPEUTUa66SzlQynON4ii9S5My6H2bfkhc5/LHPtNa3usShOzN28/Dr7U7+27Pvfeg+rqBoao7kBhs6NAq9MRMMaP7qMr4qG1O9yXjL9JrQ4AY3Viv9v2S1ZpB3h2SMHZd+MMZYPL+Cbgf4Oji1wvOCk28vJuOyZunnZG4mn6JrLyNxRx1f+PRt5RIpsbgY5BJpHf3AYtVU2k65Sfo/zcnKzTHqoc0cTK1WacETVq5wehvm6GUuH3/bTxYrtGPydZixYc1mZW3Hn9gr0JbnYBnDph7ibBlE8GytOnsai4mIePO3fbH2W8salmqz6q0YN4Wb1/il92laFydhwWL7ng/ZGxLXrFRl30zawsmWz03Qk2w5M85cw++Dsev9YeT2/aFRnN629uLJ7faC/QdjxP6k8U/jiy1X0BHadbzZWR1vRo6NN7/NP/y0B8jx+Yeq81GPbs5HcX4SKs5Xp47OV3P9Aj6qrWcVj2u5tp7F9U2juxg3nfZ6N/c/GNwPA9wfZXC/nNH1uX8yx/20W5Tvr3aiZaikdL+9Iz2FSsqev3Ck51hNbTnGPuXncb4/n+XQyLKS9ef1HJppqITPb4rV53mdmomsZGXNJj32LuMe+Ly/4PsfgO8DEcX7YRxc2a5EVnic3OlQCd4f5eTOl0rM+8SCE24zC3y/nOD7BoHvnxQnOftCRETHSfuHJw4Efw8F+Ps4wByAOQBzAOYAzAGYAzAHYA7AHIA5AHMA5gDMAZgDMAdgDsAcgDkAcwDmAMwBmAMwB2AOwByAOYDnU86rU0572wERERERERER0an4C6UhkHRcBM9XAAAAAElFTkSuQmCC',
-    // ]
-
-    // let counter = 0;
-    // img.addEventListener('click', () => {
-    //     if (counter === 0) {
-    //         img.src = images[1];
-    //         counter = 1;
-    //     } else {
-    //         img.src = images[0];
-    //         counter = 0;
-    //     }
-    // })
-</script>
 
 </html>
