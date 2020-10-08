@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 100px;
+        height: 100px;
+        background-color: navy;
+        border-radius: 12px;
+    }
+</style>
+
+<div id='first'> </div>
+
+<div> </div>
+<div></div>
+<script>
+    const first = document.getElementById('first');
+    first.addEventListener('click', (e) => {
+            first.style.background = getRandomColor();
+            first.addEventListener('mouseover'), () => {
+                first.style.transform = `rotate(${Math.random( )* 90}deg)`
+
+            }
+
+        }) //https://developer.mozilla.org/en-US/docs/Web/Events
+</script>
+
+<body>
+</body>
+
+</html>

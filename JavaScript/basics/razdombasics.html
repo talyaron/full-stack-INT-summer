@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #last {
+        color: blue;
+    }
+</style>
+
+<body>
+    <h1 id="name">
+        what is your name?
+    </h1>
+    <h2 id="last">
+        what is your last name?
+    </h2>
+
+
+
+    <script>
+        const name = document.getElementById('name'); // we get into h1 by it's id which is name
+
+        const last = document.getElementById('last'); // we get into h2 by it's id which is last
+        name.innerText = "Raz"; // innerTextis a method which is working to change the text of the element.
+        name.style.color = "red" // <style> color: "red" </style>
+        last.innerText = 'Frankel' //innTextis a method which is working to change the text of the element.
+        last.style.color = 'green'
+    </script>
+
+
+</body>
+
+
+
+</html>
