@@ -6,19 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>melissa</h1>
-    <h2>bell</h2>
+    <h1 id='name'>melissa</h1>
+    <h2 id='last'> bell</h2>
 
     <script>
-        console.log(document);
-        console.dir(document)
+        const name = document.getElementById('name');
+        const last = document.getElementById('last')
 
-        const header = document.getElementById('header');
-
-    const favoriteFood = 'bagels';
-
-        header.innerText = `My fav food is ${favoriteFood}`;
-        header.style.color = 'purple';
+       name.innerText = `Melissa`;
+       name.style.color = 'Pink'
+       last.innerText = `Melissa`
+       last.style.color = 'blue';
     </script>
 </body>
 </html>
