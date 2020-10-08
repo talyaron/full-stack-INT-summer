@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fgdgfgDocument</title>
+</head>
+<style>
+    #aa {
+        width: 100%;
+        max-height: 100%;
+    }
+
+    .box{
+        width: 200px;
+        height: 200px;
+    }
+
+    .box img{
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <img id='aa'
+            src='https://cdn.shoplightspeed.com/shops/626275/files/18687152/600x600x1/stickers-northwest-sticker-smiley-face.jpg'>
+    </div>
+
+    <script>
+        const img = document.getElementById('aa')
+
+        const images = [
+            'https://cdn.shoplightspeed.com/shops/626275/files/18687152/600x600x1/stickers-northwest-sticker-smiley-face.jpg',
+            'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/406bee2d-7ccd-44bf-85bd-c856afa00c72/d4qvpte-35b23738-84ba-41bb-91d9-a82478a33aeb.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvNDA2YmVlMmQtN2NjZC00NGJmLTg1YmQtYzg1NmFmYTAwYzcyXC9kNHF2cHRlLTM1YjIzNzM4LTg0YmEtNDFiYi05MWQ5LWE4MjQ3OGEzM2FlYi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.n8Of6cvalEW5he-ezMITA1WuLLA0KwGxzVTVtMk1Q3w'
+        ]
+
+        let counter = 0;
+        img.addEventListener('click', () => {
+            if (counter === 0) {
+                img.src = images[1];
+                counter = 1;
+            } else {
+                img.src = images[0];
+                counter = 0;
+            }
+        })
+    </script>
+</body>
+
+</html>
