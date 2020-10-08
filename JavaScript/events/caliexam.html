@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+  div{
+ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png"> 
+  }
+
+  #text{
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5rem;
+    }
+
+
+</style>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png">
+<body>
+    <div id='smiley'> </div>
+    <p id='text'>you are kidding!</p>
+    <script>
+
+     
+
+        smiley.addEventListener('click',(event)=>{
+            console.log(event)
+            console.log(event.key)
+            document.getElementById('text').innerText = event.click;
+        })
+       
+
+    
+
+    </script>
+</body>
+
+</html>
