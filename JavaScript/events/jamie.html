@@ -56,8 +56,11 @@
         }
 
         let scale = 1;
-        const el = document.querySelector('div');
-        el.onwheel = zoom;
+        const els = document.querySelectorAll('div');
+        els.forEach(el => {
+            el.onwheel = zoom;
+        })
+        // el.addEventListener('wheel',zoom())
 
         function getRandomColor() {
             var letters = '0123456789ABCDEF';
