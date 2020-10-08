@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 150px;
+        height: 135px;
+        background-color: darkmagenta;
+        border-radius: 8px;
+        transition: all 200ms;
+    }
+</style>
+
+<body>
+    <div id='events'></div>
+    <div id='second'></div>
+    <div id='third'></div>
+    <div></div>
+    <script>
+        const events = document.getElementById('events');
+
+        events.addEventListener('click', (e) => {
+            events.style.background = getRandomColor();
+        })
+
+        events.addEventListener('mouseover', () => {
+            events.style.transform = `rotate(${Math.random() * 360}deg)`;
+        })
+
+        third.addEventListener('click', () => {
+            third.style.transform = `shake('#theElement').effect('shake', .6)`;
+        })
+
+        let borderradius = 8;
+        second.addEventListener('mouseleave', () => {
+            second.style.border = `${borderradius}8px`;
+            borderradius--;
+        })
+
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

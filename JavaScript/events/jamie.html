@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 100px;
+        height: 100px;
+        background-color: plum;
+        border-radius: 12px;
+        text-align: center;
+        top: px
+    }
+</style>
+
+<body>
+    <div id='first'>
+
+    </div>
+    <div id='second'>
+
+    </div>
+    <div id='third'>
+
+    </div>
+
+    <script>
+        const first = document.getElementById('first');
+
+
+        first.addEventListener('click', (e) => {
+            first.style.background = getRandomColor
+        })
+        first.addEventListener('mouseover', () => {
+            first.style.transform = `rotate(${Math.random() * 90}deg)`
+        })
+        let borderThickness = 0
+        first.addEventListener('mouseleave', () => {
+            first.style.border = `${borderThickness}px solid black`;
+            borderThickness++
+        })
+        function zoom(event) {
+            event.preventDefault();
+
+            scale += event.deltaY * -0.01;
+
+            // Restrict scale
+            scale = Math.min(Math.max(.125, scale), 4);
+
+            // Apply scale transform
+            el.style.transform = `scale(${scale})`;
+        }
+
+        let scale = 1;
+        const els = document.querySelectorAll('div');
+        els.forEach(el => {
+            el.onwheel = zoom;
+        })
+        // el.addEventListener('wheel',zoom())
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+
+            // #a345da
+        }
+    </script>
+</body>
+
+</html>

@@ -8,10 +8,10 @@
 </head>
 <style>
     div {
-        width: 100px;
-        height: 100px;
-        background-color: cadetblue;
-        border-radius: 12px;
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        border-radius: 60px;
         transition: all 200ms;
     }
 </style>
@@ -19,13 +19,15 @@
 <body>
     <div id='first'> </div>
 
-    <div> </div>
-    <div></div>
+    <div id='second'></div>
+    <div id='third'></div>
     <script>
 
 // https://developer.mozilla.org/en-US/docs/Web/Events  
 
         const first = document.getElementById('first');
+        const second = document.getElementById('second');
+        const third = document.getElementById('third')
 
 
 
@@ -33,14 +35,23 @@
             first.style.background = getRandomColor();
         })
 
-        first.addEventListener('mouseover',()=>{
-            first.style.transform = `rotate(${Math.random()*90}deg)`
+let borderRadius = 60;
+        second.addEventListener('click',()=>{
+            second.style.borderRadius = `${borderRadius}px`;
+            borderRadius++;
+        })
+        first.addEventListener('click', (e) => {
+            first.style.background = getRandomColor();
+        })
+        let header = '';
+        third.addEventListener('click', (e) => {
+            third.header = "hi"();
         })
 
-let borderThicknes = 0;
-        first.addEventListener('mouseleave',()=>{
-            first.style.border = `${borderThicknes}px solid black`;
-            borderThicknes++;
+        let borderThicknes = 10;
+        third.addEventListener('mouseup',()=>{
+            third.style.border = `${borderThicknes}px solid purple`;
+            borderThicknes--;
         })
 
 
@@ -51,8 +62,6 @@ let borderThicknes = 0;
                 color += letters[Math.floor(Math.random() * 16)];
             }
             return color;
-
-            // #a345da
         }
 
     </script>
