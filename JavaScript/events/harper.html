@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"> </div>
+    <style>
+        #box{
+            background:rgb(146, 84, 216);
+            opacity:0.0;
+            border:1px solid black;
+            height:200px;
+            width:200px;
+        }
+    </style>
+    <script>
+        const box=document.getElementById("box");
+        let a=0;
+        box.addEventListener('click',()=>{
+            box.style.opacity=a;
+            a+=.1;
+        })
+    </script>
+</body>
+</html>
