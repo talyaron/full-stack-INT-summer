@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id= 'face'>
+    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png'/>
+    <p></p>
+</div>
+<style>
+    img {
+        width: 100px;
+        margin-left: 50%;
+    
+    }
+    p {
+        text-align: center;
+    }
+</style> 
+<script>
+a = document.getElementById('face');
+let count = 1;
+a.addEventListener('click',()=>{
+    document.querySelector('p').innerText = `You are kiding! You have clicked ${count} times`;
+    
+    count += 1;
+})
+</script>   
+</body>
+</html>
