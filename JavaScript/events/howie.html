@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+
+    <div id = 'class'>
+        <img id = 'pic' src="https://cdn.shoplightspeed.com/shops/626275/files/18687152/600x600x1/stickers-northwest-sticker-smiley-face.jpg"/>
+
+
+
+    </div>
+    <div id = 'hello'>
+
+
+    </div>
+
+    <div id = "last">
+
+
+
+    </div>
+
+
+    <script>
+
+        const pic = document.getElementById('pic');
+        const divvy = document.getElementById('hello');
+        const last = document.getElementById('last');
+        let num = 0;
+
+
+        pic.addEventListener('click', () =>{
+            num++;
+            divvy.innerText = num;
+            last.innerText= "This is funny!!!!";
+            last.style.color = getRandomColor();
+            
+
+        })
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+
+
+        }
+
+
+
+    </script>
+    
+</body>
+</html>
