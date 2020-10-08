@@ -9,8 +9,8 @@
 <style>
     .wrapper {
         display: grid;
-        grid-template-columns: 100px 100px 100px 100px;
-        grid-template-rows: 100px 100px 100px 100px;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px ;
         gap: 5px;
         position: relative;
         top: 200px;
@@ -52,6 +52,17 @@
         <div class="item">
             <img
                 src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+           
+        </div>
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+           
+        </div>
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+           
         </div>
         <div class="item">
             <img
@@ -64,58 +75,45 @@
         <div class="item">
             <img
                 src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+           
         </div>
-        <div class="item">
-            <img
-                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-        </div>
-        <div class="item">
-            <img
-                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-        </div>
-        <div class="item">
-            <img
-                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-        </div>
-        <div class="item">
-            <img
-                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-        </div>
-        <div class="item">
-            <img
-                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-        </div>
-        <div class="item">
-            <img
-                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-        </div>
-        <div class="item">
-            <img
-                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-        </div>
-        <div class="item">
-            <img
-                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-        </div>
-        <div class="item">
-            <img
-                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
-        </div>
+        
     </div>
 </body>
 <script>
     const imgs = document.querySelectorAll('.item');
-
     console.dir(imgs)
+    const images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU","https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSHZ9sV-245dYf2qoFA9IjqxNeHR5Q_U_koPA&usqp=CAU"]
 
-    imgs.forEach(img => {
-        img.addEventListener('click', e => {
+    let isFirstPlayer = true;
+    imgs.forEach(img=> {
+        img.addEventListener('click',e=> { console.dir(e)
+        const image = e.target.children[0];
 
-            console.dir(e)
-            const image = e.target.children[0];
+        image.style.display = 'block'
 
-            image.style.display = 'block'})
+        if(isFirstPlayer ==true){
+            image.src = images [0];
+            isFirstPlayer = false;
+        } else {
+            image.src = images[1];
+            isFirstPlayer=true
+
+        }  
     })
+    // const imgs = document.querySelectorAll('.item');
+
+    // console.dir(imgs)
+
+    // imgs.forEach(img => {
+    //     img.addEventListener('click', e => {
+
+    //         console.dir(e)
+    //         const image = e.target.children[0];
+
+    //         image.style.display = 'block'})
+   // })
+    
     // const img = document.getElementById('aa')
 
     // const images = [
