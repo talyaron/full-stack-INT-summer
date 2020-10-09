@@ -44,6 +44,24 @@
         <div class="box"></div>
         <div class="box"></div>
     </div>
+    <script>
+const img = document.getElementById('smiley')
+
+const images = [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Mr._Smiley_Face.svg/1200px-Mr._Smiley_Face.svg.png",
+    "https://images-na.ssl-images-amazon.com/images/I/711WthZ6hiL._AC_SL1500_.jpg"]
+let counter = 0;
+    img.addEventListener('click', () => {
+        if (counter === 0) {
+            img.src = images[1];
+            counter = 1;
+        } else {
+            img.src = images[0];
+            counter = 0;
+        }
+    })
+    </script>
+   
 </body>
 
 </html>

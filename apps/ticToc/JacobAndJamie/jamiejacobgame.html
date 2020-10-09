@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+</head>
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+        gap: 5px;
+        position: relative;
+        top: 200px;
+        left: 500px;
+
+    }
+
+    .item {
+        background-color: purple;
+    }
+
+    img {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        top: 10px;
+        left: 10px;
+    }
+
+    .item>img {
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+        </div>
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+        </div>
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+        </div>
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+
+        </div>
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+
+        </div>
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+
+        </div>
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+        </div>
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+        </div>
+        <div class="item">
+            <img
+                src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU>
+
+        </div>
+
+    </div>
+
+    <script>
+        const imgs = document.querySelectorAll('.item');
+        console.dir(imgs)
+        const images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWSVhtNN8yFkkarVdaDwxMOBbjU7d0yqaq9g&usqp=CAU", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSHZ9sV-245dYf2qoFA9IjqxNeHR5Q_U_koPA&usqp=CAU"]
+
+        let isFirstPlayer = true;
+        imgs.forEach(img => {
+            img.addEventListener('click', e => {
+                console.dir(e)
+                const image = e.target.children[0];
+
+                image.style.display = 'block'
+
+                if (isFirstPlayer == true) {
+                    image.src = images[0];
+                    isFirstPlayer = false;
+                } else {
+                    image.src = images[1];
+                    isFirstPlayer = true
+
+                }
+            })
+        })
+   
+    </script>
+</body>
+
+</html>

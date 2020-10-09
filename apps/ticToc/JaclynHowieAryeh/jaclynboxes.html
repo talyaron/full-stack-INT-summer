@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .wrapper {
+            display: grid;
+            grid-template-columns: 300px 300px 300px;
+            grid-template-rows: 300px 300px 300px;
+            gap: 5px;
+            position: relative;
+            top: 200px;
+            left: 500px;
+
+        }
+
+        .item {
+            background-color: plum;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            top: 40px;
+            left: 50px;
+        }
+    </style>
+
+    <body>
+        <div class="wrapper">
+            <div class="item" id="first">
+                <img id="picture" src="https://cdn141.picsart.com/308459171254211.png">
+            </div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+
+
+        <script>
+            let counter = 0;
+            const first = document.getElementById('first');
+            first.addEventListener('click', () => {
+
+                if (counter === 0) {
+                    document.getElementById('picture').src = 'https://cdn141.picsart.com/308459171254211.png';
+                    counter = 1;
+                } else {
+                    document.getElementById('picture').src = 'https://cdn.vox-cdn.com/thumbor/M2rjDALxvNDv3yqeYuIdL3spabo=/0x0:2000x1333/1200x675/filters:focal(840x507:1160x827)/cdn.vox-cdn.com/uploads/chorus_image/image/65939918/171109_08_11_37_5DS_0545__1_.0.jpg';
+                    counter = 0;
+                }
+            })
+
+        </script>
+    </body>
+
+</html>

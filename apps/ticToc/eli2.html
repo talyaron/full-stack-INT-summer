@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .container{
+        display: grid;
+        grid-template-columns: 200px 200px 200px;
+        grid-template-rows: 200px 200px 200px;
+        gap: 5px;
+
+    }
+
+    .container>div{
+        width: 200px;
+        height: 200px;
+        border: 5px solid red;
+        background-color: blue;
+    }
+
+    img{
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+</style>
+
+<body>
+    <div class="container">
+
+        <div class="box">
+            <img src=""/>
+        </div>
+
+        <div class="box">
+            <img src=""/>
+        </div>
+
+        <div class="box">
+            <img src=""/>
+        </div>
+
+        <div class="box">
+            <img src=""/>
+        </div>
+
+        <div class="box">
+            <img src=""/>
+        </div>
+
+        <div class="box">
+            <img src=""/>
+        </div>
+
+        <div class="box">
+            <img src=""/>
+        </div>
+
+        <div class="box">
+            <img src=""/>
+        </div>
+
+        <div class="box">
+            <img src=""/>
+        </div>
+
+    </div>
+
+    <script>
+
+        const div = document.querySelectorAll(".box")
+        let count = 0;
+
+        div.forEach(divs =>{
+            divs.addEventListener("click", e => {
+            const image = e.target.children[0];            
+                if(count == 0){
+                    image.src = "https://e7.pngegg.com/pngimages/482/392/png-clipart-black-x-mark-tic-tac-toe-oxo-holiday-tic-tac-toe-game-blue-cross-miscellaneous-angle.png";
+                    count = 1;
+                    divs.id = "cross";
+                }                
+                else if(count == 1){
+                    image.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/800px-Circle_-_black_simple.svg.png';
+                    count = 0;
+                    divs.id = "circle";
+                 } 
+                image.style.display = "block";
+            })
+        })
+                    
+               
+    </script>
+</body>
+</html>
