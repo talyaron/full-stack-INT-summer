@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form">
+        <input type="name" placeholder="First name" />
+        <input type="name" placeholder="Surname" />
+        <input type="name" placeholder="Age" />
+        <input type="color" placeholder="Favorite color" />
+        <input type="submit" value="Submit" />
+    </form>
+    <script>
+        // Create a form that asks the user to give his/her name, her surename, age, and preferd color, and when she/he submit the info, print it on the console log, our better, on alert
+
+        let form = document.getElementById("form")
+        form.addEventListener("submit", e => {
+            e.preventDefault()
+            console.dir(e.target)
+
+            console.log(e.target[0].value)
+            console.log(e.target[1].value)
+            console.log(e.target[2].value)
+            console.log(e.target[3].value)
+        let firstName = e.target[0].value
+        let lastName = e.target[1].value
+        let age = e.target[2].value
+        alert(`First Name:${firstName}, Surname:${lastName}, Age:${age}`)
+        })
+
+    </script>
+</body>
+
+</html>
