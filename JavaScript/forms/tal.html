@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
 <body>
+  
+
     <form id='theForm'>
         <input type='text' name='name' placeholder="enter your name" />
         <input type="week" name='week'/>
@@ -15,7 +17,8 @@
         <button type='submit'>Submited!</button>
     </form>
     <script>
-        document.getElementById('theForm').addEventListener('submit', e=>{
+        const theForm = document.getElementById('theForm')
+        theForm.addEventListener('submit', e=>{
             e.preventDefault();
             console.dir(e.target)
 
@@ -23,7 +26,12 @@
             console.log(e.target.children['name'].value)
             console.log(e.target.children['week'].value)
             console.log(e.target.children['color'].value)
+
+            theForm.reset()
         })
+
+       
+       
     </script>
 </body>
 </html>
