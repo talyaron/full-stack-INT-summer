@@ -15,9 +15,9 @@
         transition: all 200ms;
     }
 
-    #text{
-        position:absolute;
-        top:50%;
+    #text {
+        position: absolute;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 5rem;
@@ -64,11 +64,15 @@
             // #a345da
         }
 
-        document.addEventListener('keyup',(event)=>{
+        document.addEventListener('keyup', (event) => {
             console.log(event)
             console.log(event.key)
             document.getElementById('text').innerText = event.key;
         })
+
+        window.addEventListener('offline', (event) => {
+            alert("The network connection has been lost.");
+        });
 
     </script>
 </body>
