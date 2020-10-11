@@ -22,7 +22,24 @@
         width: 50%;
         height: 500px;
         border: 5px solid black;
-        background-color: blue;
+    }
+
+    #pA{
+        width: fit-content;
+        border: 2px solid black;
+        background-color: lightblue;
+        font-size: large;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    #pB{
+        width: fit-content;
+        border: 2px solid black;
+        background-color: lightgreen;
+        font-size: large;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
 </style>
@@ -53,13 +70,13 @@
         sendA.onclick = function(){
             let personA = document.getElementById("personA").value;
 
-            chats.innerHTML += `<p>${personA}</p>`
+            chats.innerHTML += `<p id="pA">${personA}</p>`
         }
 
         sendB.onclick = function(){
             let personB = document.getElementById("personB").value;
 
-            chats.innerHTML += `<p style="text-align: right;">${personB}</p>`
+            chats.innerHTML += `<p id="pB">${personB}</p>`
         }
 
     </script>
