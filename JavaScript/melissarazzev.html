@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-rows: 100px 100px 100px;
+        grid-template-columns: 100px 100px 100px;
+        gap: 5px;
+    }
+
+    .box {
+        background-color: blue;
+    }
+
+
+    .box img {
+        display: none;
+        width: 100%
+    }
+</style>
+
+<body>
+    <div class='wrapper'>
+        <div class='box'><img '
+                src=' https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png'
+                alt='https://www.readersdigest.ca/wp-content/uploads/2017/09/why-clowns-are-creepy-according-to-science.jpg'>
+        </div>
+        <div class='box'>
+            <img
+                src='https://www.readersdigest.ca/wp-content/uploads/2017/09/why-clowns-are-creepy-according-to-science.jpg'>
+        </div>
+        <div class='box'><img '
+            src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png></div>
+        <div class=' box'><img '
+            src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png></div>
+        <div class=' box'><img '
+            src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png></div>
+        <div class=' box'><img '
+            src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png></div>
+        <div class=' box'><img '
+            src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png></div>
+        <div class=' box'><img '
+            src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png></div>
+        <div class='box'><img '
+            src=https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png></div>
+    </div>
+    <script>
+        const imgOpotions=["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png",'https://www.readersdigest.ca/wp-content/uploads/2017/09/why-clowns-are-creepy-according-to-science.jpg']
+        const images=document.querySelectorAll('.box');
+        let player=0;
+        images.forEach(img=>{
+            img.addEventListener('click', e=>{
+                const letter = e.target.children[0];
+                if (player==0){
+                    player=1
+                    letter.src=imgOpotions[0];
+                }
+                else{
+                    letter.src=imgOpotions[1];
+                    player=0;
+                }
+                letter.style.display = "block";
+            })
+        })
+       // const imgs =document.querySelectorAll('.box');
+        //console.dir(imgs)
+
+       // imgs.forEach(img => {
+           // img.addEventListener('click', e => {
+               // console.dir(e)
+                //const image = e.target.children[0];
+                //image.style.display = 'block'
+            //})
+
+        //})
+
+     //   const images = [
+       //     'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png',
+         //   'https://www.readersdigest.ca/wp-content/uploads/2017/09/why-clowns-are-creepy-according-to-science.jpg'
+        //]
+   //img.addEventListener('click' , () => {
+
+    //})
+       // let counter = 0
+        //img.addEventListener('click', () => {
+          //  if (counter === 0) {
+          //      img.src = images[1];
+          //      counter = 1;
+            //}
+         //   else {
+         //       img.src = images[0];
+         //       counter = 0;
+        //    }
+       // })
+    </script>
+</body>
+
+</html>
