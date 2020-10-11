@@ -9,7 +9,7 @@
 
 <body>
     <form id="input">
-        <input type="text" placeholder="Your message" />
+        <input type="text" name="name" placeholder="Your message" />
         <input type="submit" placeholder="Send" />
     </form>
     <div id="message"></div>
@@ -20,7 +20,7 @@
 
         input.addEventListener("submit", e => {
             e.preventDefault()
-            const inputText = e.target[0].value
+            const inputText = e.target.children["name"].value
             message.innerHTML += createNewParagraph(inputText)
             input.reset()
         })
