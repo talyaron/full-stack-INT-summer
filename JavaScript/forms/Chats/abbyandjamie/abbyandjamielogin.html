@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>abbyandjamiechats</h1>
+    <a href='login.html'>Chat</a>
+    <h2>Name: <span id=name></span></h2>
+    <img id='img' src='' />
+    <script>
+        let userInfo = localStorage.getItem('userInfo')
+        console.log(userInfo);
+
+        console.log(userInfo.imgUrl)
+        userInfo = JSON.parse(userInfo);
+        console.log(userInfo);
+        console.log(userInfo.imgUrl)
+
+
+        document.getElementById('name').innerText = userInfo.name;
+        document.getElementById('img').src = userInfo.imgUrl
+    </script>
+</body>
+
+</html>
