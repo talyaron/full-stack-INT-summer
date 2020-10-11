@@ -13,10 +13,11 @@
        <br>
        <input type="submit" value="Submit"/>
        <br><br>
-       <a href='harperari2.html'>Go to chat</a>
+       <a href='harperAri2.html'>Go to chat</a>
    </form>
    <script>
        document.getElementById('login').addEventListener('submit',e=>{
+        e.preventDefault();
         let userInfo={
             username: e.target.children['username'].value,
             imgUrl: e.target.children['image'].value
