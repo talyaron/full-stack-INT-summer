@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id='theForm'>
+    <input type = 'text' name='firstname' placeholder="first name">
+    <input type = 'text' name='lastname' placeholder="last name">
+    <input type = 'text' name='age' placeholder="age">
+    <input type = 'color' name='color' >
+    <input type = 'submit' name='button' placeholder="submit" />
+    </form>
+    <script>
+        document.getElementById('theForm').addEventListener('submit', e=>{
+            e.preventDefault();
+            console.dir(e.target)
+            console.log(e.target.children['firstname'].value)
+            console.log(e.target.children['lastname'].value)
+            console.log(e.target.children['age'].value)
+            console.log(e.target.children['color'].value)
+            alert('submitted!')
+        })
+    </script>
+</body>
+</html>
