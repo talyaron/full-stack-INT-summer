@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id='theForm'>
+        <input name = 'fname' type="text">What's your first name?</input>
+        <input name ='lname' type="text">What's your last name?</input>
+        <input name='color' type="color">Prefered Color</input>
+        <input name='age' type="number">Age?</input> 
+        <input type="submit"/>     
+    </form>
+    <script>
+        document.getElementById('theForm').addEventListener('submit',e=>{
+            alert('First Name: '+e.target.children['fname'].value)
+            alert('Last Name: '+ e.target.children['lname'].value)
+            alert('Favorite Color: '+e.target.children['color'].value)
+            alert('Age: '+ e.target.children['age'].value)
+        })
+    </script>
+</body>
+</html>
