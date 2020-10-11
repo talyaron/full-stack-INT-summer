@@ -17,7 +17,6 @@
         document.getElementById('form').addEventListener('submit', e=>{
             e.preventDefault();
             console.dir(e.target)
-            console.log(e.target[0].value)
             console.log(e.target.children['firstName'].value);
             console.log(e.target.children['lastName'].value);
             console.log(e.target.children['age'].value);
