@@ -10,16 +10,20 @@
 <body>
     <h1>Login Page</h1>
     <a href='chatmjj.html'>Go to the Chat</a>
+
+    <form id='form'>
+        <input type='text' name='firstname' placeholder="first name">
+        <input type='submit' name='button' placeholder="submit" />
+    </form>
+
+
     <script>
         let userInfo = {
             name: '',
             imgUrl: ''
         }
 
-            <form id = 'form' >
-                <input type='text' name='firstname' placeholder="first name">
-                    <input type='submit' name='button' placeholder="submit" />
-    </form>
+
         document.getElementById('theForm').addEventListener('submit', e => {
             e.preventDefault();
             console.dir(e.target)
