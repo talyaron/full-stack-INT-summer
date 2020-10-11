@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Login Page</h1>
+    <a href='chatmjj.html'>Go to the Chat</a>
+    <script>
+        let userInfo = {
+            name: '',
+            imgUrl: ''
+        }
+
+            <form id = 'form' >
+                <input type='text' name='firstname' placeholder="first name">
+                    <input type='submit' name='button' placeholder="submit" />
+    </form>
+        document.getElementById('theForm').addEventListener('submit', e => {
+            e.preventDefault();
+            console.dir(e.target)
+            console.log(e.target.children['firstname'].value)
+        })
+        localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    </script>
+</body>
+
+</html>
