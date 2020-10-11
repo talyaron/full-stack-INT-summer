@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id='theForm'>
+        <input type='text' name='name1' placeholder="enter your first name" />
+        <input type='text' name='name2' placeholder="enter your late name" />
+        <input type="date" name='birthday' />
+        <input type="color" name='color' />
+
+        <input type='submit' value="Submit">
+
+    </form>
+    <script>
+        document.getElementById('theForm').addEventListener('submit', e => {
+            e.preventDefault();
+            console.dir(e.target)
+
+            alert(e.target[0].value)
+            alert(e.target.children['name1'].value)
+            alert(e.target.children['name2'].value)
+            alert(e.target.children['birthday'].value)
+            alert(e.target.children['color'].value)
+        })
+    </script>
+</body>
+
+</html>
