@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="chatInput" class="input">
+      <input type="text" placeholder="Write your name here" name="input" />
+      <input type="submit" value="Send" />
+    </form>
+    <div id="chatmessage"></div>
+    <script>
+      const chatInput = document.getElementById("chatInput");
+      const chatmessage = document.getElementById("chatmessage");
+      chatInput.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = e.target.children["input"].value;
+        chatmessage.innerHTML += CreateNewparagraph(input);
+        chatInput.reset();
+      });
+      function CreateNewparagraph(input) {
+        return `<p>${input}</p>`;
+      }
+    </script>
+  </body>
+</html>
