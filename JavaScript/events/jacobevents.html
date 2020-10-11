@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    div>p {
+        font-style: italic;
+        font-size:larger;
+text-align:
+    }
+</style>
+
+<body>
+    <div id='first'>
+        <p id='second'>This is my text</p>
+    </div>
+
+    <div> </div>
+    <div></div>
+    <script>
+
+        // https://developer.mozilla.org/en-US/docs/Web/Events  
+
+        const first = document.getElementById('first');
+
+        const second = document.getElementById('second')
+
+        second.addEventListener('click', (e) => {
+            second.style.color = getRandomColor();
+        })
+
+        //second.addEventListener('click',()=>{
+            //second.style.transform = `rotate(${Math.random()*90}deg)`
+        //})
+
+
+        let borderThickness = 0;
+        second.addEventListener('wheel', () => {
+            first.style.border = `${borderThickness}px solid black`;
+            borderThickness++;
+        })
+
+        let fontthickness = 0
+        second.addEventListener('click', (e) => {
+            second.style.fontStyle = `${fontthickness}px solid black`;
+            fontthickness++;
+        })
+
+
+        function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+
+                // #a345da
+            }
+
+    </script>
+</body>
+
+</html>
