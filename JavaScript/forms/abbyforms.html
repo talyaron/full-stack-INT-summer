@@ -6,12 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
-        <input type='text' placeholder="enter your name"/>
-        <input type='text' placeholder="enter your last name" />
-        <input type="number" placeholder="age"/>
-        <input type='date' placeholder="birthday"/>
-        <input type='submit' value="Submit Here">
+    <form id='form'>
+        <input type='text' name='firstName' placeholder="enter your name"/>
+        <input type='text' name='lastName' placeholder="enter your last name" />
+        <input type="number" name='age' placeholder="age"/>
+        <input type='color' name='color' placeholder="favorite color"/>
+        <input type='submit' name='submit' value="Submit!">
     </form>
+    <script>
+        document.getElementById('form').addEventListener('submit', e=>{
+            e.preventDefault();
+            console.dir(e.target)
+            console.log(e.target[0].value)
+            console.log(e.target.children['firstName'].value);
+            console.log(e.target.children['lastName'].value);
+            console.log(e.target.children['age'].value);
+            console.log(e.target.children['color'].value);
+        })
+    </script>
 </body>
 </html>
