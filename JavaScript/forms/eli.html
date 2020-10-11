@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input id="name" type="text"  placeholder="First name"/>
+        <br/>
+        <input id="surname" type="text" placeholder="Last name"/>
+        <br/>
+        <input id="age" type="number" placeholder="Age">
+        <br/>
+        <input id="colour" type="color">Favourite colour </input>
+        <br/>
+        <input id="submit" type="submit"/>
+    </form>
+    
+
+    <script>
+        let submit = document.getElementById("submit");
+
+        submit.onclick = function(){
+            let name = document.getElementById("name").value;
+            let surname = document.getElementById("surname").value;
+            let age = document.getElementById("age").value;
+            let colour = document.getElementById("colour").value;
+
+            alert(`Name: ${name}; Surname: ${surname}; Age: ${age}; Favourite Colour: ${colour}`)
+        }
+
+        
+
+    </script>
+
+</body>
+</html>

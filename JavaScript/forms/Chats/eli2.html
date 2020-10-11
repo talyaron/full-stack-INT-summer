@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        display: flex;
+    }
+
+    #inputs{
+        
+        width: fit-content;
+        border: 5px solid black;
+        height: fit-content;
+    }
+
+    #chatbox{
+        width: 50%;
+        height: 500px;
+        border: 5px solid black;
+        background-color: blue;
+    }
+
+</style>
+
+<body>
+    <div id="inputs">
+        <input id="personA" type="text" placeholder="Person A"/>
+        <input id="sendA" type="button" value="Send"/>
+        <br>
+        <input id="personB" type="text" placeholder="Person B"/>
+        <input id="sendB" type="button" value="Send"/>
+    </div>
+    <div id="chatbox" style="overflow: scroll;">
+        <div style="text-align:center; border-bottom: 2px solid black; background-color: cornflowerblue; height: 50px; font-size: 40px;">
+            Chat!
+        </div>
+        <div id="chats" style="width: 100%; height: 100%;">
+
+        </div>
+        
+    </div>
+
+    <script>
+        let sendA = document.getElementById("sendA");
+        let sendB = document.getElementById("sendB");
+        let chats = document.getElementById("chats")
+
+        sendA.onclick = function(){
+            let personA = document.getElementById("personA").value;
+
+            chats.innerHTML += `<p>${personA}</p>`
+        }
+
+        sendB.onclick = function(){
+            let personB = document.getElementById("personB").value;
+
+            chats.innerHTML += `<p style="text-align: right;">${personB}</p>`
+        }
+
+    </script>
+</body>
+</html>
