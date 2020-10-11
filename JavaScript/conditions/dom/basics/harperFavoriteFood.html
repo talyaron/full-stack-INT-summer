@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="section"></div>
+    <script>
+        const foods=["mac n cheese", "tortilla chips", "peanut butter"];
+        const section=document.getElementById("section");
+        let html='';
+        foods.forEach(food=>{
+            html+=`<p>${food}</food>`;
+        })
+        section.innerHTML=html;
+
+
+    </script>
+
+</body>
+</html>
