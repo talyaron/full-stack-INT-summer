@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Page 1</h1>
+    <h2>Log in: <span id=name></span></h2>
+    <img id='img' src='' />
+    <form id='chatInput' class="input">
+        <input type="text" placeholder="username" name='username' />
+        <input type="password" placeholder="password" name='password'/>
+        <input type="url" placeholder="profile pic url" name='profilePic'/>
+        <a href='login.html'>Submit</a></input>
+    </form>
+    <script>
+        let userInfo = localStorage.getItem('userInfo')
+        console.log(userInfo);
+
+        console.log(userInfo.imgUrl)
+        userInfo = JSON.parse(userInfo);
+        console.log(userInfo);
+        console.log(userInfo.imgUrl)
+
+
+        document.getElementById('name').innerText = userInfo.name;
+        document.getElementById('img').src = userInfo.imgUrl
+    </script>
+</body>
+
+</html>

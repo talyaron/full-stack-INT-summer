@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="a">
+        <form id='chatInput' class="input">
+            <input type="text" placeholder="write your S*** here" name='input' />
+            <input type='submit' value="Send" />
+        </form>
+        <form id='chatInput2' class="input2">
+            <input type="text" placeholder="write your S*** here" name='input2' />
+            <input type='submit' value="Send" />
+        </form>
+    </div>
+    <div id="chatMessages"></div>
+
+    <style>
+        form {
+            border: 3px solid black;
+            width: 50%;
+            background: lawngreen;
+        }
+
+        #chatMessages {
+            border: 3px solid black;
+            background: aqua;
+        }
+        .a {
+            display: flex;
+        }
+        #chatMessages >.c2> .chat2 {
+            text-align: right;
+        }
+        #chatMessages>.c1 {
+            background-color: rgb(177, 177, 255);
+            width:max-content;
+            display: flex;
+            flex-direction: row;
+
+        }
+        #chatMessages>.c2 {
+            background-color: rgb(255, 152, 152);
+            width:max-content;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+    </style>
+    <script>
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput2 = document.getElementById('chatInput2');
+        chatInput.addEventListener('submit', e => {
+            e.preventDefault();
+            const input = e.target.children['input'].value;
+            chatMessages.innerHTML += createNewParagraph(input);
+            chatInput.reset();
+        })
+        chatInput2.addEventListener('submit', e => {
+            e.preventDefault();
+            const input2 = e.target.children['input2'].value;
+            chatMessages.innerHTML += createNewParagraph2(input2);
+            chatInput.reset();
+        })
+
+        function createNewParagraph(input) {
+            return `<div class='c1'><div><img width = '30px' src=/>${input}</div></div>`
+        }
+        function createNewParagraph2(input) {
+            return `<div class='c2'><div class='chat2'><img width = '30px' src='https://storage.pixteller.com/designs/designs-images/2016-11-19/02/thumbs/img_page_1_58305b35ebf5e.png'/>${input}</div></div>`
+        }
+    </script>
+</body>
+</html>
