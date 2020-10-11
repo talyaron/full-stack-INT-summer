@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1>Log in</h1>
+   <form id="login" onsubmit="handleSubmit(event)">
+       <p>Username: <input type="text" name="username" placeholder="Enter a username"></p>
+       <p>Profile Image: <input type="text" name="image" placeholder="Enter the image url"> </p>
+       <br>
+       <input type="submit" value="Submit"/>
+       <br><br>
+       <a href='harperari2.html'>Go to chat</a>
+   </form>
+   <script>
+       document.getElementById('login').addEventListener('submit',e=>{
+        let userInfo={
+            username: e.target.children['username'].value,
+            imgUrl: e.target.children['image'].value
+        }
+        sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+       })
+   </script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<h1>Whatsapp Login</h1>
+<body>
+    <form id='theForm'>
+        <input type='text' name='name' placeholder="Username" />
+        <input type='text' name='name2' placeholder="Password" />
+    
+        
+        <input type='submit' name='submit' value="Login"/>
+    </form>
+    <script>
+        document.getElementById('theForm').addEventListener('submit', e=>{
+            e.preventDefault();
+            console.dir(e.target);
+
+            console.log(e.target[0].value)
+            console.log(e.target.children['name'].value);
+            console.log(e.target.children['name2'].value);
+        })
+
+        <a href='chat.html'>Go to page 1</a>
+    <script>
+        let userInfo = {
+            name:'Cali',
+            imgUrl: 'https://cdn.britannica.com/84/73184-004-E5A450B5/Sunflower-field-Fargo-North-Dakota.jpg'
+        }
+
+        localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    </script>
+</body>
+</html>

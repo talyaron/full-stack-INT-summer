@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="h1">Eli</h1>
+    <h2 id="h2">Prais</h2>
+    
+    <script>
+        console.log(document);
+        console.dir(document);
+
+        const fName = document.getElementById("h1");
+        const sName = document.getElementById("h2");
+
+        fName.innerText = "Hello";
+        fName.style.color = "red";
+        sName.innerText = "People";
+        sName.style.color = "blue";
+
+    </script>
+</body>
+</html>
