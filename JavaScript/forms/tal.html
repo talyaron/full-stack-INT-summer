@@ -6,10 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
-        <input type='text' placeholder="enter your name" />
-        <input type="week" />
+    <form id='theForm'>
+        <input type='text' name='name' placeholder="enter your name" />
+        <input type="week" name='week'/>
+       <input type="color" name='color' />
+        
         <input type='submit' value="Submit Me!">
+        <button type='submit'>Submited!</button>
     </form>
+    <script>
+        document.getElementById('theForm').addEventListener('submit', e=>{
+            e.preventDefault();
+            console.dir(e.target)
+
+            console.log(e.target[0].value)
+            console.log(e.target.children['name'].value)
+            console.log(e.target.children['week'].value)
+            console.log(e.target.children['color'].value)
+        })
+    </script>
 </body>
 </html>

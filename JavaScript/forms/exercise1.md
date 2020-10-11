@@ -1,0 +1,1 @@
+Create a form that asks the user to give his/her name, her surename, age, and preferd color, and when she/he submit the info, print it on the console log, our better, on alert
