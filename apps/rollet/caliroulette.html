@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<h1>Roulette: Number between 0 and 9</h1>
+<body>
+    <form onsubmit='doFunction(Random)'>
+        <p><span id='tb'></span> <input type="button" name='answer' id='answer'></p>
+        <input type= "button" value="Click for Number" onclick="doFunction(Random)"; />
+        
+    </form>
+
+    <script>
+
+    
+    type="text/javascript">
+    function Random() {
+        return Math.floor(Math.random() * 9);
+    }
+
+    document.getElementById('tb').value = Random()
+
+
+            if(tb === answer){
+                alert("You won $1000000000")
+            } else{
+                alert ("Sorry you lost :( ")
+            }
+
+        
+    </script>
+    
+</body>
+</html>
