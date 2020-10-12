@@ -9,32 +9,27 @@
 
 <body>
     <form onSubmit='handleSubmit(event)'>
-        <p>2 x 3 = <input type="number" name="answer" /></p>
+        <p><span id='a'></span> + <span id='b'></span> = <input type="number" name="answer" /></p>
         <input type="submit" value="submit!" />
     </form>
 
     <script>
-        const correctAnswer = 6;
+        let a=Math.floor(Math.random()*20)
+        let b=Math.floor(Math.random()*20)
+        document.getElementById("a").innerText=a;
+        document.getElementById("b").innerText=b;
+        const correctAnswer = a+b;
         function handleSubmit(e) {
             console.dir(e);
             e.preventDefault();
             let answer = e.target.children[0].children.answer.valueAsNumber;
             console.log(answer);
-<<<<<<< Updated upstream
-            debugger;
+            
             if (correctAnswer === answer) {
                 alert("good!")
             } else {
                 alert("try again!")
             }
-=======
-            
-            if (correctAnswer == answer) {
-                alert ("good!")
-            } else {
-                alert ("try again!")
-        }
->>>>>>> Stashed changes
         }
 
 

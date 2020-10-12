@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <form onsubmit='handleSubmit(event)'>
         <p><span id='number1'></span>+<span id='number2'></span> = <input type="number" name='answer' id='answer'></p>
     </form>
 
     <script>
-        let number1 = Math.floor(Math.random() * 20);
-        let number2 = Math.floor(Math.random() * 20);
+        let number1 = Math.floor(Math.random() * 21);
+        let number2 = Math.floor(Math.random() * 21);
         document.getElementById('number1').innerText = number1;
         document.getElementById('number2').innerText = number2;
 
-        function handleSubmit(e){
-            e.preventDefault(); 
+        function handleSubmit(e) {
+            e.preventDefault();
             console.dir(e)
             const answer = document.getElementById('answer').valueAsNumber;
             console.dir(answer)
 
-            if(number1+number2 === answer){
+            if (number1 + number2 === answer) {
                 alert("Correct!")
-            } else{
-                alert ("Try again")
+            } else {
+                alert("Try again")
             }
-
-}
+        }
     </script>
 </body>
+
 </html>
