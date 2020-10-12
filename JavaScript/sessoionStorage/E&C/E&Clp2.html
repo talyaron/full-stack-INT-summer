@@ -19,25 +19,31 @@
 
    
     <script>
+        let nextPage = false;
+
         document.getElementById('theForm').addEventListener('submit', e=>{
             e.preventDefault();
             console.dir(e.target);
 
-            //console.log(e.target[0].value)
             let nameInput = e.target.children["name"].value;
             console.log(nameInput);
             let photo = e.target.children["name2"].value;
             console.log(photo);
 
-            let body = document.getElementById("box2")
-            body.innerHTML += " <a href='http://127.0.0.1:5500/cloned/full-stack-INT-summer/JavaScript/sessoionStorage/eli+calipage2.html'>Go to page 1</a>";
-
+            if(nextPage == false ){
+                console.log("Work")
+                let body = document.getElementById("box2")
+                body.innerHTML += " <a href='http://127.0.0.1:5500/cloned/full-stack-INT-summer/JavaScript/sessoionStorage/eli+calipage2.html'>Go to page 1</a>";
+                
+                nextPage = true
+            }
+            
         })
 
         
         let userInfo = {
-            name: document.getElementsByName("name").value,
-            imgUrl: document.getElementsByName("name2").value
+            name: "eli",
+            imgUrl: "https://cdn.jpegmini.com/user/images/pufffin_blurred.jpg"
         }
 
         localStorage.setItem('userInfo', JSON.stringify(userInfo))

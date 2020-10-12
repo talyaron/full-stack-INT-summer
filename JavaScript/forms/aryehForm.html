@@ -13,6 +13,9 @@
         <input name='age' type="number">Age?</input> 
         <input type="submit"/>     
     </form>
+    <form id= 'chatInput'>
+        <input type='chatMessages' placeholder="write here" name='input'/>
+    </form>
     <script>
         document.getElementById('theForm').addEventListener('submit',e=>{
             alert('First Name: '+e.target.children['fname'].value)
