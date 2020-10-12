@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onSubmit='handleSubmit(event)'>
+        <p>2 x 3 = <input type="number" name="answer" /></p>
+        <input type="submit" value="submit!" />
+    </form>
+
+    <script>
+        const correctAnswer = 6;
+        function handleSubmit(e) {
+            console.dir(e);
+            e.preventDefault();
+            let answer = e.target.children[0].children.answer.value;
+            console.log(answer);
+            debugger
+            if (correctAnswer === answer) {
+                alert = "good!"
+            } else {
+                alert = "try again!"
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
