@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit='handleSubmit(event)'>
+        <p><span id='a'></span>+<span id='b'></span> = <input type="number" name='answer' id='answer'></p>
+    </form>
+
+    <script>
+        let a = Math.floor(Math.random() * 20);
+        let b = Math.floor(Math.random() * 20);
+        document.getElementById('a').innerText = a;
+        document.getElementById('b').innerText = b;
+
+        function handleSubmit(e){
+            e.preventDefault(); 
+            console.dir(e)
+            const answer = document.getElementById('answer').valueAsNumber;
+            console.dir(answer)
+
+            if(a+b === answer){
+                alert("Good!")
+            } else{
+                alert ("Try again")
+            }
+
+}
+    </script>
+</body>
+</html>
