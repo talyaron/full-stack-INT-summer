@@ -1,0 +1,1 @@
+create a page where there is an aritmetic question, and only if the user answerd correctly, you will give him a bravo alert, otherwise, give negative alert.
