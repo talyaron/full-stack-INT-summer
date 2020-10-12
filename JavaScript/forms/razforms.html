@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-  <forms><input type="text" placeholder="enter your name">
-    <input type="week"/>
-    <input type="submit" value="Submit Me!">
-  
-  </form>
-</body>
+  </head>
+  <body>
+    <form id="the form">
+      <input type="text" placeholder="enter your name" />
+      <input type="week" />
+
+      <input type="color" />
+      <input type="submit" value="Submit Me!" />
+      <button type="submit">Submitted!</button>
+      <input type="search" placeholder="search here" />
+
+      <input type="password" placeholder="enter your password " />
+    </form>
+    <script>
+      document.getElementById("theForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.dir(e.target);
+        console.log(e.target(0).value);
+        console.log(e.target.children["name"].value);
+      });
+    </script>
+  </body>
 </html>
