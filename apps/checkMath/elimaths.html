@@ -7,22 +7,37 @@
 </head>
 <body>
     <form style="display: flex;">
-        <div>What is 2 x 3? </div>
+        <div id="question"></div>
         <input id="answer" type="number"/>
         <input id="submit" type="submit"/>
     </form>
+    <a href="  ">Refresh</a>
 
     <script>
+        let random = function getRndInteger(min, max) {
+             return Math.floor(Math.random() * (max - min) ) + min;
+        }
+
+        let a = random(0,20);
+
+        let b = random(0,20);
+
+        let correct = a*b;
+
+        let question = document.getElementById("question");
+        question.innerText = `What is ${a} x ${b}?`;
+
         let done = document.getElementById("submit");
 
         done.addEventListener("click", (e)=> {
-            let answer = document.getElementById("answer").value
-            console.log(answer)
+            e.preventDefault();
+            let answer = document.getElementById("answer").value;
+            console.log(answer);
 
-            if(answer == "6"){
-                alert("Correct!")
+            if(answer == correct){
+                alert("Correct!");
             } else {
-                alert("Wrong!")
+                alert("Wrong!");
             }
         })
         
