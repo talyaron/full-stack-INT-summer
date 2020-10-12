@@ -13,6 +13,7 @@
 
     <form id='form'>
         <input type='text' name='firstname' placeholder="first name">
+        <input type='url' name='urlimage' placeholder="image">
         <input type='submit' name='button' placeholder="submit" />
     </form>
 
@@ -28,6 +29,7 @@
             e.preventDefault();
             console.dir(e.target)
             console.log(e.target.children['firstname'].value)
+            console.log(e.target.children['urlimage'].value)
         })
         localStorage.setItem('userInfo', JSON.stringify(userInfo))
     </script>
