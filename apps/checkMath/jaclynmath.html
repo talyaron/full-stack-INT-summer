@@ -18,13 +18,13 @@
         function handleSubmit(e) {
             console.dir(e);
             e.preventDefault();
-            let answer = e.target.children[0].children.answer.value;
+            let answer = e.target.children[0].children.answer.valueAsNumber;
             console.log(answer);
-            debugger
+            debugger;
             if (correctAnswer === answer) {
-                alert = "good!"
+                alert("good!")
             } else {
-                alert = "try again!"
+                alert("try again!")
             }
         }
 
