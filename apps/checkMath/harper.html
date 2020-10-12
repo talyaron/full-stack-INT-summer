@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="handleSubmit(event)">
+        <p>2 x 12 = <input type="number" name="answer" id="guess"/> </p>
+        <input type="submit" value="Check Answer"/>
+    </form>
+    <script>
+        const correctAnswer=24;
+        function handleSubmit(e){
+            e.preventDefault();
+            console.dir(e);
+            let guess=document.getElementById("guess").valueAsNumber;
+           
+            if(guess==correctAnswer){
+                alert("bravo!");
+            }
+            else{
+                alert("you're wrong");
+            }
+        }
+    </script>
+</body>
+</html>
