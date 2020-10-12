@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id = 'problem'>
+        <input type='string' name='math' placeholder="solve">What is the the integral of e^x?</input>
+        <input type="submit" placeholder="sumbit"/>
+    </form>
+</body>
+<script>
+    document.getElementById('problem').addEventListener('submit',e=>{
+        const answer = e.target.children['math'].value;
+        if (answer === 'e^x'){
+            alert('Bravo')
+        } else {
+            alert('Incorrect try again')
+        }
+    })
+</script>
+</html>
