@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onSubmit="handleSubmit(event)">
+        <input type="number" ; name="problem1" ; placeholder="2x3" />
+        <input type='submit' ; text="submit" ; id="answer1" />
+        <input type="number" ; name="problem2" ; placeholder="4x5" ; id="answer2" />
+        <input type='submit' ; text="submit" />
+        <input type="number" ; name="problem3" ; placeholder="3x5" ; id="answer3" />
+        <input type='submit' ; text="submit" />
+    </form>
+</body>
+<script>
+    function handleSubmit(e) {
+        console.dir(e);
+        e.preventDefault();
+        let answer1 = e.target.children.problem1.value;
+        let answer2 = e.target.children.problem2.value;
+        let answer3 = e.target.children.problem3.value;
+        console.log(answer1, answer2, answer3);
+        if (answer1 == 6) {
+            alert("Answer 1 is correct!");
+        }
+        else {
+            alert("Answer 1 is incorrect!")
+        }
+    }
+    if (answer2 == 20) {
+            alert("Answer 2 is correct!");
+        }
+        else {
+            alert("Answer 2 is incorrect!")
+        }
+    if (answer3 == 15) {
+            alert("Answer 3 is correct!");
+        }
+        else {
+            alert("Answer 3 is incorrect!")
+        }
+
+</script>
+
+</html>
