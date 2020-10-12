@@ -7,12 +7,12 @@
 </head>
 <body>
     <form onsubmit='handleSubmit(event)'>
-        <p><span id='a'></span>+<span id='b'></span> = <input type="number" name='answer' id='answer'></p>
+        <p><span id='a'></span>-<span id='b'></span> = <input type="number" name='answer' id='answer'></p>
     </form>
 
     <script>
-        let a = 5;
-        let b = 6;
+        let a = 15;
+        let b = 5;
         document.getElementById('a').innerText = a;
         document.getElementById('b').innerText = b;
 
@@ -24,7 +24,7 @@
 
         
 
-            if(a+b === answer){
+            if(a-b === answer){
                 alert("Woohoo! Correct!")
             } else{
                 alert ("Incorrect. try again.")
