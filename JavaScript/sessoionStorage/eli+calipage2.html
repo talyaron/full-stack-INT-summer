@@ -64,8 +64,8 @@
             imgurl: "https://cdn.jpegmini.com/user/images/pufffin_blurred.jpg"
         }*/
 
-        let name = userInfo.name
-        let picture = userInfo.imgurl
+        let name = JSON.parse(userInfo).name
+        let picture = JSON.parse(userInfo).imgurl
         
         let i = document.getElementById("personA")
         i.placeholder = name

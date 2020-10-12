@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<h1>Whatsapp Login</h1>
+<body>
+    <form id='theForm'>
+        <input type='text' name='name' placeholder="Username" />
+        <input type='text' name='name2' placeholder="img url" />
+    
+        
+        <input type='submit' name='submit' value="Login"/>
+    </form>
+
+    <div id="box2"></div>
+
+   
+    <script>
+        document.getElementById('theForm').addEventListener('submit', e=>{
+            e.preventDefault();
+            console.dir(e.target);
+
+            //console.log(e.target[0].value)
+            let nameInput = e.target.children["name"].value;
+            console.log(nameInput);
+            let photo = e.target.children["name2"].value;
+            console.log(photo);
+
+            let body = document.getElementById("box2")
+            body.innerHTML += " <a href='http://127.0.0.1:5500/cloned/full-stack-INT-summer/JavaScript/sessoionStorage/eli+calipage2.html'>Go to page 1</a>";
+
+        })
+
+        
+        let userInfo = {
+            name: document.getElementsByName("name").value,
+            imgUrl: document.getElementsByName("name2").value
+        }
+
+        localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    </script>
+</body>
+</html>
