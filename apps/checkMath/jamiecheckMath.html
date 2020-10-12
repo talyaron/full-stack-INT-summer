@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="handleSubmit(event)">
+        <p>  3 + 12 <input type="number" name="answer"/>
+        </p>
+
+    </form>
+    <script>
+       
+        let a=3;
+        let b=12;
+        document.getElementById('a').innetText=a;
+        document.getElementById('b').innerText=b;
+
+        const correctAnswer= 15;
+        function handleSubmit(e){
+            e.precentDefault();
+            const answer= e.target.children[0].children.answer.ValueAsNumber;
+            if(correctAnswer=== answer){
+            alert("Good!")
+        } else{
+            alert("Try again!")
+        }
+            //const answer = document.getElementById('answer')
+        }
+        //check if they are equal
+        
+        
+    </script>
+</body>
+</html>

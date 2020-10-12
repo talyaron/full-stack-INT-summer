@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <form onsubmit="sendMessage"> 
+        <input type="text" placeholder="drew"/>
+
+    </form>
+    <div id="root"></div>
+    <script>
+        let userDetails = localStorage.getItem('userDetails');
+        console.log(userDetails);
+        userDetails= JSON.parsel(userDetails);
+        console.log(userDetails);
+
+        function sendMessage(e){
+            e.preventDefault()
+            console.log(e.target.children.input.value)
+
+            //add message to the dom
+            root.innetHTML += createNewMessage(e.target.children.input.value)
+
+            e.target.reset();
+
+        }
+
+        function createNewMessage(text){
+            return `<p> $(userDetails.name): $(text) </p>`
+        }
+    </script>
+
+
+</body>
+</html>
