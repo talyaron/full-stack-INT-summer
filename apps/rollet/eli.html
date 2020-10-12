@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to Roulette!</h1>
+
+    <div style="display: flex;">
+        <input id="player" type="number">Please enter a number between 0 and 9 </input>
+        <input id="play" type="submit"/>
+    </div>
+
+    <div id="empty"></div>
+
+    <div id="empty2"></div>
+
+    
+
+
+    <script>
+        let random = function getRndInteger(min, max) {
+             return Math.floor(Math.random() * (max - min) ) + min;
+        }
+
+        let play = document.getElementById("play")
+
+        play.addEventListener("click", (e)=> {
+            genNum = random(0,9);
+            player = document.getElementById("player").value
+
+
+            document.getElementById("empty").innerText = `Your number: ${player}`
+            document.getElementById("empty2").innerText = `Computer's number: ${genNum}`
+
+            if(player == genNum){
+                alert("You Win!")
+            } else {
+                alert("You Lose :(")
+            }
+
+        })
+
+
+    </script>
+    
+</body>
+</html>
