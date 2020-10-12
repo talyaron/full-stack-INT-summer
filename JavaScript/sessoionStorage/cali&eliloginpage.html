@@ -9,11 +9,15 @@
 <body>
     <form id='theForm'>
         <input type='text' name='name' placeholder="Username" />
-        <input type='text' name='name2' placeholder="Password" />
+        <input type='password' name='name2' placeholder="Password" />
     
         
         <input type='submit' name='submit' value="Login"/>
     </form>
+
+    <div id="box2"></div>
+
+   
     <script>
         document.getElementById('theForm').addEventListener('submit', e=>{
             e.preventDefault();
@@ -22,10 +26,13 @@
             console.log(e.target[0].value)
             console.log(e.target.children['name'].value);
             console.log(e.target.children['name2'].value);
+
+            let body = document.getElementById("box2")
+            body.innerHTML += " <a href='http://127.0.0.1:5500/cloned/full-stack-INT-summer/JavaScript/sessoionStorage/eli+calipage2.html'>Go to page 1</a>";
+
         })
 
-        <a href='chat.html'>Go to page 1</a>
-    <script>
+        
         let userInfo = {
             name:'Cali',
             imgUrl: 'https://cdn.britannica.com/84/73184-004-E5A450B5/Sunflower-field-Fargo-North-Dakota.jpg'
