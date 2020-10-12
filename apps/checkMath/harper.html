@@ -7,11 +7,15 @@
 </head>
 <body>
     <form onsubmit="handleSubmit(event)">
-        <p>2 x 12 = <input type="number" name="answer" id="guess"/> </p>
+        <p><span id="a"></span> x <span id="b"></span> = <input type="number" name="answer" id="guess"/> </p>
         <input type="submit" value="Check Answer"/>
     </form>
     <script>
-        const correctAnswer=24;
+        let a=2;
+        let b=12;
+        document.getElementById("a").innerText=a;
+        document.getElementById("b").innerText=b;
+        const correctAnswer=a*b;
         function handleSubmit(e){
             e.preventDefault();
             console.dir(e);
