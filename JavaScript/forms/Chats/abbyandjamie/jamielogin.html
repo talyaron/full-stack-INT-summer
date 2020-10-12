@@ -7,20 +7,19 @@
 </head>
 <body>
     <form onsubmit='handleSubmit(event)'>
-        <input type="text" name="name" id="">
-        <input type="text" name="url" id="">
-        <button type="submit">Submit</button>
+        <input type="text" name="name" id="name">
+        <input type="url" name="name" id="">
+        <button type="submit">Send</button>
     </form>
-
     <script>
-        //take info from from and change it to a userDetails object
+        //take info from form and change it to a userDetails object
 
         function handleSubmit(e){
             console.dir(e);
             e.preventDefault();
 
-            let name = e.target.children.name.value;
-            let url = e.target.children.url.value;
+            let name= e.target.children.name.value;
+            let url= e.target.children.name.value;
             console.log(name, url)
 
             const userDetails = {name:name, url:url}
@@ -28,5 +27,6 @@
             localStorage.setItem('userDetails', JSON.stringify(userDetails))
         }
     </script>
+    
 </body>
 </html>

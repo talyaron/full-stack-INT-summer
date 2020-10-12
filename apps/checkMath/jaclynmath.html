@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onSubmit='handleSubmit(event)'>
+        <p><span id='a'></span> + <span id='b'></span> = <input type="number" name="answer" /></p>
+        <input type="submit" value="submit!" />
+    </form>
+
+    <script>
+        let a=Math.floor(Math.random()*20)
+        let b=Math.floor(Math.random()*20)
+        document.getElementById("a").innerText=a;
+        document.getElementById("b").innerText=b;
+        const correctAnswer = a+b;
+        function handleSubmit(e) {
+            console.dir(e);
+            e.preventDefault();
+            let answer = e.target.children[0].children.answer.valueAsNumber;
+            console.log(answer);
+            
+            if (correctAnswer === answer) {
+                alert("good!")
+            } else {
+                alert("try again!")
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
