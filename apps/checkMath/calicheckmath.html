@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id='theForm'>
+        <input type='text' name='question' placeholder="6 x 5" />
+        
+        <input type='submit' name='submit' value="Submit Me!"/>
+    </form>
+    <script>
+        document.getElementById('theForm').addEventListener('submit', e=>{
+            e.preventDefault();
+            console.dir(e.target);
+
+            console.log(e.target[0].value)
+            console.log(e.target.children['question'].value);
+
+            if ("30")
+        alert ("Woo Hoo! Answer is correct.")
+            else
+        alert ("Incorrect")
+
+        })
+    </script>
+</body>
+</html>
