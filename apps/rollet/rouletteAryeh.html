@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <a href="" >refresh</a>
+    <form id = 'r'>
+        <p></p>
+        <input name='input' type="number" placeholder="Enter a number between 0-9"/>
+        <input type="submit" title="Start Roulette"/>
+     
+    </form>
+</body>
+<script>
+    let a = Math.round(Math.random()*9);
+    console.log(a)
+    let owed = 0;
+    document.querySelector('p').innerText=`You owe ${owed} dollars`;
+    document.getElementById('r').addEventListener('submit',e=>{
+        e.preventDefault();
+        let answer=e.target.children['input'].valueAsNumber;
+        if (a === answer) {
+            alert('You win 1 million dollars')
+            owed= owed - 1000000;
+            console.log(owed)
+            document.querySelector('p').innerText=`You owe ${owed} dollars`;
+        } else {
+            alert('you owe me 1 million dollars')
+            owed = owed + 1000000;
+            console.log(owed)
+            document.querySelector('p').innerText=`You owe ${owed} dollars`;
+        }
+    })
+</script>
+</html>
