@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #container{
+        display: flex;
+        width: fit-content;
+        height: fit-content;
+        gap: 5px;
+    }
+
+    #container2{
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-template-columns: auto auto auto;
+        gap: 5px;
+    }
+    
+    #question{        
+        width: fit-content;
+        height: fit-content;
+        border: 1px solid black;
+        font-size: larger;
+    }
+
+    .box{
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        background-color: blue;
+        font: 20px bold;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 100px;
+    }
+
+</style>
+
+<body>
+    <div id="container">
+        <div id="question">
+        </div>
+        <div id="container2">
+            <div class="box" id="one"></div>
+            <div class="box" id="two"></div>
+            <div class="box" id="three"></div>
+            <div class="box" id="four"></div>
+            <div class="box" id="five"></div>
+            <div class="box" id="six"></div>
+            <div class="box" id="seven"></div>
+            <div class="box" id="eight"></div>
+            <div class="box" id="nine"></div>
+        </div>
+
+        <br/>
+        <div id="new"></div>
+
+    </div>
+
+
+    <script>
+        let random = function getRndInteger(min, max) {
+             return Math.floor(Math.random() * (max - min) ) + min;
+        }
+
+        let number1 = random(1,20);
+        let number2 = random(1,20);
+
+        document.getElementById("question").innerText = `What is ${number1} x ${number2}?`;
+        
+        let numbers = [];
+
+        for(let i = 1; i<9; i++){
+            while(numbers.length < 9){
+                let num = random(1,20) * random(1,20);
+
+                if(num in numbers){
+                    console.log("same")
+                }
+                else{
+                    numbers.push(num);
+                }
+                
+                console.log(numbers);
+            }
+        }
+
+        numbers.splice(random(0,8), 0, number1*number2);
+
+        console.log(numbers);
+
+        let boxlist = document.querySelectorAll(".box");
+
+        console.log(boxlist);
+
+        boxlist.forEach(i=>{
+            i.innerText = numbers[0];
+            if(numbers[0] == number1*number2){
+                i.id = "correct";
+            } else{
+                i.id = "wrong";
+            }
+            numbers.shift();
+        })
+
+        boxlist.forEach(i=>{
+            i.addEventListener("click", e=>{
+                if(i.id == "correct"){
+                    i.style = "background-color: green";
+                    setTimeout(function() {
+  	                    alert("Correct!");
+                    })
+
+                    document.getElementById("new").innerHTML += "<a href=''>Refresh</a>"
+                } else{
+                    i.style = "background-color: red";
+                    setTimeout(function() {
+  	                    alert("Wrong! Try again.");
+                    })
+                }
+            })
+        })
+
+        
+
+
+    </script>
+</body>
+</html>
