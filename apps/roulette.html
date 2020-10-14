@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Pick a number 1-9!</h1>
+    <div>
+        <form onsubmit='handleSubmit(event)'>
+            <input type="number" name="answer">
+            <button type="submit">submit</button>
+    </div>
+</body>
+<script>
+    let a = Math.floor(Math.random() * 9) + 1;
+    console.log(a);
+    function handleSubmit(e) {
+        e.preventDefault();
+        let answer1 = (e.target.children[0].valueAsNumber)
+        console.log(answer1)
+
+
+        if (a === answer1) {
+            alert(a)
+            alert("You win $10,000!!!")
+            window.location.reload(false);
+
+
+        } else {
+            alert(a)
+            alert("You owe $10,000!!!")
+            window.location.reload(false);
+        }
+    }
+</script>
+</html>
