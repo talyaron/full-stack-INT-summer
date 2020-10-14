@@ -12,10 +12,9 @@
     </form>
 </body>
 <script>
-    let a = Math.random()*100;
-    let b = Math.random()*100;
-    a = Math.round(a);
-    b = Math.round(b);
+    let a = Math.round(Math.random()*100);
+    let b = Math.round(Math.random()*100);
+
     document.querySelector('p').innerText = `${a}+${b}=`;
     document.getElementById('problem').addEventListener('submit',e=>{
         const answer = e.target.children['math'].value;
