@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit='handleSubmit(event)'>
+        <p><span id='a'></span>+<span id= 'b'></span> = <input type="number" name='answer'></p>
+    </form>
+
+    <script>
+        let a = 2;
+        let b = 4;
+        document.getElementById('a').innerText = a;
+        document.getElementById('b').innerText = b;
+
+        function handleSubmit(e){
+            e.preventDefault(); //keep the page from refreshing after submitting a form;
+            console.dir(e)
+            //const answer = e.target.children[0].children.answer.valueAsNumber;
+            const answer = document.getElementById('answer').valueAsNumber;
+            
+            console.log(answer)
+
+            // below ,, check if they are = 
+
+            if(a+b === answer){
+                alert("Good!")
+            } else {
+                alert ("Try again")
+            }
+        }
+        
+    </script>
+</body>
+
+</html>
