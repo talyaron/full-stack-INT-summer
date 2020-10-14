@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div id='top'></div>
+    <div id='wrap'>
+
+
+        <div class="item" id='0'></div>
+        <div class="item" id='1'></div>
+        <div class="item" id='2'></div>
+        <div class="item" id='3'></div>
+        <div class="item" id='4'></div>
+        <div class="item" id='5'></div>
+        <div class="item" id='6'></div>
+        <div class="item" id='7'></div>
+        <div class="item" id='8'></div>
+    </div>
+</body>
+<style>
+    #wrap {
+        display: inline-grid;
+        grid-template-columns: auto auto auto;
+        gap: 5px;
+    }
+
+    #wrap>.item {
+        width: 100px;
+        height: 100px;
+        background: blue;
+
+    }
+    #wrap>.item p {
+        color: white;
+        font-size: 3rem;
+        text-align: center;
+    }
+</style>
+<script>
+    let a = Math.round(Math.random() * 10);
+    let b = Math.round(Math.random() * 10);
+    let answer = a + b;
+    console.log(answer)
+    document.getElementById('form')
+    let input = document.querySelector('input');
+    let numbers = [];
+    for (i = 1; i < 10; i++) {
+        let c=Math.round(Math.random() * 101);
+        let d = Math.round(Math.random() * 101);
+        if (answer===c){
+            numbers.push(d);
+        } else {
+            numbers.push(c);
+        }
+
+    }
+    let index = Math.round(Math.random() * 8);
+    numbers[index] = answer;
+    console.log(numbers)
+    document.getElementById('top').innerText=`What is ${a}+${b}?`
+    const values = document.querySelectorAll('.item');
+    let counter = 0;
+    let counter2 = 0;
+    for (i in numbers){
+        console.log()
+        document.getElementById(`${counter2}`).innerHTML = `<p> ${numbers[i]}</p>`;
+        counter2 += 1;
+    }
+    function check(id){
+    
+    document.getElementById(`${id}`).addEventListener('click', e => {
+        console.log(e.target.children[`${id}`])
+        if (e.target.children[0].innerText == answer) {
+            document.getElementById(`${id}`).style = 'background-color:green'
+            
+        } else {
+            document.getElementById(`${id}`).style = 'background-color: red'
+            
+        }
+        counter += 1;
+    }) 
+    }
+    check(0);
+    check(1);
+    check(2);
+    check(3);
+    check(4);
+    check(5);
+    check(6);
+    check(7);
+    check(8);
+
+</script>
+
+</html>
