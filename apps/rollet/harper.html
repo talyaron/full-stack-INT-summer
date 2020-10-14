@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #chosenNum{
+        color:red;
+        font-weight:bolder;
+    }
+</style>
+<body>
+    <h1>You owe $<span id="money">0</span></h1>
+    <form onsubmit="handleSubmit(event)">
+        <p>Enter a number between 0 and 9</p>
+        <input type="number" id="guess"/>
+        <br><br>
+        <input type="submit" value="Start Rollet">
+    </form>
+    <br><br>
+    <pr>The chosen number is...<span id="chosenNum"></span></pr>
+    <br><br>
+    <p id="message"></p>
+    <button onclick="restart(event)">Restart the game</button>
+</body>
+<script>
+    const chosenNum=document.getElementById("chosenNum");
+    let balance=0;
+    const money=document.getElementById("money");
+    const message=document.getElementById("message");
+    function handleSubmit(e){
+        e.preventDefault();
+        let x=Math.floor(Math.random()*10);
+        let g=document.getElementById("guess").valueAsNumber;
+        chosenNum.innerText=x;
+        if(g==x){
+            message.innerText="you won $1000!!";
+            balance+=1000;
+        }
+        else{
+            message.innerText="you owe us $2000";
+            balance-=2000;
+        }
+        money.innerText=balance;
+    }
+
+    function restart(e){
+        e.preventDefault();
+        balance=0;
+        message.innerText="";
+        chosenNum.innerText="";
+        document.getElementById("guess").value="";
+        money.innerText=balance;
+    }
+</script>
+</html>
