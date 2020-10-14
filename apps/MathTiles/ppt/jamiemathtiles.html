@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .wrapper{
+        display:grid;
+        grid-template-rows:150px 150px 150px;
+        grid-template-columns:150px 150px 150px;
+        gap:5px;
+    }
+    .item{
+        text-align:center;
+        border: 1px solid black;
+        background-color:plum;
+    }
+    
+</style>
+<body>
+    <div>What is the correct answer for <span id=firstRandomNumber></span>*<span id=secondRandomNumber></span>
+    </div>
+<div class="wrapper">
+    <div class="item"><p id='one'></p></div>
+    <div class="item"><p id='two'></p></div>
+    <div class="item"><p id='three'></p></div>
+    <div class="item"><p id='four'></p></div>
+    <div class="item"><p id='five'></p></div>
+    <div class="item"><p id='six'></p></div>
+    <div class="item"><p id='seven'></p></div>
+    <div class="item"><p id='eight'></p></div>
+    <div class="item"><p id='nine'></p></div>
+</div>
+<script>
+    //step 1 create 2 random numbrs
+    let randomNumber= Math.floor(Math.random()*9)+1;
+    console.log(randomNumber)
+
+    let randomNumber2= Math.floor(Math.random()*9)+1;
+    console.log(randomNumber2)
+
+    const correctNumber = randomNumber*randomNumber2
+
+    document.getElementById("firstRandomNumber").innerText=randomNumber
+    document.getElementById("secondRandomNumber").innerText=randomNumber2
+
+    //step 2= create an array w 9 random numbers bewteen 1-100
+    let numbers=[];
+    //do 9 loops
+    for(let i=0; i<9;i++){
+        //create random numbrs
+        let RandomNumber3 = Math.cell(Math.random()*100)
+        
+        //check if it is the correct answer. if it is do not add
+        if(correctNumber === randomNumber3){
+            i--
+
+        }else{
+            numbers.push(RandomNumber3);
+        }
+    }
+    console.log(numbers)
+
+    
+
+    //step 3 create nine tiles with numbers from the array in each tile the number 
+</script>
+</body>
+</html>
