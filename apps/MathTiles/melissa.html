@@ -45,10 +45,33 @@
         }
 
         console.log(numbers)
-
-        // step 3: create a nine tiles with numbers from the array, in in each tile the number in the array weill be shown
-
-
     </script>
+
+        /////step 3: create a nine tiles with numbers from the array, in in each tile the number in the array weill be shown
+
+    <div class="wrapper">
+        <div class="item"><p id="1"></p></div>
+        <div class="item"><p id="2"></p></div>
+        <div class="item"><p id="3"></p></div>
+        <div class="item"><p id="4"></p></div>
+        <div class="item"><p id="5"></p></div>
+        <div class="item"><p id="6"></p></div>
+        <div class="item"><p id="7"></p></div>
+        <div class="item"><p id="8"></p></div>
+        <div class="item"><p id="9"></p></div>
+    </div>
+    
+    <style>
+        .wrapper{
+            display:grid;
+            grid-template-rows:100px 100px 100px;
+            grid-template-columns:100px 100px 100px;
+            gap:5px;
+        }
+
+        .item{
+            background-color:cornflowerblue;
+        }
+    </style>   
 </body>
 </html>
