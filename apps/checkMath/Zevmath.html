@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p><span id="a"></span>
+        <span id="c"></span><span id='b'></span>
+    <form onsubmit='handleSubmit(event)'>
+        <input type="number" name="answer">
+        <button type="submit">submit</button>
+    </form>
+    </p>
+
+</body>
+<script>
+    var symbol = ["+","*", "-"];
+    const random1 = JSON.parse(Math.floor(Math.random() * symbol.length));
+    let a = Math.floor(Math.random() * 20) + 1;
+    let b = Math.floor(Math.random() * 20) + 1;
+    let c = random1;
+    if (random1 === 0) {
+        var correctAnswer = a + b;
+    }
+   if (random1 === 1) {
+        var correctAnswer = a * b;
+    } if (random1 === 2) {
+        var correctAnswer = a - b;
+    }
+    console.log(correctAnswer)
+    document.getElementById('a').innerText = a;
+    document.getElementById('b').innerText = b;
+    document.getElementById('c').innerText = symbol[random1];
+
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        let answer1 = (e.target.children[0].valueAsNumber)
+        console.log(answer1)
+
+
+        if (correctAnswer === answer1) {
+            alert("Congrats!!")
+            window.location.reload(false);
+
+
+        } else {
+            alert("try again")
+        }
+    }
+
+
+</script>
+
+</html>
