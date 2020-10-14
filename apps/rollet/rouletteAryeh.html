@@ -15,14 +15,22 @@
     </form>
 </body>
 <script>
-    let a = Math.round(Math.random()*9);
-    console.log(a)
+
+    let randomNumber = Math.round(Math.random()*9);
+    console.log(randomNumber)
+    
     let owed = 0;
-    document.querySelector('p').innerText=`You owe ${owed} dollars`;
-    document.getElementById('r').addEventListener('submit',e=>{
+
+    document.querySelector('p').innerText=`You owe ${owed} dollars`; //show the owed money
+    
+    document.getElementById('r').addEventListener('submit',e=>{ //handle user iput
+        
         e.preventDefault();
+        
         let answer=e.target.children['input'].valueAsNumber;
-        if (a === answer) {
+
+        //decide if the user won
+        if (randomNumber === answer) {
             alert('You win 1 million dollars')
             owed= owed - 1000000;
             console.log(owed)
