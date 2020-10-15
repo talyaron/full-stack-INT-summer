@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        
+        .wrapper {
+            display: grid;
+            grid-template-rows: 100px 100px 100px 100px;
+            grid-template-columns: 100px 100px 100px 100px;
+            gap: 3px;
+            
+        }
+
+        .item {
+            text-align: center;
+            font-style: italic;
+            font-size: 20px;
+            border: 3px solid blue;
+            border-radius: solid 20px;
+            background-color:rgb(125, 230, 221);
+            margin-bottom: 20px;
+            color: rgb(79, 20, 119);
+        }
+
+       h1{
+           font-size: 30px;
+           font-style: italic;
+           border: 3px dotted blue;
+           color: purple;
+         
+       }
+
+
+    </style>
+    <div><h1 id="simonSays"></h1></div>
+    <div class="wrapper">
+        <div class="item">
+            <p id="num1"></p>
+        </div>
+        <div class="item">
+            <p id="num2"></p>
+        </div>
+        <div class="item">
+            <p id="num3"></p>
+        </div>
+        <div class="item">
+            <p id="num4"></p>
+        </div>
+        <div class="item">
+            <p id="num5"></p>
+        </div>
+        <div class="item">
+            <p id="num6"></p>
+        </div>
+        <div class="item">
+            <p id="num7"></p>
+        </div>
+        <div class="item">
+            <p id="num8"></p>
+        </div>
+        <div class="item">
+            <p id="num9"></p>
+        </div>
+        <div class="item">
+            <p id="num10"></p>
+        </div>
+        <div class="item">
+            <p id="num11"></p>
+        </div>
+        <div class="item">
+            <p id="num12"></p>
+        </div>
+        <div class="item">
+            <p id="num13"></p>
+        </div>
+        <div class="item">
+            <p id="num14"></p>
+        </div>
+        <div class="item">
+            <p id="num15"></p>
+        </div>
+        <div class="item">
+            <p id="num16"></p>
+        </div>
+
+
+        <script>
+            let wordoptions = ["Aardvark", "Cali", "Jacob", "Zev", "Tal", "Jaclyn", "Abby", "Jamie", "Harper", "Melissa", "Raz", "Howie", "Coding", "Eli", "Aryeh", "Israel", "Tel Aviv", "Jerusalem", "Hummus", "Shuk", "Coffee", "Juice"]
+            console.log(wordoptions);
+            let finalWordoptions = [];
+
+            for (let i = 0; i < 16; i++) {
+                let index = Math.floor(Math.random() * wordoptions.length)
+                console.log(wordoptions[index]);
+                finalWordoptions.push(wordoptions[index]);
+                wordoptions.splice(index, 1);
+            }
+            console.log(finalWordoptions);
+            for (i = 1; i < 17; i++) {
+                document.getElementById("num"+i).innerText = finalWordoptions[i-1];
+            }
+            let word = finalWordoptions[Math.floor(Math.random() * 17)]
+            document.getElementById('simonSays').innerText = "Simon Says: " + `${word}`;
+            const items = document.querySelectorAll(`.item`);
+            items.forEach(items => {
+                items.addEventListener('click', e => {
+                    const item = e.target;
+                    if (item.innerText == word){
+                        item.style.backgroundColor = "green";  
+                    }
+                    else {
+                        item.style.backgroundColor = "red";
+                    }
+                })
+            })
+        </script>
+</body>
+
+</html>
