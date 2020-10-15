@@ -22,6 +22,7 @@
 </style>
 <body>
         <div style="border: 2px solid black; width: fit-content; height: fit-content;" id="question"></div>
+
         <div id="container"> 
             <div class="item" style="background-color: lawngreen;"></div>
             <div class="item" style="background-color:red"></div>
@@ -62,10 +63,31 @@
 
         boxlist.forEach(i=>{
             let x = i.style.backgroundColor;
-            if (x in selectedcolors) {
-                console.log(selectedcolors.indexOf(x))
-                i.id = selectedcolors.indexOf(x)
-            } 
+            console.log(i.style.backgroundColor);
+            console.log(selectedcolors)
+            if (selectedcolors.includes(x)) {
+               // console.log(selectedcolors.indexOf(x))
+                i.id = selectedcolors.indexOf(x)+1
+            } else{
+                i.id = "wrong"
+            }
+
+            i.addEventListener('click', e=>{
+                var click1 = 'false';
+                var click2 = 'false';
+                var click3 = 'false';
+                
+                if(i.id == '1') {
+                    click1 = 'true';
+                    i.innerText='sushi'
+                }
+                if(i.id == '2' && click1 === 'true') {
+                    console.log ('yes');
+                    click2 = 'true';
+                    i.innerText='pizza'
+                }
+
+            })
         })
 
 
