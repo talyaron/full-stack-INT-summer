@@ -71,6 +71,23 @@
             } else{
                 i.id = "wrong"
             }
+
+            i.addEventListener('click', e=>{
+                var click1 = 'false';
+                var click2 = 'false';
+                var click3 = 'false';
+                
+                if(i.id == '1') {
+                    click1 = 'true';
+                    i.innerText='sushi'
+                }
+                if(i.id == '2' && click1 === 'true') {
+                    console.log ('yes');
+                    click2 = 'true';
+                    i.innerText='pizza'
+                }
+
+            })
         })
 
 
