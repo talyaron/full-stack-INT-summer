@@ -12,6 +12,12 @@
  
 }
 
+#wrapper {
+    display: grid;
+    grid-template-rows: 100px 100px 100px;
+    grid-template-columns: 100px 100px 100px;
+    gap: 5px;}
+
 #level-title {
   font-family: 'Start';
   color:black;
@@ -113,7 +119,7 @@
     
   <h1 id="level-title">Click to Start</h1>
   <div class="container">
-    <div lass="row">
+    <div id=wrapper>
 
       <div type="button" id="green" class="btn green ">
 
@@ -133,7 +139,7 @@
 
     </div>
 
-      <div class="row">
+      
         <div type="button" id="pink" class="btn pink">
 
         </div>
@@ -149,9 +155,7 @@
 
             </div>
 
-        </div>
-
-        <div class="row">
+    
             <div type="button" id="coral" class="btn coral">
     
             </div>
@@ -167,9 +171,6 @@
     
                 </div>
     
-            </div>
-
-            <div class="row">
                 <div type="button" id="lightgreen" class="btn lightgreen">
         
                 </div>
@@ -182,7 +183,7 @@
                 </div>
         
                 </div>
-
+            </div>
 
 
       </div>

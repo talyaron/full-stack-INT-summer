@@ -57,11 +57,18 @@
 
         document.getElementById('question').innerText = selectedcolors;
        
-        let boxlist = document.getElementsByClassName('.item');
+        let boxlist = document.querySelectorAll('.item');
+        console.log(boxlist);
 
-        boxlist.array.forEach(element => {
-            console.log(element.style.background-color);
-        });
+        boxlist.forEach(i=>{
+            let x = i.style.backgroundColor;
+            if (x in selectedcolors) {
+                console.log(selectedcolors.indexOf(x))
+                i.id = selectedcolors.indexOf(x)
+            } 
+        })
+
+
         
     </script>
 </body>
