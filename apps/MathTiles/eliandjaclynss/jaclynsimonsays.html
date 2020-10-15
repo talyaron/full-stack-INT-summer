@@ -45,7 +45,7 @@
         var numbers = [];
         while (numbers.length < 4){
             let x = random(0,8)
-            if(x in numbers){
+            if(numbers.includes(x)){
                 console.log("same")
             }else{
                 numbers.push(x);
@@ -66,7 +66,6 @@
             console.log(i.style.backgroundColor);
             console.log(selectedcolors)
             if (selectedcolors.includes(x)) {
-               // console.log(selectedcolors.indexOf(x))
                 i.id = selectedcolors.indexOf(x)+1
             } else{
                 i.id = "wrong"
