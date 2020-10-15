@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+#wrapper {
+    display: grid;
+    grid-template-rows: 100px 100px 100px;
+    grid-template-columns: 100px 100px 100px;
+    gap: 5px;}
+div>div {
+        background-color: blue;
+    }
+</style>
+<body>
+    <p>Simon Says "<span id="a"></span>"</p>
+    <div id=wrapper>
+        <div id=box1><span id="b"></span></div>
+        <div id=box2><span id="c"></span></div>
+        <div id=box3><span id="d"></span></div>
+        </div>
+</body>
+<script>
+    let words = ["Hello","Bye","Home"]    
+    document.getElementById('a').innerText = a;
+</script>
+</html>
