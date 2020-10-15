@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #wrapper {
+        display: grid;
+        grid-template-rows: 100px 100px 100px;
+        grid-template-columns: 100px 100px 100px;
+        gap: 5px;
+    }
+
+    #box {
+        background-color: blue;
+    }
+</style>
+
+<body>
+    <p>Simon Says "<span id="a"></span>"</p>
+    <div id=wrapper>
+        <div id=box>Hello<span id="c"></span></div>
+        <div id=box>Bye<span id="d"></span></div>
+        <div id=box>Home<span id="e"></span></div>
+    </div>
+</body>
+<script>
+    let words = ["Hello", "Bye", "Home"]
+    const b = Math.floor(Math.random() * 3);
+    console.log(b);
+    let a = words[b]
+    console.log(a)
+    document.getElementById('a').innerText = a;
+
+    const box = document.querySelectorAll(`#box`);
+    box.forEach(box => {
+        box.addEventListener('click', e => {
+            const box = e.target;
+            if (box.innerText == a) {
+                box.style.backgroundColor = "green";
+            }
+            else {
+                box.style.backgroundColor = "red";
+            }
+        })
+    })
+
+
+</script>
+
+</html>
