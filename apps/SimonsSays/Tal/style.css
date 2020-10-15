@@ -16,3 +16,8 @@
     font-size: 2rem;
     margin-bottom: 2vh;
 }
+
+#alert{
+    font-size: 2rem;
+    color: green;
+}

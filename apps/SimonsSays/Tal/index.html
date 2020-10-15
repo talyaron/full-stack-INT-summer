@@ -11,6 +11,7 @@
 <body>
     <div id="followWordTitle" class="instructions"></div>
     <div id="followWords"></div>
+    <div id="alert"></div>
     <div id="root"></div>
     <script>
 
@@ -54,24 +55,79 @@
         //generate follow these words
         const followWordTitle = document.getElementById('followWordTitle');
         const followWords = document.getElementById('followWords');
+        const alertUser = document.getElementById('alert')
         followWordTitle.innerText = 'Please repeat these words'
 
 
         //create a loop for of new random words
         const reaptWordsArray = randomizeArray(words)
 
-        for (let i = 1; i < reaptWordsArray.length - 1; i++) { //first loop
-            console.log('i',i)
-            //second loop of words to say
-            for(let j = 0; j<i; j++){
-                console.log('j',j)
-                setInterval(()=>{
-                    followWords.innerText = reaptWordsArray[j]
-                },1500)
 
-            }
+        //run the words in the top
+        function runWords(numberOfwords) {
+            let j = 0
+            alertUser.innerText = '';
+
+            let clearSimon = setInterval(() => {
+
+                followWords.innerText = reaptWordsArray[j]
+                console.log('runWords j:',j, 'number of words', numberOfwords )
+                if (j >= numberOfwords-1) { //after ending showing the words
+                    clearInterval(clearSimon)
+                    alertUser.innerText = 'Please repeat';
+
+                    checkWords(reaptWordsArray, numberOfwords) //check for user input on the ords
+                };
+                j++;
+            }, 500)
         }
 
+        let simonTurns = 1;
+        runWords(simonTurns)
+
+        function checkWords(wordsArray, numberOfWords) {
+            
+            console.log('checkWords', numberOfWords, simonTurns)
+            let count = 0;
+            const tiles = document.querySelectorAll('.tile');
+            tiles.forEach(tile => {
+                tile.addEventListener('click', e => {
+                    const value = e.target.innerText;
+                    console.log(value, e.target.innerText)
+                    if (wordsArray[count] == value) {
+                        e.target.style.background = 'green';
+                    } else {
+                        e.target.style.background = 'red';
+                    }
+
+                    count++;
+
+                })
+            })
+
+            let checkIfFinished = setInterval(() => {
+                if (count >= numberOfWords) {
+
+                    clearInterval(checkIfFinished)
+
+                    clearTiles();
+                    simonTurns++;
+                    runWords(simonTurns);
+
+
+                }
+            }, 500)
+
+
+        }
+
+
+        function clearTiles() {
+            const tiles = document.querySelectorAll('.tile');
+            tiles.forEach(tile => {
+                tile.style.background = 'cadetblue'
+            })
+        }
 
 
     </script>
