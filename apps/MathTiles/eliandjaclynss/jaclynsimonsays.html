@@ -21,7 +21,7 @@
     }
 </style>
 <body>
-        <div style="border: 2px solid black; width: fit-content; height: fit-content;">what's the order of the colors?</div>
+        <div style="border: 2px solid black; width: fit-content; height: fit-content;" id="question"></div>
         <div id="container"> 
             <div class="item" style="background-color: lawngreen;"></div>
             <div class="item" style="background-color:red"></div>
@@ -50,10 +50,18 @@
                 numbers.push(x);
             }
         }
-
         console.log (numbers);
 
+        var selectedcolors = [colors[numbers[0]], colors[numbers[1]], colors[numbers[2]], colors[numbers[3]]];
+        console.log (selectedcolors);
+
+        document.getElementById('question').innerText = selectedcolors;
        
+        let boxlist = document.getElementsByClassName('.item');
+
+        boxlist.array.forEach(element => {
+            console.log(element.style.background-color);
+        });
         
     </script>
 </body>
