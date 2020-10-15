@@ -32,7 +32,7 @@
                 let randomNumber = Math.floor(Math.random() * arr.length);
                 newArr[i] = arr[randomNumber];
 
-                arr.splice(randomNumber, 1);
+                arr.splice(randomNumber, 1); //removed the used element
 
             }
             return newArr;
@@ -71,29 +71,30 @@
             let clearSimon = setInterval(() => {
 
                 followWords.innerText = reaptWordsArray[j]
-                console.log('runWords j:',j, 'number of words', numberOfwords )
-                if (j >= numberOfwords-1) { //after ending showing the words
+
+                if (j >= numberOfwords - 1) { //after ending showing the words
                     clearInterval(clearSimon)
                     alertUser.innerText = 'Please repeat';
 
-                    checkWords(reaptWordsArray, numberOfwords) //check for user input on the ords
+                    checkWords(reaptWordsArray, numberOfwords) //check for user input on the words
                 };
                 j++;
-            }, 500)
+            }, 1000)
         }
 
+        //start the program
         let simonTurns = 1;
         runWords(simonTurns)
 
         function checkWords(wordsArray, numberOfWords) {
-            
+
             console.log('checkWords', numberOfWords, simonTurns)
             let count = 0;
             const tiles = document.querySelectorAll('.tile');
             tiles.forEach(tile => {
                 tile.addEventListener('click', e => {
                     const value = e.target.innerText;
-                    console.log(value, e.target.innerText)
+
                     if (wordsArray[count] == value) {
                         e.target.style.background = 'green';
                     } else {
@@ -113,8 +114,6 @@
                     clearTiles();
                     simonTurns++;
                     runWords(simonTurns);
-
-
                 }
             }, 500)
 
