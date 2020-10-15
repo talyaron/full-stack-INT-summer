@@ -4,14 +4,19 @@
 <head>
   <meta charset="utf-8">
   <title>Simon</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+ 
 </head>
 <style>
     body {
   text-align: center;
  
 }
+
+#wrapper {
+    display: grid;
+    grid-template-rows: 100px 100px 100px;
+    grid-template-columns: 100px 100px 100px;
+    gap: 5px;}
 
 #level-title {
   font-family: 'Start';
@@ -114,7 +119,7 @@
     
   <h1 id="level-title">Click to Start</h1>
   <div class="container">
-    <div lass="row">
+    <div id=wrapper>
 
       <div type="button" id="green" class="btn green ">
 
@@ -134,7 +139,7 @@
 
     </div>
 
-      <div class="row">
+      
         <div type="button" id="pink" class="btn pink">
 
         </div>
@@ -150,9 +155,7 @@
 
             </div>
 
-        </div>
-
-        <div class="row">
+    
             <div type="button" id="coral" class="btn coral">
     
             </div>
@@ -168,9 +171,6 @@
     
                 </div>
     
-            </div>
-
-            <div class="row">
                 <div type="button" id="lightgreen" class="btn lightgreen">
         
                 </div>
@@ -183,7 +183,7 @@
                 </div>
         
                 </div>
-
+            </div>
 
 
       </div>
@@ -443,9 +443,8 @@ $("body").css("background-color", "red")
 $("h1").text("Game Over");
     setTimeout(function () {
         $("h1").text("Press Enter Key to start");
-        $("body").css("background-color", "#011F3F");
+        $("body").css("background-color", "white");
     }, 1500)
-audio[4].play();
 levelCounter=0;
 sequenceMade = [];
 }

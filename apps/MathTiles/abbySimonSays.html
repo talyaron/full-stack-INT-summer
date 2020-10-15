@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .wrapper {
+            display: grid;
+            grid-template-rows: 150px 150px 150px 150px;
+            grid-template-columns: 150px 150px 150px 150px;
+            gap: 5px;
+            background-color: "grey";
+        }
+
+        .item {
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 20px;
+            background-color: palevioletred;
+            margin-bottom: 20px;
+        }
+    </style>
+    <div><h1 id="simonSays"></h1></div>
+    <div class="wrapper">
+        <div class="item">
+            <p id="num1"></p>
+        </div>
+        <div class="item">
+            <p id="num2"></p>
+        </div>
+        <div class="item">
+            <p id="num3"></p>
+        </div>
+        <div class="item">
+            <p id="num4"></p>
+        </div>
+        <div class="item">
+            <p id="num5"></p>
+        </div>
+        <div class="item">
+            <p id="num6"></p>
+        </div>
+        <div class="item">
+            <p id="num7"></p>
+        </div>
+        <div class="item">
+            <p id="num8"></p>
+        </div>
+        <div class="item">
+            <p id="num9"></p>
+        </div>
+        <div class="item">
+            <p id="num10"></p>
+        </div>
+        <div class="item">
+            <p id="num11"></p>
+        </div>
+        <div class="item">
+            <p id="num12"></p>
+        </div>
+        <div class="item">
+            <p id="num13"></p>
+        </div>
+        <div class="item">
+            <p id="num14"></p>
+        </div>
+        <div class="item">
+            <p id="num15"></p>
+        </div>
+        <div class="item">
+            <p id="num16"></p>
+        </div>
+
+
+        <script>
+            let Words = ["Hello", "Goodbye", "Morning", "Israel", "Aardvark", "Jamaica", "Jerusalem", "Pita", "Falafel", "Computer", "Phone", "College", "Garbage", "Sleep", "Home", "Sun", "Moon", "Clouds", "Plants", "Chairs", "Eyes", "Java"]
+            console.log(Words);
+            let finalWords = [];
+
+            for (let i = 0; i < 16; i++) {
+                let index = Math.floor(Math.random() * Words.length)
+                console.log(Words[index]);
+                finalWords.push(Words[index]);
+                Words.splice(index, 1);
+            }
+            console.log(finalWords);
+            for (i = 1; i < 17; i++) {
+                document.getElementById("num"+i).innerText = finalWords[i-1];
+            }
+            let word = finalWords[Math.floor(Math.random() * 17)]
+            document.getElementById('simonSays').innerText = "Simon Says: " + `${word}`;
+            const items = document.querySelectorAll(`.item`);
+            items.forEach(items => {
+                items.addEventListener('click', e => {
+                    const item = e.target;
+                    if (item.innerText == word){
+                        item.style.backgroundColor = "green";  
+                    }
+                    else {
+                        item.style.backgroundColor = "red";
+                    }
+                })
+            })
+        </script>
+</body>
+
+</html>
