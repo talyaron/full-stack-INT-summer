@@ -22,6 +22,7 @@
 </style>
 <body>
         <div style="border: 2px solid black; width: fit-content; height: fit-content;" id="question"></div>
+
         <div id="container"> 
             <div class="item" style="background-color: lawngreen;"></div>
             <div class="item" style="background-color:red"></div>
@@ -44,7 +45,7 @@
         var numbers = [];
         while (numbers.length < 4){
             let x = random(0,8)
-            if(x in numbers){
+            if(numbers.includes(x)){
                 console.log("same")
             }else{
                 numbers.push(x);
@@ -57,11 +58,44 @@
 
         document.getElementById('question').innerText = selectedcolors;
        
-        let boxlist = document.getElementsByClassName('.item');
+        let boxlist = document.querySelectorAll('.item');
+        console.log(boxlist);
 
-        boxlist.array.forEach(element => {
-            console.log(element.style.background-color);
-        });
+        boxlist.forEach(i=>{
+            let x = i.style.backgroundColor;
+            console.log(i.style.backgroundColor);
+            console.log(selectedcolors)
+            if (selectedcolors.includes(x)) {
+                i.id = selectedcolors.indexOf(x)+1
+            } else{
+                i.id = "wrong"
+            }
+
+            i.addEventListener('click', e=>{
+                if(i.id == '1') {
+                    i.innerText='sushi'
+                    document.getElementById('question').innerText='';
+                }
+                if(i.id == '2') {
+                    console.log ('yes');
+                    i.innerText='pizza'
+                    document.getElementById('question').innerText='';
+                }
+                if(i.id == '3') {
+                    console.log ('yes');
+                    i.innerText='icecream'
+                    document.getElementById('question').innerText='';
+                }
+                if(i.id == '4') {
+                    console.log ('yes');
+                    i.innerText='orangejuice'
+                    document.getElementById('question').innerText='';
+                }
+                
+            })
+        })
+
+
         
     </script>
 </body>
