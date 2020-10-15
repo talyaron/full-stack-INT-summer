@@ -10,7 +10,7 @@
 
 <body>
     <div id="followWordTitle" class="instructions"></div>
-    <div id="followWordT"></div>
+    <div id="followWords"></div>
     <div id="root"></div>
     <script>
 
@@ -53,7 +53,7 @@
 
         //generate follow these words
         const followWordTitle = document.getElementById('followWordTitle');
-        const followWord = document.getElementById('followWords');
+        const followWords = document.getElementById('followWords');
         followWordTitle.innerText = 'Please repeat these words'
 
 
@@ -61,12 +61,13 @@
         const reaptWordsArray = randomizeArray(words)
 
         for (let i = 1; i < reaptWordsArray.length - 1; i++) { //first loop
-
+            console.log('i',i)
             //second loop of words to say
             for(let j = 0; j<i; j++){
-                setTimeout(()=>{
-                    
-                },500)
+                console.log('j',j)
+                setInterval(()=>{
+                    followWords.innerText = reaptWordsArray[j]
+                },1500)
 
             }
         }
