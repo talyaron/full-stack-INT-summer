@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,395 +13,260 @@
         grid-template-columns: 100px 100px 100px;
         gap: 5px;
     }
-    div>div{
-       background-color: blue;
+
+    div>div {
+        background-color: blue;
     }
-    #box1{
+
+    #box1 {
         background-color: blue;
     }
 </style>
+
 <body>
     <p><span id="a"></span>
-       *<span id='b'></span></p>
+        *<span id='b'></span></p>
     <div id=wrapper>
-    <div id=box1><span id="c"></span></div>
-    <div id=box2><span id="d"></span></div>
-    <div id=box3><span id="e"></span></div>
-    <div id=box4><span id="f"></span></div>
-    <div id=box5><span id="g"></span></div>
-    <div id=box6><span id="h"></span></div>
-    <div id=box7><span id="i"></span></div>
-    <div id=box8><span id="j"></span></div>
-    <div id=box9><span id="k"></span></div>
+        <div id=box1><span id="c"></span></div>
+        <div id=box2><span id="d"></span></div>
+        <div id=box3><span id="e"></span></div>
+        <div id=box4><span id="f"></span></div>
+        <div id=box5><span id="g"></span></div>
+        <div id=box6><span id="h"></span></div>
+        <div id=box7><span id="i"></span></div>
+        <div id=box8><span id="j"></span></div>
+        <div id=box9><span id="k"></span></div>
     </div>
 </body>
 <script>
-     let a = Math.ceil(Math.random() * 10) + 1;
+    let a = Math.ceil(Math.random() * 10) + 1;
     let b = Math.ceil(Math.random() * 10) + 1;
     document.getElementById('a').innerText = a;
     document.getElementById('b').innerText = b;
-    var correctAnswer = a*b;
+    var correctAnswer = a * b;
     console.log(correctAnswer);
     let l = Math.ceil(Math.random() * 8);
-    var c = Math.ceil(Math.random() * 100) ;
-    var d = Math.ceil(Math.random() * 100) ;
-    var e = Math.ceil(Math.random() * 100) ;
-        var f = Math.ceil(Math.random() * 100);
-        var g = Math.ceil(Math.random() * 100);
-       
-        var h = Math.ceil(Math.random() * 100);
-       
-        var i = Math.ceil(Math.random() * 100);
-            var j = Math.ceil(Math.random() * 100);
-        var k = Math.ceil(Math.random() * 100);
-        if (c===d){
-            window.location.reload(false);
-        }   
-        if (c===e){
-            window.location.reload(false);
-        }if (c===f){
-            window.location.reload(false);
-        }   
-        if (c===g){
-            window.location.reload(false);
-        }   
-        if (c===h){
-            window.location.reload(false);
-        }    
-        if (c===i){
-            window.location.reload(false);
-        }    
-        if (c===j){
-            window.location.reload(false);
-        }    
-        if (c===k){
-            window.location.reload(false);
+    var c = Math.ceil(Math.random() * 100);
+    var d = Math.ceil(Math.random() * 100);
+    var e = Math.ceil(Math.random() * 100);
+    var f = Math.ceil(Math.random() * 100);
+    var g = Math.ceil(Math.random() * 100);
+    var h = Math.ceil(Math.random() * 100);
+    var i = Math.ceil(Math.random() * 100);
+    var j = Math.ceil(Math.random() * 100);
+    var k = Math.ceil(Math.random() * 100);
+    
+    if (l === 0) {
+        var c = correctAnswer
+    }
+    if (l === 1) {
+        var d = correctAnswer
+    }
+    if (l === 2) {
+        var e = correctAnswer
+    }
+    if (l === 3) {
+        var f = correctAnswer
+    }
+    if (l === 4) {
+        var g = correctAnswer
+    }
+    if (l === 5) {
+        var h = correctAnswer
+    }
+    if (l === 6) {
+        var i = correctAnswer
+    }
+    if (l === 7) {
+        var j = correctAnswer
+    }
+    else {
+        var k = correctAnswer
+    }
+    if (c === d) {
+        window.location.reload(false);
+    }
+    if (c === e) {
+        window.location.reload(false);
+    } if (c === f) {
+        window.location.reload(false);
+    }
+    if (c === g) {
+        window.location.reload(false);
+    }
+    if (c === h) {
+        window.location.reload(false);
+    }
+    if (c === i) {
+        window.location.reload(false);
+    }
+    if (c === j) {
+        window.location.reload(false);
+    }
+    if (c === k) {
+        window.location.reload(false);
+    }
+    if (d === e) {
+        window.location.reload(false);
+    }
+    if (d === f) {
+        window.location.reload(false);
+    } if (d === g) {
+        window.location.reload(false);
+    }
+    if (d === h) {
+        window.location.reload(false);
+    }
+    if (d === i) {
+        window.location.reload(false);
+    }
+    if (d === j) {
+        window.location.reload(false);
+    }
+    if (d === k) {
+        window.location.reload(false);
+    } if (e === f) {
+        window.location.reload(false);
+    } if (e === g) {
+        window.location.reload(false);
+    } if (e === h) {
+        window.location.reload(false);
+    }
+    if (e === i) {
+        window.location.reload(false);
+    }
+    if (e === j) {
+        window.location.reload(false);
+    }
+    if (e === k) {
+        window.location.reload(false);
+    }
+    if (f === g) {
+        window.location.reload(false);
+    } if (f === h) {
+        window.location.reload(false);
+    } if (f === i) {
+        window.location.reload(false);
+    } if (f === j) {
+        window.location.reload(false);
+    } if (f === k) {
+        window.location.reload(false);
+    }
+    if (g === h) {
+        window.location.reload(false);
+    }
+    if (g === i) {
+        window.location.reload(false);
+    } if (g === j) {
+        window.location.reload(false);
+    } if (g === k) {
+        window.location.reload(false);
+    }
+    if (h === i) {
+        window.location.reload(false);
+    } if (h === j) {
+        window.location.reload(false);
+    } if (h === k) {
+        window.location.reload(false);
+    } if (i === j) {
+        window.location.reload(false);
+    }
+    if (i === k) {
+        window.location.reload(false);
+    }
+    if (j === k) {
+        window.location.reload(false);
+    }
+    var answers = [c, d, e, f, g, h, i, j, k];
+    console.log(answers);
+    console.log(l);
+    document.getElementById('c').innerText = c;
+    document.getElementById('d').innerText = d;
+    document.getElementById('e').innerText = e;
+    document.getElementById('f').innerText = f;
+    document.getElementById('g').innerText = g;
+    document.getElementById('h').innerText = h;
+    document.getElementById('i').innerText = i;
+    document.getElementById('j').innerText = j;
+    document.getElementById('k').innerText = k;
+    const box1 = document.getElementById('box1');
+    box1.addEventListener('click', (e) => {
+        if (c === correctAnswer) {
+            box1.style.background = "#00FF00";
+        } else {
+            box1.style.background = "#ff0000";
         }
-        if (d===e){
-            window.location.reload(false);
-        }  
-        if (d===f){
-            window.location.reload(false);
-        }         if (d===g){
-            window.location.reload(false);
-        }           
-        if (d===h){
-            window.location.reload(false);
-        }   
-        if (d===i){
-            window.location.reload(false);
-        }        
-        if (d===j){
-            window.location.reload(false);
-        }        
-        if (d===k){
-            window.location.reload(false);
-        }         if (e===f){
-            window.location.reload(false);
-        }         if (e===g){
-            window.location.reload(false);
-        }                  if (e===h){
-            window.location.reload(false);
-        }                           
-        if (e===i){
-            window.location.reload(false);
-        }   
-        if (e===j){
-            window.location.reload(false);
-        }   
-        if (e===k){
-            window.location.reload(false);
-        } 
-        if (f===g){
-            window.location.reload(false);
-        }  if (f===h){
-            window.location.reload(false);
-        }  if (f===i){
-            window.location.reload(false);
-        }  if (f===j){
-            window.location.reload(false);
-        }  if (f===k){
-            window.location.reload(false);
-        } 
-      if (g===h){
-            window.location.reload(false);
-        }      
-        if (g===i){
-            window.location.reload(false);
-        }    if (g===j){
-            window.location.reload(false);
-        }    if (g===k){
-            window.location.reload(false);
-        }      
-        if (h===i){
-            window.location.reload(false);
-        }         if (h===j){
-            window.location.reload(false);
-        }       if (h===k){
-            window.location.reload(false);
-        }          if (i===j){
-            window.location.reload(false);
-        }                   
-        if (i===k){
-            window.location.reload(false);
-        }    
-        if (j===k){
-            window.location.reload(false);
-        }          
-        if (l===0){
-            var c=correctAnswer
-        }
-        if (l===1){
-            var d=correctAnswer
-        }
-        if (l===2){
-            var e=correctAnswer
-        }
-        if (l===3){
-            var f=correctAnswer
-        }
-        if (l===4){
-            var g=correctAnswer
-        }
-        if (l===5){
-            var h=correctAnswer
-        }
-        if (l===6){
-            var i=correctAnswer
-        }
-        if (l===7){
-            var j=correctAnswer
+    });
+    const box2 = document.getElementById('box2');
+    box2.addEventListener('click', (e) => {
+        if (d === correctAnswer) {
+            box2.style.background = "#00FF00";
         }
         else {
-            var k=correctAnswer
+            box2.style.background = "#ff0000";
         }
-        if (c===d){
-            window.location.reload(false);
-        }   
-        if (c===e){
-            window.location.reload(false);
-        }if (c===f){
-            window.location.reload(false);
-        }   
-        if (c===g){
-            window.location.reload(false);
-        }   
-        if (c===h){
-            window.location.reload(false);
-        }    
-        if (c===i){
-            window.location.reload(false);
-        }    
-        if (c===j){
-            window.location.reload(false);
-        }    
-        if (c===k){
-            window.location.reload(false);
+    });
+    const box3 = document.getElementById('box3');
+    box3.addEventListener('click', (e) => {
+        if (e === correctAnswer) {
+            box3.style.background = "#00FF00";
         }
-        if (d===e){
-            window.location.reload(false);
-        }  
-        if (d===f){
-            window.location.reload(false);
-        }         if (d===g){
-            window.location.reload(false);
-        }           
-        if (d===h){
-            window.location.reload(false);
-        }   
-        if (d===i){
-            window.location.reload(false);
-        }        
-        if (d===j){
-            window.location.reload(false);
-        }        
-        if (d===k){
-            window.location.reload(false);
-        }         if (e===f){
-            window.location.reload(false);
-        }         if (e===g){
-            window.location.reload(false);
-        }                  if (e===h){
-            window.location.reload(false);
-        }                           
-        if (e===i){
-            window.location.reload(false);
-        }   
-        if (e===j){
-            window.location.reload(false);
-        }   
-        if (e===k){
-            window.location.reload(false);
-        } 
-        if (f===g){
-            window.location.reload(false);
-        }  if (f===h){
-            window.location.reload(false);
-        }  if (f===i){
-            window.location.reload(false);
-        }  if (f===j){
-            window.location.reload(false);
-        }  if (f===k){
-            window.location.reload(false);
-        } 
-      if (g===h){
-            window.location.reload(false);
-        }      
-        if (g===i){
-            window.location.reload(false);
-        }    if (g===j){
-            window.location.reload(false);
-        }    if (g===k){
-            window.location.reload(false);
-        }      
-        if (h===i){
-            window.location.reload(false);
-        }         if (h===j){
-            window.location.reload(false);
-        }       if (h===k){
-            window.location.reload(false);
-        }          if (i===j){
-            window.location.reload(false);
-        }                   
-        if (i===k){
-            window.location.reload(false);
-        }    
-        if (j===k){
-            window.location.reload(false);
-        }       
-        var answers = [c,d,e,f,g,h,i,j,k];
-    
-       console.log(answers);
-       console.log(l);
-
-        document.getElementById('c').innerText = c;
-        document.getElementById('d').innerText = d;
-        document.getElementById('e').innerText = e;
-        document.getElementById('f').innerText = f;
-        document.getElementById('g').innerText = g;
-        document.getElementById('h').innerText = h;
-        document.getElementById('i').innerText = i;
-        document.getElementById('j').innerText = j;
-        document.getElementById('k').innerText = k;
-        const box1 = document.getElementById('box1');
-
-
-
-        box1.addEventListener('click', (e) => {
-            if (c===correctAnswer){
-            box1.style.background = "#00FF00";
-            }else{
-            box1.style.background = "#ff0000";
-         } }); 
-
-
-
-        const box2 = document.getElementById('box2');
- 
- 
- 
- box2.addEventListener('click', (e) => {
-     if (d===correctAnswer){
-     box2.style.background = "#00FF00";
-     }
-     else{
-     box2.style.background = "#ff0000";
-    } });
- const box3 = document.getElementById('box3');
- 
- 
- 
- box3.addEventListener('click', (e) => {
-     if (e===correctAnswer){
-     box3.style.background = "#00FF00";
-     }
-     else{
-     box3.style.background = "#ff0000";
-    } });
-
-
- const box4 = document.getElementById('box4');
- 
- 
- 
-        box4.addEventListener('click', (e) => {
-            if (f===correctAnswer){
+        else {
+            box3.style.background = "#ff0000";
+        }
+    });
+    const box4 = document.getElementById('box4');
+    box4.addEventListener('click', (e) => {
+        if (f === correctAnswer) {
             box4.style.background = "#00FF00";
-            }
-            else{
-     box4.style.background = "#ff0000";
-    }        });
-        const box5 = document.getElementById('box5');
- 
- 
- 
- box5.addEventListener('click', (e) => {
-     if (g===correctAnswer){
-     box5.style.background = "#00FF00";
-     }
-     else{
-     box5.style.background = "#ff0000";
-    } });
-
-
- const box6 = document.getElementById('box6');
- 
- 
- 
-        box6.addEventListener('click', (e) => {
-            if (h===correctAnswer){
+        }
+        else {
+            box4.style.background = "#ff0000";
+        }
+    });
+    const box5 = document.getElementById('box5');
+    box5.addEventListener('click', (e) => {
+        if (g === correctAnswer) {
+            box5.style.background = "#00FF00";
+        }
+        else {
+            box5.style.background = "#ff0000";
+        }
+    });
+    const box6 = document.getElementById('box6');
+    box6.addEventListener('click', (e) => {
+        if (h === correctAnswer) {
             box6.style.background = "#00FF00";
-            }
-            else{
-     box6.style.background = "#ff0000";
-    }        });
- 
-
-        const box7 = document.getElementById('box7');
- 
- 
- 
- box7.addEventListener('click', (e) => {
-     if (h===correctAnswer){
-     box7.style.background = "#00FF00";
-     }
-     else{
-     box7.style.background = "#ff0000";
-    } });
-
-
- const box8 = document.getElementById('box8');
- 
- 
- 
-        box8.addEventListener('click', (e) => {
-            if (j===correctAnswer){
+        }
+        else {
+            box6.style.background = "#ff0000";
+        }
+    });
+    const box7 = document.getElementById('box7');
+    box7.addEventListener('click', (e) => {
+        if (h === correctAnswer) {
+            box7.style.background = "#00FF00";
+        }
+        else {
+            box7.style.background = "#ff0000";
+        }
+    });
+    const box8 = document.getElementById('box8');
+    box8.addEventListener('click', (e) => {
+        if (j === correctAnswer) {
             box8.style.background = "#00FF00";
-            }
-            else{
-     box8.style.background = "#ff0000";
-    }        });
- 
-
-        const box9 = document.getElementById('box9');
- 
- 
- 
- box9.addEventListener('click', (e) => {
-     if (k===correctAnswer){
-     box9.style.background = "#00FF00";
-     }else{
-     box9.style.background = "#ff0000";
-    }
- });
-
-
-
-
-
-
-
-
-
+        }
+        else {
+            box8.style.background = "#ff0000";
+        }
+    });
+    const box9 = document.getElementById('box9');
+    box9.addEventListener('click', (e) => {
+        if (k === correctAnswer) {
+            box9.style.background = "#00FF00";
+        } else {
+            box9.style.background = "#ff0000";
+        }
+    });
 </script>
 </html>
