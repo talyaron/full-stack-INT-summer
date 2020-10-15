@@ -25,7 +25,9 @@
             margin-bottom: 20px;
         }
     </style>
-    <div><h1 id="simonSays"></h1></div>
+    <div>
+        <h1 id="simonSays"></h1>
+    </div>
     <div class="wrapper">
         <div class="item">
             <p id="num1"></p>
@@ -90,22 +92,33 @@
             }
             console.log(finalWords);
             for (i = 1; i < 17; i++) {
-                document.getElementById("num"+i).innerText = finalWords[i-1];
+                document.getElementById("num" + i).innerText = finalWords[i - 1];
             }
-            let word = finalWords[Math.floor(Math.random() * 17)]
-            document.getElementById('simonSays').innerText = "Simon Says: " + `${word}`;
+
+            let word1 = finalWords[Math.floor(Math.random() * 17)]
+            document.getElementById('simonSays').innerText = "Simon Says: " + `${word1}`;
             const items = document.querySelectorAll(`.item`);
-            items.forEach(items => {
-                items.addEventListener('click', e => {
-                    const item = e.target;
-                    if (item.innerText == word){
-                        item.style.backgroundColor = "green";  
-                    }
-                    else {
-                        item.style.backgroundColor = "red";
-                    }
-                })
-            })
+           checker(`${word1}`)
+
+
+
+            function checker(wordNumber) {
+                items.forEach(items => {
+                    items.addEventListener('click', e => {
+                        const item = e.target;
+                        if (item.innerText == wordNumber) {
+                            item.style.backgroundColor = "green";
+                            wordNumber = finalWords[Math.floor(Math.random() * 17)]
+                            document.getElementById('simonSays').innerText += ", " + `${wordNumber}`;
+                        }
+                        else {
+                            item.style.backgroundColor = "red";
+                        }
+                    })
+                    })
+                }
+
+
         </script>
 </body>
 

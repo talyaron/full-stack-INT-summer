@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .grid-container {
+            display: inline-grid;
+            grid-template-columns: auto auto auto;
+            
+            gap: 5px;
+
+        }
+
+        .grid-item {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            background-color: #2196F3;
+
+
+        }
+        .grid-item img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="grid-container">
+        <div id = '1'class="grid-item"><img id = "picture" src=''/></div>
+        <div id = '2'class="grid-item"><img id = "picture" src=''/></div>
+        <div id = '3'class="grid-item"><img id = "picture" src=''/></div>
+        <div id = '4'class="grid-item"><img id = "picture" src=''/></div>
+        <div id = '5'class="grid-item"><img id = "picture" src=''/></div>
+        <div id = '6'class="grid-item"><img id = "picture" src=''/></div>
+        <div id = '7'class="grid-item"><img id = "picture" src=''/></div>
+        <div id = '8'class="grid-item"><img id = "picture" src=''/></div>
+        <div id = '9'class="grid-item"><img id = "picture" src=''/></div>
+        
+    </div>
+
+    <script>
+
+        function isWinner(){
+            if(document.getElementById('1').children[0].className === document.getElementById('4').children[0].className && document.getElementById('4').children[0].className === document.getElementById('7').children[0].className){
+                if(document.getElementById('1').children[0].className.includes('ex')||document.getElementById('1').children[0].className.includes('oh')){
+                return true;
+                }
+            }
+            if(document.getElementById('2').children[0].className === document.getElementById('5').children[0].className && document.getElementById('5').children[0].className === document.getElementById('8').children[0].className){
+                if(document.getElementById('2').children[0].className.includes('ex')||document.getElementById('2').children[0].className.includes('oh')){
+                return true;
+                }
+            }
+            if(document.getElementById('3').children[0].className === document.getElementById('6').children[0].className && document.getElementById('6').children[0].className === document.getElementById('9').children[0].className){
+                if(document.getElementById('3').children[0].className.includes('ex')||document.getElementById('3').children[0].className.includes('oh')){
+                return true;
+                }
+            }
+            if(document.getElementById('1').children[0].className === document.getElementById('2').children[0].className && document.getElementById('2').children[0].className === document.getElementById('3').children[0].className){
+                if(document.getElementById('1').children[0].className.includes('ex')||document.getElementById('1').children[0].className.includes('oh')){
+                return true;
+                }
+            }
+            if(document.getElementById('4').children[0].className === document.getElementById('5').children[0].className && document.getElementById('5').children[0].className === document.getElementById('6').children[0].className){
+                if(document.getElementById('4').children[0].className.includes('ex')||document.getElementById('4').children[0].className.includes('oh')){
+                return true;
+                }
+            }
+            if(document.getElementById('7').children[0].className === document.getElementById('8').children[0].className && document.getElementById('8').children[0].className === document.getElementById('9').children[0].className){
+                if(document.getElementById('7').children[0].className.includes('ex')||document.getElementById('7').children[0].className.includes('oh')){
+                return true;
+                }
+            }
+            if(document.getElementById('1').children[0].className === document.getElementById('5').children[0].className && document.getElementById('5').children[0].className === document.getElementById('9').children[0].className){
+                if(document.getElementById('1').children[0].className.includes('ex')||document.getElementById('1').children[0].className.includes('oh')){
+                return true;
+                }
+            }
+            if(document.getElementById('3').children[0].className === document.getElementById('5').children[0].className && document.getElementById('5').children[0].className === document.getElementById('7').children[0].className){
+                if(document.getElementById('3').children[0].className.includes('ex')||document.getElementById('3').children[0].className.includes('oh')){
+                return true;
+                }
+            }
+          
+            return false;
+            
+
+            
+        }
+    
+        
+       let counter = 0;
+        const imgs = document.querySelectorAll('.grid-item');
+
+        console.dir(imgs)
+
+        imgs.forEach(img => {
+
+            img.addEventListener('click', e => {
+
+                console.dir(e)
+                const image = e.target.children[0];
+
+                if(counter === 0){
+
+                    if(image.src != ''){
+
+                image.src= 'https://e7.pngegg.com/pngimages/482/392/png-clipart-black-x-mark-tic-tac-toe-oxo-holiday-tic-tac-toe-game-blue-cross-miscellaneous-angle.png';
+                counter = 1;
+                image.className += 'ex'
+
+                    }
+                    if(isWinner()){
+                        console.log('winner');
+                    }
+
+            }else{
+
+                if(image.src != ''){
+
+               image.src = 'https://mikegagnon.github.io/tic-tac-toe/player-o.png';
+                counter = 0;
+                image.className += 'oh'
+
+                }
+                if(isWinner()){
+                        console.log('winner');
+                    }
+                
+            }
+               
+            })
+        
+
+        })
+
+       
+
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
