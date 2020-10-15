@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .question>p{
+        font-weight:bold;
+        font-size:20px;
+
+    }
+    .item{
+        text-align:center;
+        border: 1px solid black;
+        background-color:gainsboro;
+    }
+
+    .item>p{
+        position:absolute;
+        margin-top:60px;
+        margin-left:65px;
+        font-weight:bold;
+    }
+
+    .wrapper{
+        display:grid;
+        grid-template-rows:150px 150px 150px;
+        grid-template-columns:150px 150px 150px;
+        gap:5px;
+    }
+</style>
+<body>
+    <div class="question">
+        <p>What is <span id="num1"></span> x <span id="num2"></span> ?</p>
+    </div>
+    <div class="wrapper">
+        <div class="item"><p id="one"></p></div>
+        <div class="item"><p id="two"></p></div>
+        <div class="item"><p id="three"></p></div>
+        <div class="item"><p id="four"></p></div>
+        <div class="item"><p id="five"></p></div>
+        <div class="item"><p id="six"></p></div>
+        <div class="item"><p id="seven"></p></div>
+        <div class="item"><p id="eight"></p></div>
+        <div class="item"><p id="nine"></p></div>
+    </div>
+    <script>
+        //create random numbers and the answer variable
+        let num1=Math.floor(Math.random()*9+1);
+        let num2=Math.floor(Math.random()*9+1);
+        let answer=num1*num2;
+
+        //put the equation into the HTML
+        const var1=document.getElementById("num1");
+        var1.innerText=num1;
+        const var2=document.getElementById("num2");
+        var2.innerText=num2;
+
+        //create the values array and assign the answer into a random position. Also store the id of the correct answer in correctPlace
+        let values=["","","","","","","","",""];
+        let ids=["one","two","three","four","five","six","seven","eight","nine"];
+        let randomPosition=Math.floor(Math.random()*9);
+        console.log("random position:",randomPosition);//test
+        values[randomPosition]=answer;
+        let correctPlace=ids[randomPosition];
+
+        //fills up the values array with random numbers that aren't the answer
+        let randomFill=-1;
+        for(let i=0;i<9;i++){
+            while(randomFill==-1 || randomFill==answer){
+                randomFill=Math.floor(Math.random()*99+1);
+            }
+            if(values[i]==""){
+                values[i]=randomFill;
+            }
+            randomFill=-1;
+        }
+        console.log(values);
+
+        //fills the values into the HTML
+        for(let j=0; j<9; j++){
+            let position=document.getElementById(ids[j]);
+            position.innerHTML=values[j];
+        }
+
+        //turns each block red or green on click.
+        let blocks=document.querySelectorAll(".item");
+        console.log(blocks);
+        for(let b of blocks){
+            if(b.children[0].id==correctPlace){
+                b.addEventListener('click',e=>{
+                    b.style.backgroundColor="rgba(27, 170, 22, 0.671)";
+                })
+            }
+            else{
+                b.addEventListener('click',e=>{
+                    b.style.backgroundColor="rgba(245, 9, 9, 0.671)";
+                })
+            }
+        }
+    </script>
+</body>
+</html>
