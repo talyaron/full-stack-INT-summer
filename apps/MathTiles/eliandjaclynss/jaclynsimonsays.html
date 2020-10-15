@@ -73,20 +73,26 @@
             }
 
             i.addEventListener('click', e=>{
-                var click1 = 'false';
-                var click2 = 'false';
-                var click3 = 'false';
-                
                 if(i.id == '1') {
-                    click1 = 'true';
                     i.innerText='sushi'
+                    document.getElementById('question').innerText='';
                 }
-                if(i.id == '2' && click1 === 'true') {
+                if(i.id == '2') {
                     console.log ('yes');
-                    click2 = 'true';
                     i.innerText='pizza'
+                    document.getElementById('question').innerText='';
                 }
-
+                if(i.id == '3') {
+                    console.log ('yes');
+                    i.innerText='icecream'
+                    document.getElementById('question').innerText='';
+                }
+                if(i.id == '4') {
+                    console.log ('yes');
+                    i.innerText='orangejuice'
+                    document.getElementById('question').innerText='';
+                }
+                
             })
         })
 
