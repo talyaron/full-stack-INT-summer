@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+    #container{
+        display:flex;
+        grid-template-rows: 100px 100px 100px;
+        grid-template-columns: 100px 100px 100px;
+        gap: 2px;
+    }
+    .item{
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        background: blue;
+
+    }
+</style>
+<body>
+        <div style="border: 2px solid black; width: fit-content; height: fit-content;" id="question"></div>
+        <div id="container"> 
+            <div class="item" id="1" style="background-color: lawngreen;"></div>
+            <div class="item" id="2" style="background-color:red"></div>
+            <div class="item" id="3" style="background-color:blue"></div>
+            <div class="item" id="4" style="background-color:green"></div>
+            <div class="item" id="5" style="background-color:orange"></div>
+            <div class="item" id="6" style="background-color:purple"></div>
+            <div class="item" id="7" style="background-color:pink" ></div>
+            <div class="item" id="8" style="background-color:gold"></div>
+            <div class="item" id="9" style="background-color: hotpink" ></div>
+        </div>
+
+    <script>
+        const chests = document.querySelectorAll(".item")
+        let random = Math.floor(Math.random()*9)+1;
+        console.log(random);
+        chests.forEach(chest => {
+            chest.addEventListener('click',e=>{
+        const treasure = e.target;
+        if (document.getElementById(random).id==treasure.id){
+            document.getElementById(random).style.backgroundColor="black";
+            alert('yes');
+        } else
+        alert('try again');
+            })
+        })
+
+    </script>
+
+</body>
+</html>
