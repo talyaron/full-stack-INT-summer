@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <head>
+        <style>
+            .grid-container {
+                display: inline-grid;
+                grid-template-columns: auto auto auto auto;
+                
+                gap: 5px;
+    
+            }
+    
+            .grid-item {
+                width: 100px;
+                height: 100px;
+                border: 1px solid black;
+                background-color: #2196F3;
+    
+    
+            }
+            .grid-item img {
+                width: 100%;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <div id = 'title'>
+            hello
+
+        </div>
+    
+    
+        <div class="grid-container">
+            <div id = '1'class="grid-item"></div>
+            <div id = '2'class="grid-item"></div>
+            <div id = '3'class="grid-item"></div>
+            <div id = '4'class="grid-item"></div>
+            <div id = '5'class="grid-item"></div>
+            <div id = '6'class="grid-item"></div>
+            <div id = '7'class="grid-item"></div>
+            <div id = '8'class="grid-item"></div>
+            <div id = '9'class="grid-item"></div>
+            <div id = '10'class="grid-item"></div>
+            <div id = '11'class="grid-item"></div>
+            <div id = '12'class="grid-item"></div>
+            <div id = '13'class="grid-item"></div>
+            <div id = '14'class="grid-item"></div>
+            <div id = '15'class="grid-item"></div>
+            <div id = '16'class="grid-item"></div>
+            
+        </div>
+
+        <div id = 'bottom'>
+
+
+        </div>
+
+        <script>
+
+            const wordList = ['hello', 'goodbye', 'home', 'jamaica', 'morning', 'israel', 'aardvark', 'jerusalem', 'pita', 'falafel', 'computer', 'phone', 'college', 'garbage', 'sleep', 'sun', 'moon', 'clouds', 'plants', 'chairs', 'eyes', 'java' ];
+            
+            const boxes = document.querySelectorAll('.grid-item');
+
+        </script>
+
+    </body>
+
+    </html>

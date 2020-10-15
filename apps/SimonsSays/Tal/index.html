@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="followWordTitle" class="instructions"></div>
+    <div id="followWords"></div>
+    <div id="alert"></div>
+    <div id="root"></div>
+    <script>
+
+        //set an array of words
+
+        const words = [
+            'fun', 'fame', 'puzzle', "elephant",
+            'magazine', 'recording', 'recipe', 'virus',
+            'dirt', 'hat', 'setting', 'definition',
+            'reception', 'opportunity', 'throat', 'student'
+        ]
+
+
+        //create randomize array function for both randomizations
+        function randomizeArray(arr) {
+            let newArr = []
+            for (let i = 0; arr.length > 0; i++) {
+                let randomNumber = Math.floor(Math.random() * arr.length);
+                newArr[i] = arr[randomNumber];
+
+                arr.splice(randomNumber, 1);
+
+            }
+            return newArr;
+        }
+
+        function addTiles(element, tile) {
+
+            element.innerHTML += `<div class='tile'>${tile}</div>`;
+        }
+
+        //generate tile 4*4
+
+        const root = document.getElementById('root');
+
+        words.forEach(word => {
+
+            addTiles(root, word)
+        })
+
+        //generate follow these words
+        const followWordTitle = document.getElementById('followWordTitle');
+        const followWords = document.getElementById('followWords');
+        const alertUser = document.getElementById('alert')
+        followWordTitle.innerText = 'Please repeat these words'
+
+
+        //create a loop for of new random words
+        const reaptWordsArray = randomizeArray(words)
+
+
+        //run the words in the top
+        function runWords(numberOfwords) {
+            let j = 0
+            alertUser.innerText = '';
+
+            let clearSimon = setInterval(() => {
+
+                followWords.innerText = reaptWordsArray[j]
+                console.log('runWords j:',j, 'number of words', numberOfwords )
+                if (j >= numberOfwords-1) { //after ending showing the words
+                    clearInterval(clearSimon)
+                    alertUser.innerText = 'Please repeat';
+
+                    checkWords(reaptWordsArray, numberOfwords) //check for user input on the ords
+                };
+                j++;
+            }, 500)
+        }
+
+        let simonTurns = 1;
+        runWords(simonTurns)
+
+        function checkWords(wordsArray, numberOfWords) {
+            
+            console.log('checkWords', numberOfWords, simonTurns)
+            let count = 0;
+            const tiles = document.querySelectorAll('.tile');
+            tiles.forEach(tile => {
+                tile.addEventListener('click', e => {
+                    const value = e.target.innerText;
+                    console.log(value, e.target.innerText)
+                    if (wordsArray[count] == value) {
+                        e.target.style.background = 'green';
+                    } else {
+                        e.target.style.background = 'red';
+                    }
+
+                    count++;
+
+                })
+            })
+
+            let checkIfFinished = setInterval(() => {
+                if (count >= numberOfWords) {
+
+                    clearInterval(checkIfFinished)
+
+                    clearTiles();
+                    simonTurns++;
+                    runWords(simonTurns);
+
+
+                }
+            }, 500)
+
+
+        }
+
+
+        function clearTiles() {
+            const tiles = document.querySelectorAll('.tile');
+            tiles.forEach(tile => {
+                tile.style.background = 'cadetblue'
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>

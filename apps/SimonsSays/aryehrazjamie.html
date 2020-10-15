@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='title'></div>
+    <div id='wrap'>
+        <div class="item" id='0'></div>
+        <div class="item" id='1'></div>
+        <div class="item" id='2'></div>
+        <div class="item" id='3'></div>
+        <div class="item" id='4'></div>
+        <div class="item" id='5'></div>
+        <div class="item" id='6'></div>
+        <div class="item" id='7'></div>
+        <div class="item" id='8'></div>
+
+    </div>
+</body>
+<style>
+    #wrap {
+        display: inline-grid;
+        grid-template-columns: auto auto auto;
+        gap: 5px;
+    }
+
+    #wrap .item {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+    }
+</style>
+<script>
+    let order1 = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+
+        while (0 !== currentIndex) {
+
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+    let newOrder = shuffle(order1);
+    let order = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+    console.log(newOrder);
+    console.log(order)
+    const items = document.querySelectorAll(".item")
+
+    function fill(){
+        for(i=0;i<9;i++){
+            
+            document.getElementById(i).innerText=order[i];
+        }
+    }
+    function simon(){
+        document.getElementById('title').innerHTML=`<p>Simon says the order is: ${newOrder}<p>` 
+    }
+    simon()
+    fill()
+    items.forEach(item => {
+
+        item.addEventListener('click', e => {
+            const doc = e.target;
+            if (doc.innerText==newOrder[0]){
+                doc.style='background-color:green';
+                newOrder.shift();
+            } else {
+                doc.style='background-color:red';
+            }
+        })
+    })
+    console.log(newOrder)
+</script>
+
+</html>

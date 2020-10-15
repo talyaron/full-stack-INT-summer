@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container{
+        display:grid;
+        grid-template-rows: 100px 100px 100px;
+        grid-template-columns: 100px 100px 100px;
+        gap: 2px;
+    }
+    .item{
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        background: blue;
+
+    }
+</style>
+<body>
+        <div style="border: 2px solid black; width: fit-content; height: fit-content;" id="question"></div>
+
+        <div id="container"> 
+            <div class="item" style="background-color: lawngreen;"></div>
+            <div class="item" style="background-color:red"></div>
+            <div class="item" style="background-color:blue"></div>
+            <div class="item" style="background-color:green"></div>
+            <div class="item" style="background-color:orange"></div>
+            <div class="item" style="background-color:purple"></div>
+            <div class="item" style="background-color:pink" ></div>
+            <div class="item" style="background-color:gold"></div>
+            <div class="item" style="background-color: hotpink" ></div>
+        </div>
+
+    <script>
+       var colors = ['red', 'blue', 'green', 'lawngreen', 'orange', 'purple', 'pink', 'gold', 'hotpink'];
+
+       let random = function getRndInteger(min, max) {
+             return Math.floor(Math.random() * (max - min) ) + min;
+        }
+
+        var numbers = [];
+        while (numbers.length < 4){
+            let x = random(0,8)
+            if(numbers.includes(x)){
+                console.log("same")
+            }else{
+                numbers.push(x);
+            }
+        }
+        console.log (numbers);
+
+        var selectedcolors = [colors[numbers[0]], colors[numbers[1]], colors[numbers[2]], colors[numbers[3]]];
+        console.log (selectedcolors);
+
+        document.getElementById('question').innerText = selectedcolors;
+       
+        let boxlist = document.querySelectorAll('.item');
+        console.log(boxlist);
+
+        boxlist.forEach(i=>{
+            let x = i.style.backgroundColor;
+            console.log(i.style.backgroundColor);
+            console.log(selectedcolors)
+            if (selectedcolors.includes(x)) {
+                i.id = selectedcolors.indexOf(x)+1
+            } else{
+                i.id = "wrong"
+            }
+
+            i.addEventListener('click', e=>{
+                if(i.id == '1') {
+                    i.innerText='sushi'
+                    document.getElementById('question').innerText='';
+                }
+                if(i.id == '2') {
+                    console.log ('yes');
+                    i.innerText='pizza'
+                    document.getElementById('question').innerText='';
+                }
+                if(i.id == '3') {
+                    console.log ('yes');
+                    i.innerText='icecream'
+                    document.getElementById('question').innerText='';
+                }
+                if(i.id == '4') {
+                    console.log ('yes');
+                    i.innerText='orangejuice'
+                    document.getElementById('question').innerText='';
+                }
+                
+            })
+        })
+
+
+        
+    </script>
+</body>
+</html>

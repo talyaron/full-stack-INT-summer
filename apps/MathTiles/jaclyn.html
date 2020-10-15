@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div> What is the correct answer for <span id= firstRandomNumber></span>*<span id= secondRandomNumber></span>?</div>
+   <div id='top'></div>
+   <div id='wrap'>
+
+
+       <div class="item" id='0'></div>
+       <div class="item" id='1'></div>
+       <div class="item" id='2'></div>
+       <div class="item" id='3'></div>
+       <div class="item" id='4'></div>
+       <div class="item" id='5'></div>
+       <div class="item" id='6'></div>
+       <div class="item" id='7'></div>
+       <div class="item" id='8'></div>
+   </div>
+   <style>
+    #wrap {
+        display: inline-grid;
+        grid-template-columns: auto auto auto;
+        gap: 5px;
+    }
+
+    #wrap>.item {
+        width: 100px;
+        height: 100px;
+        background: pink;
+
+    }
+    #wrap>.item p {
+        color: white;
+        font-size: 3rem;
+        text-align: center;
+    }
+</style>
+   <script>
+
+        // 1: create 2 random numbers
+        let randomNumber = Math.floor(Math.random()*9)+1;
+        console.log(randomNumber);
+
+        let randomNumber2 = Math.floor(Math.random()*9)+1;
+        console.log(randomNumber2);
+
+        const correctNumber = randomNumber*randomNumber2;
+
+        console.log('correct number:', correctNumber)
+        
+        document.getElementById("firstRandomNumber").innerText = randomNumber
+        document.getElementById("secondRandomNumber").innerText = randomNumber2
+        
+        
+        // step 2: enter 9 random numbers (between 1-100) into array, while not the correct answer
+
+        let numbers = [];
+
+        //do a loop that itrate 9 times
+        for(let i = 0; i<9;i++){
+
+            //create random number
+            let randomNumber3 = Math.ceil(Math.random()*100) //create a number between 0-1
+            
+            //check if it is the correct answer. if it is do not add
+            if(correctNumber === randomNumber3){
+                i--;
+            } else {
+                 numbers.push(randomNumber3);
+            }
+
+            
+        }
+
+        console.log(numbers)
+
+        // step 3: create a nine tiles with numbers from the array, in in each tile the number in the array weill be shown
+
+        const root = document.getElementById('root')
+
+        numbers.forEach(number=>{
+            root.innerHTML += 
+        })
+
+    </script>
+</body>
+</html>

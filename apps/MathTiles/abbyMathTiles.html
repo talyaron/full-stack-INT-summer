@@ -12,15 +12,18 @@
         grid-template-rows: 150px 150px 150px;
         grid-template-columns: 150px 150px 150px;
         gap: 5px;
-        background-color:"grey";}
-        .item{
-            text-align: center;
+        background-color: "grey";
+    }
+
+    .item {
+        text-align: center;
         border: 1px solid black;
         border-radius: 20px;
-        background-color:plum;
+        background-color: plum;
         margin-bottom: 20px;
     }
 </style>
+
 <body>
     <div> What is <span id=firstRandomNumber></span>*<span id=secondRandomNumber></span>?</div>
     <div class="wrapper">
@@ -74,7 +77,7 @@
         let numbers = [];
 
         //do a loop that itrate 9 times
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < 8; i++) {
 
             //create random number
             let randomNumber3 = Math.ceil(Math.random() * 100) //create a number between 0-1
@@ -88,20 +91,28 @@
 
 
         }
-
+        // do the random place in array as the right answer; do random number 0-9 for place in array and then do array[randomindex]=number1*number2; number splice
+        console.log(numbers);
+        numbers.splice(Math.floor(Math.random() * 9), 0, randomNumber * randomNumber2);
         console.log(numbers);
 
         // step 3: create a nine tiles with numbers from the array, in in each tile the number in the array weill be shown
-        document.getElementById("num1").innerText = numbers[0];
-        document.getElementById("num2").innerText = numbers[1]; 
-        document.getElementById("num3").innerText = numbers[2]; 
-        document.getElementById("num4").innerText = numbers[3]; 
-        document.getElementById("num5").innerText = numbers[4]; 
-        document.getElementById("num6").innerText = numbers[5]; 
-        document.getElementById("num7").innerText = numbers[6]; 
-        document.getElementById("num8").innerText = numbers[7]; 
-        document.getElementById("num9").innerText = numbers[8];
-
+        for (let i = 1; i < 10; i++) {
+            document.getElementById("num"+i).innerText = numbers[i-1];
+        }
+ 
+        const items = document.querySelectorAll(`.item`);
+            items.forEach(items => {
+                items.addEventListener('click', e => {
+                    const item = e.target;
+                    if (item.innerText == correctNumber){
+                        item.style.backgroundColor = "green";  
+                    }
+                    else {
+                        item.style.backgroundColor = "red";
+                    }
+                })
+            })
     </script>
 </body>
 
