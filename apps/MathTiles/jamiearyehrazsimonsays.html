@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='wrap'>
+        <div class="item" id='0'></div>
+        <div class="item" id='1'></div>
+        <div class="item" id='2'></div>
+        <div class="item" id='3'></div>
+        <div class="item" id='4'></div>
+        <div class="item" id='5'></div>
+        <div class="item" id='6'></div>
+        <div class="item" id='7'></div>
+        <div class="item" id='8'></div>
+    </div>
+</body>
+<style>
+    #wrap {
+        display:inline-grid;
+        grid-template-columns: auto auto auto;
+        gap:5px;
+    }
+    #wrap .item {
+        width: 100px;
+        height:100px;
+        background-color: purple;
+    }
+</style>
+<script>
+    let order = ['0','1','2','3','4','5','6','7','8'];
+    let newOrder =[]
+    for (i=0; 1<9; i++){
+        let index= Math.round(Math.random()*8);
+        newOrder.push(order[index]);
+        order.pop(order[index])
+    }
+    console.log(newOrder);
+
+    const items= document.querySelectorAll(".item")
+    
+    
+    newOrder.forEach(or=>{
+        document.getElementById(`${or}`).addEventListener('click',e=>{
+            document.getElementById(`${or}`).style='background-color:green';
+        
+        })
+    })
+</script>
+</html>
