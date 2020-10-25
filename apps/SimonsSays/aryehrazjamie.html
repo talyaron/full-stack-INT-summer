@@ -61,26 +61,35 @@
     console.log(order)
     const items = document.querySelectorAll(".item")
 
-    function fill(){
-        for(i=0;i<9;i++){
-            
-            document.getElementById(i).innerText=order[i];
+    function fill() {
+        for (i = 0; i < 9; i++) {
+
+            document.getElementById(i).innerText = order[i];
         }
     }
-    function simon(){
-        document.getElementById('title').innerHTML=`<p>Simon says the order is: ${newOrder}<p>` 
+    let arr = []
+    function simon(number) {
+        
+        for (i=0;i<number;i++){
+            arr.push(newOrder[i])
+        }
+        document.getElementById('title').innerHTML = `<p>Simon says the order is: ${arr}<p>`
+        console.log(arr)
     }
-    simon()
+    for (i = 0; i < 9; i++) {
+        simon(i)
+    }
     fill()
+
     items.forEach(item => {
 
         item.addEventListener('click', e => {
             const doc = e.target;
-            if (doc.innerText==newOrder[0]){
-                doc.style='background-color:green';
+            if (doc.innerText == newOrder[0]) {
+                doc.style = 'background-color:green';
                 newOrder.shift();
             } else {
-                doc.style='background-color:red';
+                doc.style = 'background-color:red';
             }
         })
     })
