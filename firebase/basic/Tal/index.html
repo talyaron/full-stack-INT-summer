@@ -29,39 +29,52 @@
     </script>
 </head>
 <style>
-    #img{
+    #img {
         position: relative;
         transition: all 250ms;
     }
 </style>
+
 <body>
     <input type='number' placeholder="left" id='inputLeft'>
     <h1>My troll's name is: <span id='trollsname'></span></h1>
     <img src='' id='img'>
 
     <script>
-       const DB =  firebase.firestore();
-       DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').onSnapshot(trollDB=>{
-           console.log(trollDB.data())
+        //we decleared the DataBase
+        const DB = firebase.firestore();
 
-           document.getElementById('trollsname').innerText = trollDB.data().name;
-           const left = trollDB.data().left;
-            const troll = document.getElementById('img')
-            troll.src =  trollDB.data().src;
+        const title = document.getElementById('trollsname');
+        const troll = document.getElementById('img');
+        const inputlLeft = document.getElementById('inputLeft');
+
+        //listen
+        DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').onSnapshot(trollDB => {
+
+            console.log(trollDB.data())
+
+            //I change the title
+            title.innerText = trollDB.data().name;
+
+
+            const left = trollDB.data().left;
+
+            troll.src = trollDB.data().src;
             troll.style.left = `${left}px`;
-       })
+        })
 
-       const inputlLeft = document.getElementById('inputLeft');
-       console.dir(inputlLeft)
-       inputlLeft.addEventListener('keyup', e=>{
-           //read the number and write it to the DataBase
 
-           let number = e.target.valueAsNumber;
-           console.log(number)
 
-           DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').update({left:number})
 
-       })
+        inputlLeft.addEventListener('keyup', e => {
+            //read the number and write it to the DataBase
+
+            let number = e.target.valueAsNumber;
+
+            //change into the DB
+            DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').update({ left: number })
+
+        })
     </script>
 
 </body>
