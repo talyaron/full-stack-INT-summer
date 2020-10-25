@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyAEVECn8lxyRElF2v8PiMCfVUn0yKy639s",
+            authDomain: "zev-fb-1.firebaseapp.com",
+            databaseURL: "https://zev-fb-1.firebaseio.com",
+            projectId: "zev-fb-1",
+            storageBucket: "zev-fb-1.appspot.com",
+            messagingSenderId: "483575353657",
+            appId: "1:483575353657:web:f6dfa477911b09c13618e8",
+            measurementId: "G-VLPQY7MNDL"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+</head>
+<style>
+    #trollsimg {
+        position: relative;
+        transition: all 250ms;
+    }
+</style>
+
+<body>
+    <input type='number' placeholder="left" id='inputLeft'>
+    <input type='number' placeholder="top" id='inputTop'>
+    <input type='number' placeholder="transform" id='inputTransform'>
+    <h1>My troll's name is <span id="trollsname"></span></h1>
+    <img id="trollsimg" src="">
+    <script>
+        const DB = firebase.firestore();
+         let inputlTop = document.getElementById('inputTop');
+         const title = document.getElementById('trollsname');
+        const troll = document.getElementById('trollsimg');
+        const inputlLeft = document.getElementById('inputLeft');
+        let inputlTransform = document.getElementById('inputTransform');
+
+        DB.collection('trolls').doc('Mh6Anidi6IAIt6aUaiT2').onSnapshot(trollDB => {
+            console.log(trollDB.data());
+           title.innerText = trollDB.data().name;
+            const left = trollDB.data().left;
+            const top = trollDB.data().top;
+            const transform = trollDB.data().transform;
+            troll.src = trollDB.data().img;
+            troll.style.left = `${left}px`;
+            troll.style.bottom = `${top}px`;
+            troll.style.transform = `rotate(${transform}deg)`;
+           
+        })
+        inputlLeft.addEventListener('keyup', e => {
+            let number = e.target.valueAsNumber;
+            console.log(number)
+            DB.collection('trolls').doc("Mh6Anidi6IAIt6aUaiT2").update({ left: number })
+        }) 
+       
+        inputlTop.addEventListener('keyup', e => {
+            let number = e.target.valueAsNumber;
+            console.log(number)
+            DB.collection('trolls').doc("Mh6Anidi6IAIt6aUaiT2").update({ top: number })
+        })
+        inputlTop.addEventListener('keyup', e => {
+            let number = e.target.valueAsNumber;
+            console.log(number)
+            DB.collection('trolls').doc("Mh6Anidi6IAIt6aUaiT2").update({ transform: number })
+        })
+    
+    </script>
+</body>
+
+</html>
