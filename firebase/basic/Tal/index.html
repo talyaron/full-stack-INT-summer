@@ -1,11 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB5GKCs1yMzuxICTHXId5DptNZA1aGQHTY",
+            authDomain: "tal-fb1.firebaseapp.com",
+            databaseURL: "https://tal-fb1.firebaseio.com",
+            projectId: "tal-fb1",
+            storageBucket: "tal-fb1.appspot.com",
+            messagingSenderId: "823131005125",
+            appId: "1:823131005125:web:00b0c01f14f3922b3410ac"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 </head>
+<style>
+    #img {
+        position: relative;
+        transition: all 250ms;
+    }
+</style>
+
 <body>
-    
+    <input type='number' placeholder="left" id='inputLeft'>
+    <h1>My troll's name is: <span id='trollsname'></span></h1>
+    <img src='' id='img'>
+
+    <script>
+        //we decleared the DataBase
+        const DB = firebase.firestore();
+
+        const title = document.getElementById('trollsname');
+        const troll = document.getElementById('img');
+        const inputlLeft = document.getElementById('inputLeft');
+
+        //listen
+        DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').onSnapshot(trollDB => {
+
+            console.log(trollDB.data())
+
+            //I change the title
+            title.innerText = trollDB.data().name;
+
+
+            const left = trollDB.data().left;
+
+            troll.src = trollDB.data().src;
+            troll.style.left = `${left}px`;
+        })
+
+
+
+
+        inputlLeft.addEventListener('keyup', e => {
+            //read the number and write it to the DataBase
+
+            let number = e.target.valueAsNumber;
+
+            //change into the DB
+            DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').update({ left: number })
+
+        })
+    </script>
+
 </body>
+
 </html>
