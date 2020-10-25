@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #question{
+        margin-top: 50px;
+        width: fit-content;
+        height: fit-content;
+        border: 2px solid black;
+        font-size: large;
+    }
+
+    #container{
+        margin-top: 100px;
+        padding: 10px;
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        gap: 50px;
+        background-color: lightblue;
+    }
+
+    .chest{
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        background-color: #fff045;
+    }
+
+    .chest>img{
+        width: 100%;
+        height: 100%;
+    }
+
+</style>
+
+<body>
+    
+    <div id="question">
+        <input id="play" type="button" value="Play">
+    </div>
+
+    <div id="container">
+        <div class="chest"><img src=""/></div>
+        <div class="chest"><img src=""/></div>
+        <div class="chest"><img src=""/></div>
+        <div class="chest"><img src=""/></div>
+        <div class="chest"><img src=""/></div>
+        <div class="chest"><img src=""/></div>
+        <div class="chest"><img src=""/></div>
+        <div class="chest"><img src=""/></div>
+        <div class="chest"><img src=""/></div>
+        <div class="chest"><img src=""/></div>
+    </div>
+
+
+
+    <script>
+        let random = function getRndInteger(min, max) {
+             return Math.floor(Math.random() * (max - min) ) + min;
+        }
+
+        document.getElementById("play").addEventListener("click", e=>{
+            let numbers = [];
+
+            while(numbers.length == 0){
+                let x = random(0,9);
+                let y = random(0,9);
+
+                if((x+y)<=10){
+                    numbers.push(x,y);
+                }
+
+                document.getElementById("question").innerText = `What is ${x} + ${y}?`;
+            }
+
+            var value = 1;
+
+            document.querySelectorAll(".chest>img").forEach(element=>{
+                element.src = "https://imgprd19.hobbylobby.com/8/06/48/806487f5a2a853d1d401e8c837db04f4bc5900d6/700Wx700H-1945161-0720-px.jpg";           
+            
+                element.id = value;
+                value += 1;
+            })
+
+            
+        })
+    </script>
+
+
+</body>
+</html>
