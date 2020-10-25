@@ -8,6 +8,7 @@
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -27,8 +28,41 @@
         firebase.initializeApp(firebaseConfig);
     </script>
 </head>
-
+<style>
+    #img{
+        position: relative;
+        transition: all 250ms;
+    }
+</style>
 <body>
+    <input type='number' placeholder="left" id='inputLeft'>
+    <h1>My troll's name is: <span id='trollsname'></span></h1>
+    <img src='' id='img'>
+
+    <script>
+       const DB =  firebase.firestore();
+       DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').onSnapshot(trollDB=>{
+           console.log(trollDB.data())
+
+           document.getElementById('trollsname').innerText = trollDB.data().name;
+           const left = trollDB.data().left;
+            const troll = document.getElementById('img')
+            troll.src =  trollDB.data().src;
+            troll.style.left = `${left}px`;
+       })
+
+       const inputlLeft = document.getElementById('inputLeft');
+       console.dir(inputlLeft)
+       inputlLeft.addEventListener('keyup', e=>{
+           //read the number and write it to the DataBase
+
+           let number = e.target.valueAsNumber;
+           console.log(number)
+
+           DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').update({left:number})
+
+       })
+    </script>
 
 </body>
 
