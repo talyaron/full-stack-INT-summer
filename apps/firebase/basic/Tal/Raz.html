@@ -1,0 +1,90 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCTV1FMjg-X7xeqCSDwnhm2kSkOLGTvBbE",
+    authDomain: "raz-fb1.firebaseapp.com",
+    databaseURL: "https://raz-fb1.firebaseio.com",
+    projectId: "raz-fb1",
+    storageBucket: "raz-fb1.appspot.com",
+    messagingSenderId: "870975017248",
+    appId: "1:870975017248:web:cabb31e02f8c19d1890745",
+    measurementId: "G-KF9D4DLN2L"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<style>
+    img{
+        width:200px;
+    }
+</style>
+
+
+<style>
+   
+</style>
+<body>
+   <input type='number' placeholder="left" id= 'inputLeft'>
+   <input type='number' placeholder="down" id= 'inputdown'>
+   <input type='number' placeholder="rotate" id= 'inputrotate'>
+    <h1> my troll's name: <span id= 'Trollsname'></span>
+        <img src="" id='image'>
+        <style>
+            #image{
+                position: relative;
+            }
+        </style>
+        <script>
+            //we declared the Database
+            const DB = firebase.firestore();
+
+            DB.collection ('trolls').doc ('CSUZvPL0YLuZaf5xb6Tq').onSnapshot(trollDB=>{
+                console.log(trollDB.data());
+                console.log(trollDB.data().img)
+                
+                document.getElementById('Trollsname').innerText= trollDB.data().name
+
+                document.getElementById('image').src=trollDB.data().img
+                document.getElementById('image').style.left= `${trollDB.data().left}px`
+                document.getElementById('image').style.top= `${trollDB.data().down}px`
+                document.getElementById('image').style.transform=`rotate(${trollDB.data().rotate}deg)`;
+            
+            })
+            
+            const  inputLeft = document.getElementById('inputLeft');
+            
+            console.dir(inputLeft)
+            inputLeft.addEventListener('keyup',e=>{
+                let number = e.target.valueAsNumber;
+                DB.collection('trolls').doc('CSUZvPL0YLuZaf5xb6Tq').update({left:number})
+            
+                })
+
+            inputdown.addEventListener('keyup',e=>{
+                let number3 = e.target.valueAsNumber;
+                DB.collection('trolls').doc('CSUZvPL0YLuZaf5xb6Tq').update({down:number3})
+            })
+         
+            
+        
+            inputrotate.addEventListener('keyup',e=>{
+                let number4 = e.target.valueAsNumber;
+                DB.collection('trolls').doc('CSUZvPL0YLuZaf5xb6Tq').update({rotate:number4})
+            })
+
+            
+
+        </script>
+    
+</body>
+

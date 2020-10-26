@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>What is the correct answer is</div>
+    <span id="firstRandomNumber"></span>*<span id="secondRandomNumber">?</span>
+    <div></div>
+    <script>
+      // 1 create 2 random numbers
+      let randomNumber= Math.floor ((Math.random())*9)+1;
+      console.log (randomNumber);
+      let randomNumber2= Math.floor (Math.random()*9)+1;
+      console.log (randomnumber2);
+      const correctNumber = randomNumber*randomNumber2;
+      console.log ('correct number:'), correctNumber)
+      document.getElementById ("firstRandomNumber").innerText= randomNumber
+      document.getElementById ('secondRandomNumber').innerText= randomNumber2
+      // step 2 : enter 9 random numbers (between 1-100) into array, while not the correct answer
+     let numbers= [];
+
+     //do a loop that itrate 9 times 
+     for (let i = 0; i<9; i++){
+         
+
+
+    </script>
+  </body>
+</html>
