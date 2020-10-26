@@ -91,7 +91,9 @@
            DB.collection('players').doc('players').get().then(playersDB=>{
                console.log(playersDB.data())
 
-               //if the data is empty than enter the name to the first players
+               //if the data is empty than enter to the DB the name to the first players
+
+               //{payer1:{name:name}}
             
            })
        }
