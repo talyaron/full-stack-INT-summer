@@ -10,27 +10,72 @@
     .box{
         width: 50px;
         height: 50px;
+        background-color: none;
+        border: 2px solid black;
+    }
+
+    .click{
+        width: fit-content;
+        height: fit-content;
         background-color: blue;
+        border: 2px solid black;
+    }
+
+    .container{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 50px 50px 50px 50px 50px 50px 50px;
+        grid-template-rows: 50px 50px 50px 50px 50px 50px;
+        gap: 5px;
+
+        position: relative;
+        top: 100px;
+        left: 25%;
     }
 </style>
 
 <body>
     <div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
-        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <span style="color: blue;">Player 1</span>
+        <br/>
+        <span style="color: red;">Player 2</span>
     </div>
+
+
+    <div class="container">
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        <div class="box"></div> <div class="box"></div> <div class="box"></div>
+        
+        <div class="click"><button>row 1</button></div>
+        <div class="click"><button>row 2</button></div>
+        <div class="click"><button>row 3</button></div>
+        <div class="click"><button>row 4</button></div>
+        <div class="click"><button>row 5</button></div>
+        <div class="click"><button>row 6</button></div>
+        <div class="click"><button>row 7</button></div>
+
+    </div>
+
+
+    <script>
+        let boxes = document.getElementsByClassName("box")
+        
+        
+
+    </script>
 
 </body>
 </html>
