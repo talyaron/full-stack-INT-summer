@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyA3XPrgEW-zquC2L--GPfwbWPv5BMixYgQ",
+    authDomain: "connectfour-550d0.firebaseapp.com",
+    databaseURL: "https://connectfour-550d0.firebaseio.com",
+    projectId: "connectfour-550d0",
+    storageBucket: "connectfour-550d0.appspot.com",
+    messagingSenderId: "736590340205",
+    appId: "1:736590340205:web:3b6b9a7275b73a52035f64",
+    measurementId: "G-ETTXJ1L59G"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+</script>
+</head>
+
+<style>
+    #board{
+        position: relative;
+        display: flex;   
+        height: 1000px;
+        width: 1000px;
+        
+             
+        
+        
+        
+        
+
+    }
+    #board>div{
+        margin:10px;
+        border-radius: 5px;
+        background-color: white;
+        border: white ;
+        width: 50%;
+        
+       
+        
+    }
+
+    #board>div>div{
+        margin:5px;
+        border-radius: 5px;
+        background-color:"";
+        border: solid black ;
+        height: 150px;
+    }
+
+    #buttons>div{
+        display: inline-flex;
+        background-color: grey;
+        border: hotpink ;
+        width: 130px;
+        margin: 4px;
+        height: 130px;
+        
+    }
+
+    #buttons{
+        width: 1000px;   
+    }
+
+   
+
+
+
+
+</style>
+
+
+
+<body>
+    <div id = 'board'>
+        <div class = 'col0'>
+            <div class = '0'></div>
+            <div class = '1'></div>
+            <div class = '2'></div>
+            <div class = '3'></div>
+            <div class = '4'></div>
+            <div class = '5'></div>
+        </div>
+
+
+        <div class = 'col1'>
+            <div class = '0'></div>
+            <div class = '1'></div>
+            <div class = '2'></div>
+            <div class = '3'></div>
+            <div class = '4'></div>
+            <div class = '5'></div>
+        </div>
+
+
+        <div class = 'col2'>
+            <div class = '0'></div>
+            <div class = '1'></div>
+            <div class = '2'></div>
+            <div class = '3'></div>
+            <div class = '4'></div>
+            <div class = '5'></div>
+        </div>
+
+
+        <div class = 'col3'>
+            <div class = '0'></div>
+            <div class = '1'></div>
+            <div class = '2'></div>
+            <div class = '3'></div>
+            <div class = '4'></div>
+            <div class = '5'></div>
+        </div>
+
+
+        <div class = 'col4'>
+            <div class = '0'></div>
+            <div class = '1'></div>
+            <div class = '2'></div>
+            <div class = '3'></div>
+            <div class = '4'></div>
+            <div class = '5'></div>
+        </div>
+
+
+        <div class = 'col5'>
+            <div class = '0'></div>
+            <div class = '1'></div>
+            <div class = '2'></div>
+            <div class = '3'></div>
+            <div class = '4'></div>
+            <div class = '5'></div>
+        </div>
+
+
+        <div class = 'col6'>
+            <div class = '0'></div>
+            <div class = '1'></div>
+            <div class = '2'></div>
+            <div class = '3'></div>
+            <div class = '4'></div>
+            <div class = '5'></div>
+        </div>
+       
+    </div>
+
+    <div id = 'buttons'>
+        <div class = '0'>1</div>
+        <div class = '1'>2</div>
+        <div class = '2'>3</div>
+        <div class = '3'>4</div>
+        <div class = '4'>5</div>
+        <div class = '5'>6</div>
+        <div class = '6'>7</div>
+
+
+    </div>
+
+
+
+        <script>
+             const DB = firebase.firestore()
+    
