@@ -63,6 +63,20 @@
             troll.style.left = `${left}px`;
         })
 
+        DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').get().then(trollDB => {
+
+console.log(trollDB.data())
+
+//I change the title
+title.innerText = trollDB.data().name;
+
+
+const left = trollDB.data().left;
+
+troll.src = trollDB.data().src;
+troll.style.left = `${left}px`;
+})
+
 
 
 
@@ -72,7 +86,10 @@
             let number = e.target.valueAsNumber;
 
             //change into the DB
+            // DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').update({ left: number })
             DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').update({ left: number })
+
+            DB.collection('trolls').add({ left: number , name:'MyTroll4'})
 
         })
     </script>
