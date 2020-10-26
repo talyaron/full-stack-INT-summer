@@ -83,17 +83,21 @@
 
         //get event of playe entering to page
 
+        const playersRef = DB.collection('players').doc('players');
+
        function handleSubmit(e){
            e.preventDefault()
            const name = e.target.elements.name.value;
            console.log(name)
 
-           DB.collection('players').doc('players').get().then(playersDB=>{
+           playersRef.get().then(playersDB=>{
                console.log(playersDB.data())
 
                //if the data is empty than enter to the DB the name to the first players
 
                //{payer1:{name:name}}
+               playersRef.set({player1:{name}})
+               
             
            })
        }
