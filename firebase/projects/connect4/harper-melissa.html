@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect 4!</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyAMrkaGJDqxdp_YlCuQuZIh1gaFByBc-5s",
+        authDomain: "harper-connect-4.firebaseapp.com",
+        databaseURL: "https://harper-connect-4.firebaseio.com",
+        projectId: "harper-connect-4",
+        storageBucket: "harper-connect-4.appspot.com",
+        messagingSenderId: "23898942013",
+        appId: "1:23898942013:web:c4e978b14aa4d92889d854",
+        measurementId: "G-B848H2P2LT"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+
+</head>
+<style>
+    .wrapper{
+        display:grid;
+        grid-template-columns: 100px 100px 100px 100px 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px 100px 100px 100px;
+        gap:5px;
+        border:3px black solid;
+        border-top:none;
+        margin-top:20px;
+    }
+    
+    .hole{
+        border:1px black solid;
+        width:80px;
+        height:80px;
+        border-radius:50px;
+        position:relative;
+        margin-left:10px;
+        margin-top: 10px;
+
+    }
+
+</style>
+<body>
+    <h1>Connect 4!!</h1>
+    <!--player info that disappears when game starts-->
+    <div id="setup">
+        <p>Please enter your player's name:</p>
+        <form id="playerInfo" onsubmit="handleSubmit(event)">
+            <input type="text" id="playerName"/>
+            <input type="submit" placeholder="Enter game"/>
+            <br><br>
+        </form>
+    </div>
+
+    <!--grid setup-->
+    <div class="wrapper">
+        <div class=column id="one">
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+        </div>
+        <div class="column" id="two">
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+        </div>
+        <div class="column" id="three">
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+        </div>
+        <div class="column" id="four">
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+        </div>
+        <div class="column" id="five">
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+        </div>
+        <div class="column" id="six">
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+        </div>
+        <div class="column" id="seven">
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+            <div class="box">
+                <div class="hole"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const DB=firebase.firestore();
+        const setup=DB.collection("setup");
+        const form=document.getElementById("playerInfo");
+        form.addEventListener('submit', e=>{
+            e.preventDefault();
+           // if(setup)
+           // setup.document
+
+        })
+
+    </script>
+</body>
+</html>
