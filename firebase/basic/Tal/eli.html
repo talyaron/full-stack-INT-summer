@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+    
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+    
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyDljvPd9ZtBLSBHEl3AQiodZCFtt803AkA",
+        authDomain: "eli-first.firebaseapp.com",
+        databaseURL: "https://eli-first.firebaseio.com",
+        projectId: "eli-first",
+        storageBucket: "eli-first.appspot.com",
+        messagingSenderId: "552298531905",
+        appId: "1:552298531905:web:ce8c06216aedd704cd4ac0",
+        measurementId: "G-VC5X05NE5E"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+
+<body>
+    <input type="number" id="amountRight" placeholder="How far right?"/>
+    <input type="number" id="amountDown" placeholder="How far down?"/>
+    <button id="button">Rotate 30 degrees</button>
+
+    <div>
+        My Troll's name is <span id="name"></span>
+        <br/>
+
+        <img id="image" src="" style="width: 50px; height: 50px;"/>
+    </div>
+    
+
+
+
+
+    <script>
+        const DB = firebase.firestore();
+
+        DB.collection("trolls").doc("r0p9Bqw1InfXELhrTMMg").onSnapshot(trollDB=>{
+            console.log(trollDB.data())
+
+
+            document.getElementById("name").innerText = trollDB.data().name;
+
+            document.getElementById("image").src = trollDB.data().image;
+
+            document.getElementById("image").style.marginLeft = `${trollDB.data().right}px`;
+            document.getElementById("image").style.marginTop = `${trollDB.data().down}px`;
+
+        })
+
+        document.getElementById("amountRight").addEventListener("keyup", e=>{
+            let amountRight = e.target.valueAsNumber;
+            console.log(amountRight);
+
+            DB.collection("trolls").doc("r0p9Bqw1InfXELhrTMMg").update({right:amountRight})
+        })
+
+
+        document.getElementById("amountDown").addEventListener("keyup", e=>{
+            let amountRight = e.target.valueAsNumber;
+            console.log(amountDown);
+
+            DB.collection("trolls").doc("r0p9Bqw1InfXELhrTMMg").update({down:amountDown});
+        })
+
+        let times = 1;
+        document.getElementById("button").addEventListener("click",e=>{
+            let angle = times*30;
+            console.log(angle)
+            document.getElementById("image").style.transform = `rotate(${angle}deg)`;
+            times += 1;
+        })
+
+        
+
+
+
+    </script>
+</body>
+</html>
