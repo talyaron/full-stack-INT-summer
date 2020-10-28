@@ -33,34 +33,26 @@
 <body>
     <h1>Save student:</h1>
 
-    <form id='chatInput' class="input">
+    <form id='form'>
         <input type="text" placeholder="Enter name" name='name' />
-    
-        <input type="date" placeholder="Birthday" name='enter'/>
-
-
-        <input type="text" placeholder="Hair color" name='enter'/>
+        <input type="date" placeholder="Birthday" name='birthday'/>
+        <input type="text" placeholder="Hair color" name='color'/>
         <input type='submit' value="Enter"/>
     </form>
     <script>
-   
-   
-        const input = document.getElementById("input")
-        const message = document.getElementById("message")
-
-        input.addEventListener("submit", e => {
-            e.preventDefault()
-            const inputText = e.target.children["name"].value
-console.log(inputText)
-
-            /*message.innerHTML += createNewParagraph(inputText)
-            input.reset()
+        document.getElementById('form').addEventListener('submit', e=>{
+            e.preventDefault();
+            console.dir(e.target);
+            let name=e.target.children['name'].value;
+            let birthday=e.target.children['birthday'].value;
+            let color=e.target.children['color'].value;
+            console.log(name,birthday,color);
+            inputStudent(name, birthday, color);
         })
 
-        function createNewParagraph(inputText){
-            return `<p>${inputText}<p>`
+        function inputStudent(name, birthday, color){
+            DB.collection('students').add({name:name, birthday: birthday, color: color});
         }
-  */
         
   </script>
 
