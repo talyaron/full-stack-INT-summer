@@ -32,9 +32,11 @@
 </head>
 
 <body>
-
+    <div id="root"></div>
 
     <script>
+
+        const root = document.getElementById('root');
         //write your name to the DB
 
         DB.collection('users').doc('tal').set({ name: 'tal', city: 'Kedumim' })
@@ -57,26 +59,30 @@
             }
         }
 
+        // writeAMessage('hi')
+
         function listenToMessages() {
             try {
                 //read messages
                 DB.collection('chat')
                 .limit(2)
+                .orderBy('time', 'desc') // order by time
                 .onSnapshot(messagesDB => {
                     console.log(messagesDB.size)
-
+                  
                     messagesDB.forEach(messageDB => {
                         console.log(messageDB.data())
+                        root.innerHTML += writeTheMessageToTheDOM(messageDB.data()); // adding to the DOM
                     })
                 }).catch(err => { console.error(err) })
             } catch (err) {
                 console.error(err)
             }
         }
-        // listenToMessages();
+        listenToMessages();
 
         //create a div with the message
-        function writeTheMessage(message){
+        function writeTheMessageToTheDOM(message){
             return `<div class='message'><p>${message.message}</p><div>${message.sender}</div></div>`
         }
 
