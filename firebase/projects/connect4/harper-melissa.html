@@ -52,6 +52,10 @@
         margin-top: 10px;
 
     }
+    #playGame{
+        display:none;
+        font-weight:bold;
+    }
 
 </style>
 <body>
@@ -59,11 +63,14 @@
     <!--player info that disappears when game starts-->
     <div id="setup">
         <p>Please enter your player's name:</p>
-        <form id="playerInfo" onsubmit="handleSubmit(event)">
+        <form id="playerInfo">
             <input type="text" id="playerName"/>
             <input type="submit" placeholder="Enter game"/>
             <br><br>
         </form>
+    </div>
+    <div id="playGame">
+        <p>It is <span id="turn"></span>'s turn!</p>
     </div>
 
     <!--grid setup-->
@@ -213,14 +220,64 @@
 
     <script>
         const DB=firebase.firestore();
-        const setup=DB.collection("setup");
+        const setupRef =DB.collection("setup").doc('players');
+        setupRef.set({player1:{name:"", color:"black"},player2:{name:"", color:"red"}});
         const form=document.getElementById("playerInfo");
+        let turn=0;
+        let color="black";
+
         form.addEventListener('submit', e=>{
             e.preventDefault();
-           // if(setup)
-           // setup.document
+            console.dir(e.target);
+            let playerName=e.target.children[0].value;
 
+            //get the info on the players
+            setupRef.get().then(playersDB=>{
+                console.log(playersDB.data());
+                //don't know why it's saying player1.name is undefined**
+                if(playersDB.data().player1.name==""){
+                    setupRef.update({"player1.name":playerName});
+                }
+                else if(playersDB.data().player2.name=="" ){
+                    setupRef.update({"player2.name":playerName});
+                }
+                else{
+                    alert("Cannot have 3 players in the game.");
+                    document.getElementById("setup").style.display="none";
+                    document.getElementById("playGame").style.display="inline";
+                    playerTurn();
+
+                }
+            })
         })
+
+        function playerTurn(){
+            setupRef.get().then(playersDB=>{
+                if(turn%2==0){
+                document.getElementById("turn").innerHTML=playersDB.data().player1.name;
+                document.getElementById("turn").style=playersDB.data().player1.color;
+                color=playersDB.data().player1.color;
+
+                }
+                else{
+                    document.getElementById("turn").innerHTML=playersDB.data().player2.name;
+                    document.getElementById("turn").style=playersDB.data().player2.color;
+                    color=playersDB.data().player2.color;
+                }
+            })
+            turn++;
+        }
+
+        let columns=document.querySelectorAll("columns");
+        let columnRef=DB.collection("setup").doc('columns');
+        for(let c of columns){
+            c.addEventListener('onclick', e=>{
+                
+            })
+
+        }
+
+
 
     </script>
 </body>
