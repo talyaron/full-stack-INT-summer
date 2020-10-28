@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+    apiKey: "AIzaSyCYnp8j0BE0dbKzM4coTSzHn45BEQnetOU",
+    authDomain: "melissa-fb2.firebaseapp.com",
+    databaseURL: "https://melissa-fb2.firebaseio.com",
+    projectId: "melissa-fb2",
+    storageBucket: "melissa-fb2.appspot.com",
+    messagingSenderId: "286187103397",
+    appId: "1:286187103397:web:a9efc7f18bf014c084594c",
+    measurementId: "G-3FKGWJD4HG"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+</head>
+<style>
+    .wrapper{
+        display: grid;
+        grid-template-columns: 100px 100px 100px 100px 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px 100px 100px 100px;
+        border: 3px solid black; 
+        gap: 5px;
+    }
+
+    .box{
+        border: 3px solid black;
+    }
+
+    .hole{
+        border: 1px black solid;
+        width: 80px;
+        height: 80px;
+        border-radius: 50px;
+        position: relative;
+        margin-left: 10px;
+        margin-right: 10px;
+
+    }
+</style>
+<body>
+
+    <h1>Connect 4</h1>
+    <div id = "setup">
+        <p>Please enter your name:</p>
+        <form id= "playerInfo" onsubmit="handleSubmit(event)">
+            <input type = "text" id="playerName"/>
+            <inout type = "submit" placeholder = "Enter Game"/>
+        
+        </form>
+    </div>
+
+
+    <div class = "wrapper">
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+        <div class= "box">
+            <div class = "hole"></div>
+        </div>
+
+    </div>
+
+    <script>
+        const DB=firebase.firestore();
+    </script>
+
+
+
+
+    
+</body>
+</html>
