@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Simon says</h1>
+    <p><span id="firstword"></span><span id="secondword"></span><span id="thirdword"></span><span id= fourthword></span><span id= "fifthword"></span></p>
+   <div class = "wrapper">
+        <div class = "item">
+            <p id="one"></p>
+        </div>
+
+        <div class = "item"> 
+            <p id="two"></p>
+        </div>
+
+        <div class = "item"> 
+
+            <p id="three"></p>
+        </div>
+
+        <div class = "item"> 
+
+            <p id="four"></p>
+        </div>
+
+        <div class = "item"> 
+
+            <p id = "five"></p>
+        </div>
+
+        <div class = "item"> 
+
+            <p id= "six"></p>
+        </div>
+
+        <div class = "item">
+            
+        <p id="seven"></p>
+
+        </div>
+
+        <div class = "item"> 
+
+            <p id = "eight"></p>
+        </div>
+
+        <div class = "item"> 
+            <p id = "nine"></p>
+        </div>
+
+            </div>
+
+<style>
+
+    .wrapper{
+        display: grid;
+        grid-template-columns: 150px 150px 150px;
+        grid-template-rows: 150px 150px 150px;
+        gap: 5px;
+    }
+
+    .item{
+        background-color: cornflowerblue;
+        border: 1px solid black;
+    }
+
+    .item>p{
+        position: absolute;
+        margin-left:55px;
+        margin-top:65px;
+        font-weight:bold;
+    }
+</style>
+
+<script>
+    const randomWords=["fall","cause","humor","fixed","lucky","contract","wrench","signify","class","lead","plant","round","purify","daily","pluck","camp","offer","faithful","dazzling","train","fold","town","icicle","high-pitched","take","dizzy","earth","condition","comfort","mixed","thunder","inculcate","meat","near","hulking","disgusting","hospitable","sense","crowd","fumbling","strong","perfect","tiny","over","confident","dysfunctional","drill","cry","snail","sulky","impede","measly","physical","uneven","parcel","unarmed","hush","rural","picayune","show","sew","address","thunder","soar","change","steelm","easly","tense","plan","pardon","digestion","disturb","food","combative","seed","kettle","inquisitive","copy","breath","near","sore","clothe","unadvised","implode","connection","mist","tearful","basket","spiky","pan","cook","accurate","burly","romantic","bikes","badge","page","overflow","omniscient","flip","pan","then"];
+    let words=[];
+    words.push[randomwords[Math.floor(Math.random()*100)]);
+    let newWord="";
+    //creates the list of 5 random words to be displayed
+    for(let i=0; i<5;i++){
+       newWord=randomWords[Math.floor(Math.random()*100)];
+       words[i]=randomWords[Math.floor(Math.random()*100)];
+    }
+    console.log(words);
+    let values=["","","","","","","","",""];
+    let ids=["one","two","three","four","five","six","seven","eight","nine"];
+    let randomPositions=["","","",""];
+    let position=1;
+    let keepChecking= true;
+//inserts the words that are being used into random positions 
+for(let j=0; j<5;j++){
+    while(keepChecking){
+        position=Math.floor(Math.random()*9);
+        if(randomPositions.indexOf(position)==-1){
+            randomPositions[j]=position;
+            values[position]=words[j];
+            keepChecking=false;
+        }
+        else{
+            keepChecking=true;
+        }
+    }
+    keepChecking=true;
+}
+
+//fills up the values array with random words now 
+let fillHere=true;
+for(let k=0;k<9;k++){
+    if(values[k]==""){
+        while(fillHere{
+            position=Math.floor(Math.random()*101);
+            if(values.indexOf(randomWords[position])==-1){
+                values[k]=randomWords[position];
+                fillHere=false;
+            }
+            else{
+                fillHere=true;
+            }
+        }
+    }
+    fillHere=true;
+}
+console.log(values);
+
+//fills the values into the HTML
+for(let f=0; f<9;f++){
+    let box=document.getElementById(ids[f]);
+    box.innerHTML=values[f];
+}
+
+//play the game
+let round=1;
+let w1=false;
+let w2=false;
+let w3=false;
+let w4=false;
+let w5=false;
+
+alert('Simon says: ${words[0]}')
+const first=document.getElementById(ids[values.indexOf(words[0])]);
+first.addEventListener('click',e=>{
+    if(round==1){
+        alert('Simon says: ${words[0]} / ${words[1]}');
+        round++
+    }
+    if(round==2){
+        w1=true;
+    }
+    if(round==3){
+        w1=true;
+    }
+    if(round==4){
+        w1=true;
+    }
+    if(round==5){
+        w1=true;
+    }
+})
+
+const second=document.getElementById(ids[values.indexOf(words[1])]);
+second.addEventListener('click',e=>{
+    if(round==2 && w1==true){
+        alert('Simon says: ${words[0]} / ${words[1]} / ${words[2]}');
+        round++;
+        w1=false;
+    }
+    if(round==3 && w1==true){
+        w2=true;
+    }
+
+    if(round==4 && w1==true){
+        w2=true;
+    }
+    if(round==5 && w1==true){
+        w2=true;
+    }
+})
+
+const third=document.getElementById(ids[values.indexOf(words[2])]);
+third.addEventListener('click',e=>{
+    if(round==3 && w2==true){
+        alert('Simon says: ${words[0]} / ${words[1]} / ${words[2]} / ${words[3]}');
+        round++
+        w1=false;
+        w2=false;
+    }
+    if(round==4 && w1==true){
+        w3=true;
+    }
+    if(roumd==5 && w2==true){
+        w3=true;
+    }
+})
+
+.const fourth=document.getElementById(ids[values.indexOf(words[3])]);
+fourth.addEventListener('click',e=>{
+    if(round==4 && w3==true){
+        alert('Simon says: ${words[0]} / ${words[1]} / ${words[2]} / ${words[3]} / ${words[4]}');
+        round++;
+        w1=false;
+        w2=false;
+        w3=false;
+    }
+    if(round==5 && w3==true){
+        w4=true;
+    }
+})
+
+const fifth=document.getElementById(ids[values.indexOf(words[4])]);
+fifth.addEventListener('click',e=>{
+    if(round==5 && w4==true){
+        alert("You win!");
+    }
+})
+
+</script>
+
+</body>
+</html>

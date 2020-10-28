@@ -49,7 +49,7 @@
 
         /////step 3: create a nine tiles with numbers from the array, in in each tile the number in the array weill be shown
 
-    <div class="wrapper">
+    <div id ='root' class="wrapper">
         <div class="item"><p id="1"></p></div>
         <div class="item"><p id="2"></p></div>
         <div class="item"><p id="3"></p></div>
@@ -61,17 +61,23 @@
         <div class="item"><p id="9"></p></div>
     </div>
     
+const root = document.getElementById('root')
+
+numbers.forEach(number=>{
+    root.innerHTML += '<div class='item'>$(number)</div>'
+})
+
     <style>
         .wrapper{
             display:grid;
-            grid-template-rows:100px 100px 100px;
-            grid-template-columns:100px 100px 100px;
+            grid-template-rows:150px 150px 150px;
+            grid-template-columns:150px 150px 150px;
             gap:5px;
-        }
 
         .item{
-            background-color:cornflowerblue;
-        }
+            text-align: center;
+            border: 1px solid black;
+            background-color: gainsboro;
     </style>   
 </body>
 </html>
