@@ -35,20 +35,26 @@
 
     <script>
         //write your name to the DB
+
         DB.collection('users').doc('tal').set({ name: 'tal', city: 'Kedumim' })
             .then(() => { console.log('saved correctly') })
             .catch(err => { console.error(err) })
 
 
         //messages
-
-        DB.collection('chat').add({
-            message: 'Hi all',
-            sender: "Tal",
-            time: new Date().getTime()
-        })
-            .then(() => { console.log('message was saved') })
-            .catch(err => { console.error(err) })
+        function writeAMessage(message) {
+            try {
+                DB.collection('chat').add({
+                    message: message,
+                    sender: "Tal",
+                    time: new Date().getTime()
+                })
+                    .then(() => { console.log('message was saved') })
+                    .catch(err => { console.error(err) })
+            } catch (err) {
+                console.error(err)
+            }
+        }
 
         function listenToMessages() {
             try {
@@ -56,7 +62,7 @@
                 DB.collection('chat').onSnapshot(messagesDB => {
                     console.log(messagesDB.size)
 
-                    messagesDB1.forEach(messageDB => {
+                    messagesDB.forEach(messageDB => {
                         console.log(messageDB.data())
                     })
                 }).catch(err => { console.error(err) })
@@ -65,6 +71,12 @@
             }
         }
         listenToMessages();
+
+        //create a div with the message
+        function writeTheMessage(message){
+            return `<div class='message'><p>${message.message}</p><div>${message.sender}</div></div>`
+        }
+
     </script>
 </body>
 
