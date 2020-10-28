@@ -42,9 +42,29 @@
 
         //messages
 
-        DB.collection('chat').add({ message: 'Hi all' })
-            .then(() => { consolle.log('message was saved') })
+        DB.collection('chat').add({
+            message: 'Hi all',
+            sender: "Tal",
+            time: new Date().getTime()
+        })
+            .then(() => { console.log('message was saved') })
             .catch(err => { console.error(err) })
+
+        function listenToMessages() {
+            try {
+                //read messages
+                DB.collection('chat').onSnapshot(messagesDB => {
+                    console.log(messagesDB.size)
+
+                    messagesDB1.forEach(messageDB => {
+                        console.log(messageDB.data())
+                    })
+                }).catch(err => { console.error(err) })
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        listenToMessages();
     </script>
 </body>
 
