@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBoYvkPf2q9lFddsgE3KLr3S5rvIPghdys",
+    authDomain: "aryehfirebase1.firebaseapp.com",
+    databaseURL: "https://aryehfirebase1.firebaseio.com",
+    projectId: "aryehfirebase1",
+    storageBucket: "aryehfirebase1.appspot.com",
+    messagingSenderId: "1020894489421",
+    appId: "1:1020894489421:web:82a6d7342a6189ee7fa504"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const DB = firebase.firestore();
+</script>
+</head>
+<body>
+    <form id = 'input'>
+        <input type="text" placeholder="Image src" name='input'/>
+        <input type="submit" name ='submit'/>
+    </form>
+    <div id = 'output'>
+
+    </div>
+<script>
+    let images = document.getElementById('output')
+    
+    document.getElementById('input').addEventListener('submit',e=>{
+        e.preventDefault();
+        DB.collection('Images').doc('image').set({img:document.getElementsByName('input')[0].value})
+    })
+    DB.collection('Images').doc('image').onSnapshot(e=>{
+        console.log(e.data()['img'])
+        images.innerHTML = `<img src='${e.data()['img']}'/>`
+
+    })
+
+</script>
+</body>
+</html>
