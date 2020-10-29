@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 7x6 board-->
+    <!-- 3 colors white blue red-->
+    <!--If win function-->
+    <!-- counter to keep turned-->
+    <!-- onclick to pick a spot on the board for each player-->
+    <!---->
+    <div id='wrapper'>
+        <div class="one" data-col='1'><img width='50px' src='' /></div>
+        <div class="two" data-col='1'><img width='50px' src='' /></div>
+        <div class="three" data-col='1'><img width='50px' src='' /></div>
+        <div class="four" data-col='1'><img width='50px' src='' /></div>
+        <div class="five" data-col='1'><img width='50px' src='' /></div>
+        <div class="six" data-col='1'><img width='50px' src='' /></div>
+        <div class="one" data-col='2'><img width='50px' src='' /></div>
+        <div class="two" data-col='2'><img width='50px' src='' /></div>
+        <div class="three" data-col='2'><img width='50px' src='' /></div>
+        <div class="four" data-col='2'><img width='50px' src='' /></div>
+        <div class="five" data-col='2'><img width='50px' src='' /></div>
+        <div class="six" data-col='2'><img width='50px' src='' /></div>
+        <div class="one" data-col='3'><img width='50px' src='' /></div>
+        <div class="two" data-col='3'><img width='50px' src='' /></div>
+        <div class="three" data-col='3'><img width='50px' src='' /></div>
+        <div class="four" data-col='3'><img width='50px' src='' /></div>
+        <div class="five" data-col='3'><img width='50px' src='' /></div>
+        <div class="six" data-col='3'><img width='50px' src='' /></div>
+        <div class="one" data-col='4'><img width='50px' src='' /></div>
+        <div class="two" data-col='4'><img width='50px' src='' /></div>
+        <div class="three" data-col='4'><img width='50px' src='' /></div>
+        <div class="four" data-col='4'><img width='50px' src='' /></div>
+        <div class="five" data-col='4'><img width='50px' src='' /></div>
+        <div class="six" data-col='4'><img width='50px' src='' /></div>
+        <div class="one" data-col='5'><img width='50px' src='' /></div>
+        <div class="two" data-col='5'><img width='50px' src='' /></div>
+        <div class="three" data-col='5'><img width='50px' src='' /></div>
+        <div class="four" data-col='5'><img width='50px' src='' /></div>
+        <div class="five" data-col='5'><img width='50px' src='' /></div>
+        <div class="six" data-col='5'><img width='50px' src='' /></div>
+        <div class="one" data-col='6'><img width='50px' src='' /></div>
+        <div class="two" data-col='6'><img width='50px' src='' /></div>
+        <div class="three" data-col='6'><img width='50px' src='' /></div>
+        <div class="four" data-col='6'><img width='50px' src='' /></div>
+        <div class="five" data-col='6'><img width='50px' src='' /></div>
+        <div class="six" data-col='6'><img width='50px' src='' /></div>
+        <div class="one" data-col='1'><img width='50px' src='' /></div>
+        <div class="two" data-col='2'><img width='50px' src='' /></div>
+        <div class="three" data-col='3'><img width='50px' src='' /></div>
+        <div class="four" data-col='4'><img width='50px' src='' /></div>
+        <div class="five" data-col='5'><img width='50px' src='' /></div>
+        <div class="six" data-col='6'><img width='50px' src='' /></div>
+    </div>
+
+
+
+
+    </div>
+</body>
+<script>
+    let turn = 0;
+    let checking = document.querySelectorAll('div');
+    let images = ['https://metro.co.uk/wp-content/uploads/2016/04/red-horse-dot-m_2778460a.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Light_Blue_Circle.svg/768px-Light_Blue_Circle.svg.png']
+    checking.forEach(check => {
+        check.addEventListener('click', e => {
+            let image = e.target
+            
+                if (turn % 2 == 0 && image.children[0].src != images[1]) {
+                    image.children[0].src = images[0]
+                } else if (turn % 2 != 0 && image.children[0].src != images[0]) {
+                    image.children[0].src = images[1]
+                }
+
+            
+
+            turn++
+        })
+    })
+</script>
+<style>
+    #wrapper {
+        display: inline-grid;
+        grid-template-columns: auto auto auto auto auto auto;
+        background-color: lightseagreen;
+        gap: 5px;
+    }
+
+    #wrapper .one {
+        width: 100px;
+        height: 100px;
+        background: white;
+
+    }
+
+    #wrapper .two {
+        width: 100px;
+        height: 100px;
+        background: white;
+
+    }
+
+    #wrapper .three {
+        width: 100px;
+        height: 100px;
+        background: white;
+
+    }
+
+    #wrapper .four {
+        width: 100px;
+        height: 100px;
+        background: white;
+
+    }
+
+    #wrapper .five {
+        width: 100px;
+        height: 100px;
+        background: white;
+
+    }
+
+    #wrapper .six {
+        width: 100px;
+        height: 100px;
+        background: white;
+
+    }
+</style>
+
+</html>

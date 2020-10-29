@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBoYvkPf2q9lFddsgE3KLr3S5rvIPghdys",
+            authDomain: "aryehfirebase1.firebaseapp.com",
+            databaseURL: "https://aryehfirebase1.firebaseio.com",
+            projectId: "aryehfirebase1",
+            storageBucket: "aryehfirebase1.appspot.com",
+            messagingSenderId: "1020894489421",
+            appId: "1:1020894489421:web:82a6d7342a6189ee7fa504"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+
+<body>
+    <input placeholder="left" type="number" id='inputLeft' />
+    <input placeholder="down" type="number" id='inputDown' />
+    <input placeholder="angle" type="number" id='inputAngle' />
+    <div id='div1'></div>
+    <script>
+        const DB = firebase.firestore();
+        DB.collection('trolls').doc('2NEhS542dNAmqeYujJGs').onSnapshot(trollDB => {
+            console.log(trollDB.data())
+            document.getElementById('div1').innerHTML = `<p id='trollName'>My trolls name is ${trollDB.data().name} </p><img src = ${trollDB.data().img1} id='image' width="50px"/>`;
+
+            document.getElementById('image').style.marginLeft = `${trollDB.data().left}px`
+            document.getElementById('image').style.marginTop = `${trollDB.data().down}px`
+            document.getElementById('image').style.transform = `rotate(${trollDB.data().angle}deg)`;
+
+        })
+        const inputlLeft = document.getElementById('inputLeft');
+        const inputlDown = document.getElementById('inputDown');
+        const inputlAngle = document.getElementById('inputAngle');
+        console.dir(inputlLeft)
+        inputlLeft.addEventListener('keyup', e => {
+
+            let number = e.target.valueAsNumber;
+            console.log(number)
+
+            DB.collection('trolls').doc('2NEhS542dNAmqeYujJGs').update({ left: number })
+
+
+
+        })
+        inputlDown.addEventListener('keyup', e => {
+
+            let number = e.target.valueAsNumber;
+            console.log(number)
+
+            DB.collection('trolls').doc('2NEhS542dNAmqeYujJGs').update({ down: number })
+
+
+
+        })
+        inputlAngle.addEventListener('keyup', e => {
+
+            let number = e.target.valueAsNumber;
+            console.log(number)
+
+            DB.collection('trolls').doc('2NEhS542dNAmqeYujJGs').update({ angle: number })
+
+
+
+        })
+    </script>
+</body>
+<style>
+    #div1 #image {
+        position: relative;
+    }
+</style>
+
+</html>
