@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAd0MGdVXKP1OBrqZgQ984od-XzSQXIXrI",
+    authDomain: "jaclyn-fb1.firebaseapp.com",
+    databaseURL: "https://jaclyn-fb1.firebaseio.com",
+    projectId: "jaclyn-fb1",
+    storageBucket: "jaclyn-fb1.appspot.com",
+    messagingSenderId: "529201359753",
+    appId: "1:529201359753:web:70b67a72365da687378f58"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        
+        width: 100%;
+        height: 80vh;
+        gap: 10px;
+    }
+
+    .tile {
+        background-color: teal;
+    }
+
+    .button{
+        border-radius: 10px;
+        background-color: blue;
+    }
+</style>
+
+<body>
+    <form onsubmit="handleSubmit(event)">
+        <input type="text" name="name" id="">
+    </form>
+    <div class="wrapper" id='wrapper'>
+      
+    </div>
+    <script>
+
+        const wrapper = document.getElementById('wrapper');
+
+        //create 42 tiles (6*7)
+
+        for(let i = 0; i<42;i++){
+            wrapper.innerHTML += createAtile()
+        }
+        for(let i = 0; i<7;i++){
+            wrapper.innerHTML += createAButton()
+        }
+
+        
+        function createAtile() {
+            return (`<div class='tile' data-row='1' onclick='handleClick(event)'></div>`)
+        }
+
+        function createAButton(){
+            return `<div class='button'>Add a coin</div>`
+        }
+        // end of cration of board
+
+        //get event of playe entering to page
+
+       function handleSubmit(e){
+           e.preventDefault()
+           const name = e.target.elements.name.value;
+           console.log(name)
+
+           DB.collection('players').doc('players').get().then(playersDB=>{
+               console.log(playersDB.data())
+
+               //if the data is empty than enter the name to the first players
+            
+           })
+       }
+        DB.collection('players').doc('player1').set({a:true}).catch(e=>{console.error(e)})
+
+        function handleClick(e) {
+            console.dir(e.target.dataset.row)
+        }
+
+        DB.collection('img').
+
+        let tiles = document.querySelectorAll('.wrapper>div');
+        console.log(tiles)
+        let count = 1;
+        tiles.forEach(tile => {
+            tile.dataset.row = count;
+            count++;
+        })
+    </script>
+</body>
+
+</html>

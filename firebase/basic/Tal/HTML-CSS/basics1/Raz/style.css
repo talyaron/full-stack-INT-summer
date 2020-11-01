@@ -1,0 +1,10 @@
+/* class */
+.raz {background-color: aqua;}
+.learn {width: 300px;
+font-size: 32px;} 
+.imageDog{ width:300px}
+/* id */
+#longIsland{background-color: dodgerblue;}
+/* tag selector */
+h1{background-color: green;} 
+

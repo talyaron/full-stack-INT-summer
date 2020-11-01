@@ -1,0 +1,44 @@
+/* card area */
+
+.card{
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.577);
+    border-radius: 5px;
+    width: 350px;
+}
+
+/* the direct children */
+.card>img{
+    width: 100%;
+}
+
+/* images inside a card */
+
+/* space means that "all childern of" */
+.card img{
+    border: 1px solid gray;
+}
+
+.card>div>p{
+    color: gray;
+    padding: 10px;
+}
+
+/* badge area */
+
+.badge{
+    background-color: rgb(194, 194, 194);
+    border-radius: 50px;
+    width: fit-content;
+
+    display: flex;
+    
+}
+.badge>img{
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}
+
+.badge>div{
+    margin: 5px;
+}

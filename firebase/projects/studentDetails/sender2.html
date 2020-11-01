@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAd0MGdVXKP1OBrqZgQ984od-XzSQXIXrI",
+            authDomain: "jaclyn-fb1.firebaseapp.com",
+            databaseURL: "https://jaclyn-fb1.firebaseio.com",
+            projectId: "jaclyn-fb1",
+            storageBucket: "jaclyn-fb1.appspot.com",
+            messagingSenderId: "529201359753",
+            appId: "1:529201359753:web:6da3a76e5103bb75378f58"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const DB = firebase.firestore();
+    </script>
+
+</head>
+<body>
+    <form onsubmit='sendMessage(event)'>
+        <input type="text" name='texts' placeholder="send message" />
+        <input type="submit" value="Submit">
+    </form>
+<div id=text></div>
+<script>
+      function sendMessage(e) {
+            e.preventDefault()
+            const name = e.target.children.texts.value;
+            DB.collection('sender2').doc('CI4pfJOiBthfcPLejcb9').set({text: name })
+      }
+      
+      DB.collection('sender1').doc('qgdvUb9gwAFHdqJ4ANDA').onSnapshot(userDB=>{
+            console.log(userDB.data())
+            const text = document.getElementById('text');
+            text.innerText = userDB.data().text;
+    })
+
+    DB.collection('sender2').doc('CI4pfJOiBthfcPLejcb9').onSnapshot(usersDB=>{
+            console.log('..............')
+        })
+
+
+</script>
+</body>
+</html>
