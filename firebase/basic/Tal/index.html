@@ -49,7 +49,11 @@
         const inputlLeft = document.getElementById('inputLeft');
 
         //listen
-        DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').onSnapshot(trollDB => {
+        DB.collection('trolls')
+        .where('city','==', 'new york')
+        .limit(5)
+        .orderBy('date', 'desc')
+        .onSnapshot(trollDB => {
 
             console.log(trollDB.data())
 
@@ -90,6 +94,7 @@ troll.style.left = `${left}px`;
             DB.collection('trolls').doc('dDUrMSdnOt1JcUFj9TIZ').update({ left: number })
 
             DB.collection('trolls').add({ left: number , name:'MyTroll4'})
+            DB.collection('trolls').doc('soneId').set({ left: number , name:'MyTroll4'})
 
         })
     </script>
