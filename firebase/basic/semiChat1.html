@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBoYvkPf2q9lFddsgE3KLr3S5rvIPghdys",
+            authDomain: "aryehfirebase1.firebaseapp.com",
+            databaseURL: "https://aryehfirebase1.firebaseio.com",
+            projectId: "aryehfirebase1",
+            storageBucket: "aryehfirebase1.appspot.com",
+            messagingSenderId: "1020894489421",
+            appId: "1:1020894489421:web:82a6d7342a6189ee7fa504"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const DB = firebase.firestore();
+    </script>
+</head>
+
+<body>
+    <div id='input'>
+        <form id='input'>
+
+            <input type='text' placeholder="type username that u will remember" name='username' />
+            <input type='text' placeholder="who do you want to talk to" name='other' />
+            <input type='text' placeholder="type some stuff" name='input' />
+            <input type="submit" />
+    </div>
+    <div id='messages'>
+
+    </div>
+    <div id='text'>
+
+    </div>
+    </form>
+
+    <script>
+        document.getElementById('input').addEventListener('submit', e => {
+            e.preventDefault()
+            console.log(document.getElementsByName('username')[0].value)
+
+            DB.collection('chatstuff1').doc(`${document.getElementsByName('username')[0].value}`).set({ user: document.getElementsByName('username')[0].value, text: document.getElementsByName('input')[0].value })
+            DB.collection('chatstuff2').add({ data:new Date().getTime(), text: `${document.getElementsByName('username')[0].value} ${document.getElementsByName('input')[0].value}` })
+
+
+
+        })
+        DB.collection('chatstuff2').orderBy('data').onSnapshot(messagesDB => {
+            let html = ''
+            messagesDB.forEach(messageDB=>{
+              html += `<p>${document.getElementsByName('username')[0].value} ${messageDB.data().text}</p>`
+            })
+
+            chat.innerHTML = html
+          
+        })
+
+
+        //DB.collection('chatstuff1').doc(`${document.getElementsByName('username')[0].value}`).onSnapshot(e => {
+        //chat.innerHTML += `<p>${document.getElementsByName('username')[0].value} ${e.data().text}</p>`
+        //})
+
+        let chat = document.getElementById('messages')
+
+
+    </script>
+</body>
+
+</html>
