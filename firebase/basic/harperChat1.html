@@ -31,42 +31,104 @@
     const DB=firebase.firestore();
     </script>
 </head>
+<style>
+    .message{
+        border:1px solid rgb(70, 108, 233);
+        border-radius: 10px;
+        background-color:white;
+        color:rgb(70, 108, 233);
+        box-shadow:1px 1px 2px rgba(70, 108, 233, 0.836);
+        width:300px;
+        height:fit-content;
+        position:relative;
+        margin:5px;
+    }
+    #chats{
+        width:500px;
+        height:500px;
+        border:2px solid navy;
+        border-radius:5px;
+        margin-top:20px;
+    }
+    .message>p{
+        margin:3px;
+        padding-left:5px;
+    }
+    #sent{
+        left:185px;
+    }
+    #received{
+        left:2px;
+    }
+
+    #user{
+        font-size:20px;
+        font-weight:bold;
+    }
+    #mess{
+        font-size:20px;
+    }
+</style>
 <body>
     <h1>Chat with a friend!</h1>
-    <form id="send">
-        <p>Enter your username: <input type="text" id="username"/></p>
-        <p>Write a message: <input type="text" id="message"/></p>
-        <input type="submit" value="Send message"/>
+    <form id="inputUser">
+        <p id="name">Enter your username: <input type="text" id="username"/></p>
+        <input type="submit" id="submitButton" value="Submit username"/>
     </form>
 
     <div id="chats">
 
     </div>
+    <form id="sendMess">
+        <p>Write a message: <input type="text" id="message"/></p>
+        <input type="submit" value="Send message"/>
+    </form>
     <script>
-        const form=document.getElementById('send');
+        const inputUser=document.getElementById('inputUser');
+        const form=document.getElementById('sendMess');
         //send new chat to the DB
+        let user="";
+
+        inputUser.addEventListener('submit', e=>{
+            e.preventDefault();
+            user=document.getElementById('username').value;
+            document.getElementById('name').innerHTML= `${user} is chatting.`;
+            document.getElementById('submitButton').style.display="none";
+        })
+
         form.addEventListener('submit', e=>{
             e.preventDefault();
             let message=document.getElementById('message').value;
-            let user=document.getElementById('username').value;
             DB.collection('chat').add({message:message, sender:user, updated:false});
             console.log('added');
+            e.target.reset();
         })
 
         DB.collection('chat').onSnapshot(messagesDB=>{
             messagesDB.forEach(messageDB=>{
                 if(messageDB.data().updated==false){
-                    document.getElementById('chats').innerHTML+=writeMessage(messageDB);
+                    if(messageDB.data().sender==user){
+                        document.getElementById('chats').innerHTML+=writeMessageSend(messageDB);
+                    }
+                    else{
+                        document.getElementById('chats').innerHTML+=writeMessageReceived(messageDB);
+                    }
                     console.log(messageDB.data());
                     DB.collection('chat').doc(`${messageDB.id}`).update({updated:true});
                 }
             })
         })
 
-        function writeMessage(messageDB){
+        function writeMessageReceived(messageDB){
             console.log(messageDB.data().message);
             //return `<p>${messageDB.data().message}</p>`;
-            return `<div class="message"> <p id="user">${messageDB.data().sender}</p> <p id="mess">${messageDB.data().message}</p></div>`;
+            return `<div class="message" id="received"> <p id="user">${messageDB.data().sender}</p> <p id="mess">${messageDB.data().message}</p></div>`;
+        }
+
+        function writeMessageSend(messageDB){
+            console.log(messageDB.data().message);
+            //return `<p>${messageDB.data().message}</p>`;
+            return `<div class="message" id="sent"> <p id="user">${messageDB.data().sender}</p> <p id="mess">${messageDB.data().message}</p></div>`;
         }
     </script>
     
