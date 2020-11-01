@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyDFFKVSC31CZyeKkOmqNP0uZiJ_XVo-d3o",
+        authDomain: "harper-fb1.firebaseapp.com",
+        databaseURL: "https://harper-fb1.firebaseio.com",
+        projectId: "harper-fb1",
+        storageBucket: "harper-fb1.appspot.com",
+        messagingSenderId: "1054303864379",
+        appId: "1:1054303864379:web:203b783fb5132b55a73e1e",
+        measurementId: "G-H7NXGJP8GC"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const DB=firebase.firestore();
+    </script>
+</head>
+<style>
+    .message{
+        border:1px solid rgb(70, 108, 233);
+        border-radius: 10px;
+        background-color:white;
+        color:rgb(70, 108, 233);
+        box-shadow:1px 1px 2px rgba(70, 108, 233, 0.836);
+        width:300px;
+        height:fit-content;
+        position:relative;
+        margin:5px;
+    }
+    #chats{
+        width:500px;
+        height:500px;
+        border:2px solid navy;
+        border-radius:5px;
+        margin-top:20px;
+    }
+    .message>p{
+        margin:3px;
+        padding-left:5px;
+    }
+    #sent{
+        left:185px;
+    }
+    #received{
+        left:2px;
+    }
+
+    #user{
+        font-size:20px;
+        font-weight:bold;
+    }
+    #mess{
+        font-size:20px;
+    }
+</style>
+<body>
+    <h1>Chat with a friend!</h1>
+    <form id="inputUser">
+        <p id="name">Enter your username: <input type="text" id="username"/></p>
+        <input type="submit" id="submitButton" value="Submit username"/>
+    </form>
+
+    <div id="chats">
+
+    </div>
+    <form id="sendMess">
+        <p>Write a message: <input type="text" id="message"/></p>
+        <input type="submit" value="Send message"/>
+    </form>
+    <script>
+        const inputUser=document.getElementById('inputUser');
+        const form=document.getElementById('sendMess');
+        //send new chat to the DB
+        let user="";
+
+        inputUser.addEventListener('submit', e=>{
+            e.preventDefault();
+            user=document.getElementById('username').value;
+            document.getElementById('name').innerHTML= `${user} is chatting.`;
+            document.getElementById('submitButton').style.display="none";
+        })
+
+        form.addEventListener('submit', e=>{
+            e.preventDefault();
+            let message=document.getElementById('message').value;
+            DB.collection('chat').add({message:message, sender:user, updated:false});
+            console.log('added');
+            e.target.reset();
+        })
+
+        DB.collection('chat').onSnapshot(messagesDB=>{
+            messagesDB.forEach(messageDB=>{
+                if(messageDB.data().updated==false){
+                    if(messageDB.data().sender==user){
+                        document.getElementById('chats').innerHTML+=writeMessageSend(messageDB);
+                    }
+                    else{
+                        document.getElementById('chats').innerHTML+=writeMessageReceived(messageDB);
+                    }
+                    console.log(messageDB.data());
+                    DB.collection('chat').doc(`${messageDB.id}`).update({updated:true});
+                }
+            })
+        })
+
+        function writeMessageReceived(messageDB){
+            console.log(messageDB.data().message);
+            //return `<p>${messageDB.data().message}</p>`;
+            return `<div class="message" id="received"> <p id="user">${messageDB.data().sender}</p> <p id="mess">${messageDB.data().message}</p></div>`;
+        }
+
+        function writeMessageSend(messageDB){
+            console.log(messageDB.data().message);
+            //return `<p>${messageDB.data().message}</p>`;
+            return `<div class="message" id="sent"> <p id="user">${messageDB.data().sender}</p> <p id="mess">${messageDB.data().message}</p></div>`;
+        }
+    </script>
+    
+</body>
+</html>
