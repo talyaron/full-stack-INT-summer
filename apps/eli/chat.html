@@ -76,12 +76,6 @@
             let message = document.getElementById("message").value;
             
             try{
-               /* var today = new Date();
-                var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-                var dateTime = date+' '+time;*/
-                let dateTime = 34
-
                 DB.collection("chats").add({message: name+":"+ message, time: new Date().getTime()})
             } catch{
                 console.log("didnt work")
