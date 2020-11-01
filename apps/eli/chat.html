@@ -82,7 +82,7 @@
                 var dateTime = date+' '+time;*/
                 let dateTime = 34
 
-                DB.collection("chats").add({message: name+":"+ message})
+                DB.collection("chats").add({message: name+":"+ message, time: new Date().getTime()})
             } catch{
                 console.log("didnt work")
             }

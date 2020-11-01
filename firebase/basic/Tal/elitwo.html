@@ -29,6 +29,23 @@
          const DB = firebase.firestore();   
      </script>
 </head>
+
+<style>
+    .message{
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 1px 1px 3px gray;
+        padding: 10px;
+        margin-bottom: 10px;
+        width: fit-content;
+    }
+
+    .message>div{
+        font-size: .6rem;
+        color: gray;
+    }
+</style>
+
 <body>
     <div id="root"></div>
     
@@ -61,7 +78,7 @@
             try {
                 //read messages
                 DB.collection('chat')
-                .limit(1)
+                .limit(2)
                 .orderBy('time', 'desc') // order by time
                 .onSnapshot(messagesDB => {
                     console.log(messagesDB.size)
