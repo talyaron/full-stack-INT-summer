@@ -1,0 +1,10 @@
+html, body{
+    margin: 0px;
+}
+
+.dragon{
+    width: 100px;
+   position: relative;
+   top:0px;
+   transition: all 1s;
+}
