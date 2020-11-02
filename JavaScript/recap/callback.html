@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id='aButton'>Press Me!</button>
+    <script>
+        //callback is a function that happens after an event happend
+        //async function
+
+
+        let x = 34;
+        function aa(a){
+            return a*2
+        }
+
+        console.log(aa(x)) //68
+
+        // async coding
+        document.getElementById('aButton').addEventListener('click',event =>{ //callback function
+            console.log('cliked')
+            console.log(event)
+        })
+
+        db.collection('someCollection').get().then(messagesDB=>{}) //promise
+
+        console.log('after click')
+
+
+    </script>
+</body>
+</html>
