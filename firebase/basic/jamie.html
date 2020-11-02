@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyApKfJlQF__9ljbFsHTERGBWbMuCjg64aE",
+            authDomain: "jamie-fb1.firebaseapp.com",
+            databaseURL: "https://jamie-fb1.firebaseio.com",
+            projectId: "jamie-fb1",
+            storageBucket: "jamie-fb1.appspot.com",
+            messagingSenderId: "708555761524",
+            appId: "1:708555761524:web:301a483e563160741a6e21",
+            measurementId: "G-69YHWZ6S08"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+</head>
+
+<body>
+
+</body>
+<input type='number' placeholder="left" id='inputLeft'>
+<input type='number' placeholder="up" id='inputUp'>
+<input type='number' placeholder="down" id='inputDown'>
+<input type='number' placeholder="right" id='inputRight'>
+<input type='number' placeholder="rotate" id='inputRotate'>
+
+<h1>My trolls name is: <span id='Trollsname'></span></h1>
+<img src='' id='img'>
+
+<style>
+    #img {
+        position: relative;
+    }
+</style>
+
+<script>
+    //we declare the DB
+    const DB = firebase.firestore();
+
+    //listem
+    DB.collection('trolls').doc('Sj6lr1BjDrSkC4DWgb6S').onSnapshot(trollDB => {
+        console.log(trollDB.data())
+
+        document.getElementById('Trollsname').innerText = trollDB.data().name
+
+        document.getElementById('img').src = trollDB.data().img
+
+
+        document.getElementById("img").style.left = `${trollDB.data().left}px`;
+        document.getElementById("img").style.top = `${trollDB.data().up}px`;
+        document.getElementById("img").style.transform="rotate("+trollDB.data().rotate+"deg)";    
+
+    } )
+
+    let inputLeft = document.getElementById('inputLeft');
+    inputLeft.addEventListener('keyup', e => {
+        //read the number and write it to the DataBase
+
+        let number = e.target.valueAsNumber;
+        console.log(number)
+
+        DB.collection('trolls').doc('Sj6lr1BjDrSkC4DWgb6S').update({ left: number })
+    }
+    )
+    inputRight.addEventListener('keyup', e => {
+
+        let number = e.target.valueAsNumber;
+        console.log(number)
+
+        DB.collection('trolls').doc('Sj6lr1BjDrSkC4DWgb6S').update({ right: number })
+    })
+    inputUp.addEventListener('keyup', e => {
+
+        let number = e.target.valueAsNumber;
+        console.log(number)
+
+        DB.collection('trolls').doc('Sj6lr1BjDrSkC4DWgb6S').update({ up: number })
+    })
+    inputDown.addEventListener('keyup', e => {
+
+        let number = e.target.valueAsNumber;
+        console.log(number)
+
+        DB.collection('trolls').doc('Sj6lr1BjDrSkC4DWgb6S').update({ down: number })
+        
+    }
+    )
+    inputRotate.addEventListener('keyup', e => {
+
+    let number = e.target.valueAsNumber;
+    console.log(number)
+    })
+
+DB.collection('trolls').doc('Sj6lr1BjDrSkC4DWgb6S').update({ rotate: number })
+
+    document.getElementById("button").addEventListener("click",e=>{
+
+        document.getElementById("imagine").style.transform = ""
+    })
+    
+</script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jamie chat</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyApKfJlQF__9ljbFsHTERGBWbMuCjg64aE",
+            authDomain: "jamie-fb1.firebaseapp.com",
+            databaseURL: "https://jamie-fb1.firebaseio.com",
+            projectId: "jamie-fb1",
+            storageBucket: "jamie-fb1.appspot.com",
+            messagingSenderId: "708555761524",
+            appId: "1:708555761524:web:301a483e563160741a6e21",
+            measurementId: "G-69YHWZ6S08"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        const DB = firebase.firestore();
+    </script>
+</head>
+<style>
+    .box {
+        width: 745px;
+        height: 800px;
+        border: 2px solid salmon;
+    }
+</style>
+
+<body> 
+    <h1>Chat</h1>
+    <form id='input'>
+        <input type="text" placeholder="name" name='input'>
+        <input type="text" placeholder="message" name='message'>
+        <input type="submit" name='submit'>
+        <input type="text" placeholder="name" name='input'>
+        <input type="text" placeholder="message" name='message'>
+        <input type="submit" name='submit'>
+    </form>
+    <div id='output'>
+    </div>
+    <div id='box' class="box">
+    </div>
+    <script>
+        const form= document.getElementById('input')
+
+    </script>
+
+</body>
+
+</html>

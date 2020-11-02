@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+    
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+    
+        <script>
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+                apiKey: "AIzaSyApKfJlQF__9ljbFsHTERGBWbMuCjg64aE",
+                authDomain: "jamie-fb1.firebaseapp.com",
+                databaseURL: "https://jamie-fb1.firebaseio.com",
+                projectId: "jamie-fb1",
+                storageBucket: "jamie-fb1.appspot.com",
+                messagingSenderId: "708555761524",
+                appId: "1:708555761524:web:301a483e563160741a6e21",
+                measurementId: "G-69YHWZ6S08"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+            const DB=firebase.firestore();
+        </script>
+</head>
+<body>
+    <form id="hi">
+        <p>Name:<input type= "text" id="name" placeholder="Enter name"/></p>
+        <p>Age:<input type= "text" id="Age" placeholder="Enter Age"/></p>
+        <p>City:<input type= "text" id="City" placeholder="Enter City"/></p>
+        <input type="submit" value="save student"/>
+    </form>
+
+    <script>
+     const form=document.getElementById("hi");
+     form.addEventListener('submit', e=>{
+         e.preventDefault();
+        let name=document.getElementById("name").value;
+        let age=document.getElementById("Age").value;
+        let city=document.getElementById("City").value;
+        addStudent(name,age,city);
+     })
+     function addStudent(name,age,city){
+         DB.collection('students').add({name:name, age:age, city:city});
+     }
+    </script>
+</body>
+</html>
