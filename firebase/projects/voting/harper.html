@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+   <script>
+   // Your web app's Firebase configuration
+   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+   var firebaseConfig = {
+       apiKey: "AIzaSyDFFKVSC31CZyeKkOmqNP0uZiJ_XVo-d3o",
+       authDomain: "harper-fb1.firebaseapp.com",
+       databaseURL: "https://harper-fb1.firebaseio.com",
+       projectId: "harper-fb1",
+       storageBucket: "harper-fb1.appspot.com",
+       messagingSenderId: "1054303864379",
+       appId: "1:1054303864379:web:203b783fb5132b55a73e1e",
+       measurementId: "G-H7NXGJP8GC"
+   };
+   // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+   firebase.analytics();
+   const DB=firebase.firestore();
+   </script>
+</head>
+<style>
+
+</style>
+<body>
+    <h1>Vote!</h1>
+    <form id="voteOptions">
+        <p>What question are you voting on?</p>
+        <input type="text" placeholder="Write question here" id="questionInput"/>
+        <p>Option 1: <input id="option1" type="text" placeholder="Write answer here"/></p>
+        <p>Option 2: <input id="option2" type="text" placeholder="Write answer here"/></p>
+        <p>Option 3: <input id="option3" type="text" placeholder="Write answer here"/></p>
+        <input type="submit" value="Start voting"/>
+    </form>
+    <h2 id="question"></h2>
+
+    <script>
+        const votingOptions=document.getElementById('voteOptions');
+        let op1="";
+        let op2="";
+        let op3="";
+        let question="";
+        votingOptions.addEventListener('submit', e=>{
+            
+        })
+    </script>
+</body>
+</html>
