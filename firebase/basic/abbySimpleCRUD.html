@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCuqXvrC20supCgCk2qdXMV5k0qwiNzCro",
+            authDomain: "abbyfb1.firebaseapp.com", 
+            databaseURL: "https://abbyfb1.firebaseio.com",            
+            projectId: "abbyfb1",            
+            storageBucket: "abbyfb1.appspot.com",            
+            messagingSenderId: "868023743677",
+            appId: "1:868023743677:web:cfb2d64ccb6ef557a133d4",
+
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const DB = firebase.firestore();   
+    </script>
+</head>
+<style>
+    .message {
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 1px 1px 3px gray;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .message>div {
+        font-size: .6rem;
+        color: gray;
+    }
+</style>
+<body>
+    <div id="root"></div>
+
+    <script>
+
+        const root = document.getElementById('root');
+        //write your name to the DB
+
+        DB.collection('users').doc('abby').set({ name: 'abby', city: 'chicago' })
+            .then(() => { console.log('saved correctly') })
+            .catch(err => { console.error(err) })
+
+
+        //messages
+        function writeAMessage(message) {
+            try {
+                DB.collection('chat').add({
+                    message: message,
+                    sender: "abby",
+                    time: new Date().getTime()
+                })
+                    .then(() => { console.log('message was saved') })
+                    .catch(err => { console.error(err) })
+            } catch (err) {
+                console.error(err)
+            }
+        }
+
+        // writeAMessage('hi')
+
+        function listenToMessages() {
+            try {
+                //read messages
+                DB.collection('chat')
+                .limit(2)
+                .orderBy('time', 'desc') // order by time
+                .onSnapshot(messagesDB => {
+                    console.log(messagesDB.size)
+                  
+                    messagesDB.forEach(messageDB => {
+                        console.log(messageDB.data())
+                        root.innerHTML += writeTheMessageToTheDOM(messageDB.data()); // adding to the DOM
+                    })
+                }).catch(err => { console.error(err) })
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        listenToMessages();
+
+        //create a div with the message
+        function writeTheMessageToTheDOM(message){
+            return `<div class='message'><p>${message.message}</p><div>${message.sender}</div></div>`
+        }
+
+    </script>
+</body>
+
+</html>

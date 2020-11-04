@@ -13,9 +13,9 @@
     <img id='img' src='' />
     <form id='chatInput' class="input">
         <input type="text" placeholder="username" name='username' />
-        <input type="password" placeholder="password" name='password'/>
-        <input type="url" placeholder="profile pic url" name='profilePic'/>
-        <a href='login.html'>Submit</a></input>
+        <input type="password" placeholder="password" name='password' />
+        <input type="url" placeholder="profile pic url" name='profilePic' />
+        <a href='abbyandjamiechats.html'>Submit</a></input>
     </form>
     <script>
         let userInfo = localStorage.getItem('userInfo')
@@ -30,6 +30,15 @@
         document.getElementById('name').innerText = userInfo.name;
         document.getElementById('img').src = userInfo.imgUrl
     </script>
+    <style>
+        p {
+            color: blue;
+            border: 1px solid black;
+            max-width: 150px;
+            border-radius: 20px;
+            padding: 5px;
+        }
+    </style>
 </body>
 
 </html>
