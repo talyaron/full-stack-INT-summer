@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        img {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            margin-top: 20px;
+        }
+        #wrapper {
+            display: grid;
+            grid-template-columns: 130px 130px 130px 130px 130px;
+            grid-template-rows: 130px 130px 130px 130px 130px;
+            gap: 15px;
+        }
+        .item {
+            text-align: center;
+            background-color: palevioletred;
+            margin-bottom: 20px;
+            border: 1px solid black;
+            width: 100%;
+        }
+        #equation {
+            font-size: 25px;
+        }
+
+    </style>
+    <h1>Treasure Box!</h1>
+    <div id=equation><span id="mathA"></span> + <span id="mathB"></span> =</div>
+    <div id="wrapper">
+        <div class="item" ; id="box1">1<div><img id="img1" ; class="image" ;
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1200px-Question_mark_%28black%29.svg.png"/></div>
+        </div>
+        <div class="item" ; id="box2">2<div><img id="img2" ; class="image" ;
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1200px-Question_mark_%28black%29.svg.png" /></div>
+        </div>
+        <div class="item" ; id="box3">3<div><img id="img3" ; class="image" ;
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1200px-Question_mark_%28black%29.svg.png" /></div>
+        </div>
+        <div class="item" ; id="box4">4<div><img id="img4" ; class="image" ;
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1200px-Question_mark_%28black%29.svg.png" /></div>
+        </div>
+        <div class="item" ; id="box5">5<div><img id="img5" ; class="image" ;
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1200px-Question_mark_%28black%29.svg.png" /></div>
+        </div>
+        <div class="item" ; id="box6">6<div><img id="img6" ; class="image" ;
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1200px-Question_mark_%28black%29.svg.png" /></div>
+        </div>
+        <div class="item" ; id="box7">7<div><img id="img7" ; class="image" ;
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1200px-Question_mark_%28black%29.svg.png" /></div>
+        </div>
+        <div class="item" ; id="box8">8<div><img id="img8" ; class="image" ;
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1200px-Question_mark_%28black%29.svg.png" /></div>
+        </div>
+        <div class="item" ; id="box9">9<div><img id="img9" ; class="image" ;
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1200px-Question_mark_%28black%29.svg.png" /></div>
+        </div>
+        <div class="item" ; id="box10">10<div><img id="img10" ; class="image" ;
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/1200px-Question_mark_%28black%29.svg.png" /></div>
+        </div>
+    </div>
+<script>
+ let numA = Math.floor(Math.random() * 6);
+        let numB = Math.floor(Math.random() * 6);
+        document.getElementById('mathA').innerText = numA;
+        document.getElementById('mathB').innerText = numB;
+
+        let answer = numA + numB;
+        const items = document.querySelectorAll('.item');
+        items.forEach(items => {
+            items.addEventListener('click', e => {
+                console.dir(e);
+                if (items.innerText == answer) {
+                    console.log("correct");
+                    console.log('img' + answer)
+                    imageInsert(answer, "https://media.istockphoto.com/vectors/treasure-chest-vector-id658517026")
+                }
+                else {
+                    var itemClick = items.innerText;
+                    console.log(itemClick);
+                    console.log("incorrect");
+                    imageInsert(itemClick, "https://media.istockphoto.com/vectors/skull-and-bones-icon-vector-id928418862?k=6&m=928418862&s=612x612&w=0&h=LBVwkaNDqNIC7-bS1s7KE2Cs2SDVmkRfmyJo7Ir6PHo=")
+                }
+            })
+        })
+        function imageInsert(idAnswer, srcLink) {
+            var image = document.getElementById('img' + idAnswer);
+                    image.src = srcLink;
+                    image.style.display = 'block';
+                    image.style.marginLeft = '35px';
+        }
+
+</script>
+
+</script>
+
+
+</body>
+
+</html>
