@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat</title>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBoYvkPf2q9lFddsgE3KLr3S5rvIPghdys",
+    authDomain: "razfirebase1.firebaseapp.com",
+    databaseURL: "https://razfirebase1.firebaseio.com",
+    projectId: "razfirebase1",
+    storageBucket: "razfirebase1.appspot.com",
+    messagingSenderId: "1020894489421",
+    appId: "1:1020894489421:web:82a6d7342a6189ee7fa504"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const DB = firebase.firestore();
+</script>
+</head>
+<body>
+    
+    <form>
+        <input id="chat" type="text" placeholder=" write a message"  name= "submit">
+        <input id= "chat" type="text" placeholder= "write a message">  
+       <div id="chat">
+
+       </div>
+        <input type="submit" id="submitButton" value="Submit"/>
+        <form id="sendmessage">
+            <p>Write a message</p>
+            <input type="text" id="message">
+    </form>
+    <style>
+        .message {
+            border: 1px solid rgb(70, 108,233);
+            border-radius: 10px;
+            background-color: white;
+            color: rgb(70, 108, 233);
+            box-shadow: 1px 1px 2px rgba(70, 108, 233, 0.836);
+            width: 300px;
+            height:fit-content;
+            position: relative;
+            margin: 5px;
+
+
+        }
+       #chat {
+           width: 500px;
+           height: 500px;
+           border: 2px solid navy;
+           border-radius: 5px;
+           margin-top: 20px;
+
+       }
+       .message>p{
+           margin: 3px;
+           padding-left: 5px;
+       }
+
+       #sent {
+           left: 185px;
+       } 
+    #received{
+        left:2px;
+    }
+
+    #user{
+        font-size:20px;
+        font-weight:bold;
+    }
+    #mess{
+        font-size:20px;
+    }
+    
+</style>
+<form id="inputUser">
+    <p id="name"> enter your name</p> <input type="text" id="name">
+</form>
+
+<body>
+    
+
+</body>
+
+  
+
+</body>
+</html>
