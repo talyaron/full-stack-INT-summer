@@ -34,6 +34,16 @@
 <style>
     #question{
         display:none;
+        margin:30px;
+    }
+    .button{
+        width:30%;
+        margin:10px;
+    }
+    #options{
+        width:90%;
+        display:none;        
+        position:absolute;
     }
 </style>
 <body>
@@ -47,6 +57,12 @@
         <input type="submit" value="Start voting"/>
     </form>
     <h2 id="question"></h2>
+    <br>
+    <div id="options">
+        <button class="button" id="one">1</button>
+        <button class="button" id="two">2</button>
+        <button class="button" id="three">3</button>
+    </div>
 
     <script>
         //stores the voting question and the options in firebase
@@ -74,7 +90,9 @@
             quest=questionDB.data().question;
             document.getElementById('question').innerText=quest;
             document.getElementById('question').style.display="inline";
-            console.log(quest);
+            document.getElementById('options').style.display="inline";
+            
+            
         })
 
     </script>
