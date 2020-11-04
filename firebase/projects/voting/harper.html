@@ -32,7 +32,9 @@
    </script>
 </head>
 <style>
-
+    #question{
+        display:none;
+    }
 </style>
 <body>
     <h1>Vote!</h1>
@@ -47,14 +49,34 @@
     <h2 id="question"></h2>
 
     <script>
+        //stores the voting question and the options in firebase
         const votingOptions=document.getElementById('voteOptions');
         let op1="";
         let op2="";
         let op3="";
         let question="";
         votingOptions.addEventListener('submit', e=>{
-            
+            e.preventDefault();
+            question=document.getElementById('questionInput').value;
+            op1=document.getElementById('option1').value;
+            op2=document.getElementById('option2').value;
+            op3=document.getElementById('option3').value;
+            DB.collection('voting').doc('question').set({question:question});
+            DB.collection('voting').doc('option1').set({option:op1, numVotes:0});
+            DB.collection('voting').doc('option2').set({option:op2, numVotes:0});
+            DB.collection('voting').doc('option3').set({option:op3, numVotes:0});
+            votingOptions.style.display="none";
         })
+
+        //outputs that onto the screen
+        let quest="";
+        DB.collection('voting').doc('question').onSnapshot(questionDB=>{
+            quest=questionDB.data().question;
+            document.getElementById('question').innerText=quest;
+            document.getElementById('question').style.display="inline";
+            console.log(quest);
+        })
+
     </script>
 </body>
 </html>
