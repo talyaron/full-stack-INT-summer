@@ -48,6 +48,19 @@
         background-color: green;
         text-align: center;
     }
+
+    #chatbox{
+      width: fit-content;
+      height: fit-content;
+      border: 2px solid black;
+      background-color: lightblue;
+    }
+
+    #chats{
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
 </style>
 
 <body>
@@ -59,6 +72,8 @@
             <input type="submit" value="Send">
         </form>
         <input type="submit" value="get messages" id="get">
+        <input type="submit" value="clear messages" id="clear">
+        <input type="submit" value="delete messages" id="delete">
     </div>
 
     <div id="container">
@@ -76,7 +91,7 @@
             let message = document.getElementById("message").value;
             
             try{
-                DB.collection("chats").add({message: name+":"+ message, time: new Date().getTime()})
+                DB.collection("chats").add({message: `${name}: ${message}`, time: new Date().getTime()})
             } catch{
                 console.log("didnt work")
             }
@@ -90,8 +105,22 @@
                 chatsDB.forEach(chat=>{
                     console.log(chat.data())
                     document.getElementById("chats").innerHTML +=
-                    `<div>${chat.data().message}</div>`
+                    `<div id="chatbox">${chat.data().message}</div>`
 
+                })
+            })
+        })
+
+        document.getElementById("clear").addEventListener("click", event=>{
+          document.getElementById("chats").innerHTML = ""
+        })
+
+        document.getElementById("delete").addEventListener("click", event=>{
+            document.getElementById("chats").innerHTML = ""
+
+            DB.collection("chats").get().then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                  doc.ref.delete();
                 })
             })
         })

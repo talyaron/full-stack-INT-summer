@@ -26,6 +26,7 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        const DB = firebase.firestore();
     </script>
 </head>
 <style>
@@ -42,7 +43,7 @@
 
     <script>
         //we decleared the DataBase
-        const DB = firebase.firestore();
+       
 
         const title = document.getElementById('trollsname');
         const troll = document.getElementById('img');
