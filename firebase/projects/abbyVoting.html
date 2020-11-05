@@ -58,84 +58,115 @@
         <input type="submit" value="Biden" name="bidenButton">
         <input type="submit" value="Trump" name="trumpButton">
     </form>
-    <h id="trumpName" class="header">TRUMP</h1>
-        <div id="rootTrump"></div>
-        <h id="bidenName" class="header">BIDEN</h1>
-            <div id="rootBiden"></div>
-            <!--enters the name or anonymous and the vote into the database-->
-            <!--if press biden then update biden to be true and trump to be false-->
-            <script>
-                const DB = firebase.firestore();
+    <h1 id="trumpName" class="header">TRUMP</h1>
+    <div id="rootTrump"></div>
+    <h1 id="bidenName" class="header">BIDEN</h1>
+    <div id="rootBiden"></div>
+    <!--enters the name or anonymous and the vote into the database-->
+    <!--if press biden then update biden to be true and trump to be false-->
+    <script>
+
+
+        //create a unique id for the user, and store in the browser
+
+        //create unique id:
+        const uid = function () {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+        //store in the local storage
+
+        function getUserUID() {
+
+            //get the uid
+            let userUID = localStorage.getItem('userUID');
+
+            if (userUID === null) {
+                userUID = uid();
+                //create a uid
+                localStorage.setItem('userUID', userUID);
+
+            }
+
+            return userUID;
+
+        }
+
+        const DB = firebase.firestore();
+       
+        const bidenButton = document.getElementsByName('bidenButton')[0];
+        const trumpButton = document.getElementsByName('trumpButton')[0];
+        let biden = false;
+        let bidenName = "";
+
+        let trump = false;
+        let trumpName = "";
+
+        bidenButton.addEventListener('click', e => {
+            e.preventDefault();
+
+            bidenName = document.getElementsByName('name')[0].value;
+            console.log(bidenName)
+
+            biden = true;
+            trump = false;
+            console.log("Biden: " + biden)
+
+            DB.collection('voting').doc(getUserUID()).set({ name: bidenName, biden: biden, trump: trump })
+                .then(() => { console.log('vote counted') })
+                .catch(err => { console.error(err) })
+
+            voteWriting()
+        })
+
+        trumpButton.addEventListener('click', e => {
+            e.preventDefault();
+
+            trumpName = document.getElementsByName('name')[0].value;
+            console.log(trumpName)
+
+            trump = true;
+            biden = false;
+            console.log("Trump: " + trump)
+
+            DB.collection('voting').doc(getUserUID()).set({ name: trumpName, biden: biden, trump: trump })
+                .then(() => { console.log('vote counted') })
+                .catch(err => { console.error(err) })
+            voteWriting()
+        })
+        //updating who voted for who 
+        function voteWriting() {
+            DB.collection('voting').onSnapshot(votingDB => {
                 let htmlBiden = '';
                 let htmlTrump = '';
+                votingDB.forEach(voteDB => {
+                    console.log(voteDB.data())
+                    console.log(`${voteDB.data().biden}`)
+                    if (`${voteDB.data().biden}` == "true") {
 
-                const bidenButton = document.getElementsByName('bidenButton')[0];
-                const trumpButton = document.getElementsByName('trumpButton')[0];
-                let biden = false;
-                let bidenName = "";
+                        htmlBiden += `<div class="bidenVoters>${bidenName}</div>`;
+                      
 
-                let trump = false;
-                let trumpName = "";
+                    } else {
 
-                bidenButton.addEventListener('click', e => {
-                    e.preventDefault();
+                        htmlTrump += `<div class="trumpVoters>${trumpName}</div>`;
+                        
 
-                    bidenName = document.getElementsByName('name')[0].value;
-                    console.log(bidenName)
+                    }
 
-                    biden = true;
-                    trump = false;
-                    console.log("Biden: " + biden)
+                });
+              
+                rootBiden.innerHTML = htmlBiden;
+                console.log(htmlBiden)
+                console.log('htmlTrump',htmlTrump)
+                document.getElementById('rootBiden').innerHTML= htmlBiden;
+                document.getElementById('rootTrump').innerHTML = htmlTrump;
+                console.log(rootTrump)
+            })
+        }
 
-                    DB.collection('voting').add({ name: bidenName, biden: biden, trump: trump })
-                        .then(() => { console.log('vote counted') })
-                        .catch(err => { console.error(err) })
+    </script>
 
-                    voteWriting ()
-                })
-
-                trumpButton.addEventListener('click', e => {
-                    e.preventDefault();
-
-                    trumpName = document.getElementsByName('name')[0].value;
-                    console.log(trumpName)
-
-                    trump = true;
-                    biden = false;
-                    console.log("Trump: " + trump)
-
-                    DB.collection('voting').add({ name: trumpName, biden: biden, trump: trump })
-                        .then(() => { console.log('vote counted') })
-                        .catch(err => { console.error(err) })
-                    voteWriting()
-                })
-                //updating who voted for who 
-                function voteWriting() {
-                    DB.collection('voting').onSnapshot(votingDB => {
-                        htmlBiden = '';
-                        htmlTrump = '';
-                        votingDB.forEach(voteDB => {
-                            console.log(voteDB.data())
-                            console.log(`${voteDB.data().biden}`)
-                            if (`${voteDB.data().biden}` == "true") {
-                                const rootBiden = document.getElementById('rootBiden');
-                                htmlBiden += `<div class="bidenVoters>${bidenName}</div>`;
-                                console.log(htmlBiden)
-                                rootBiden.innerHTML = htmlBiden;
-                            } else {
-                                const rootTrump = document.getElementById('rootTrump');
-                                htmlTrump += `<div class="trumpVoters>${trumpName}</div>`;
-                                console.log(htmlTrump)
-                                rootTrump.innerHTML = htmlTrump;
-                            }
-
-                        });
-                    })
-                }
-
-            </script>
-
-            <!--onSnapshot it shows who voted for who -- put the name into a div above the president voted for, if biden true then put name there, if trump true then put there-->
+    <!--onSnapshot it shows who voted for who -- put the name into a div above the president voted for, if biden true then put name there, if trump true then put there-->
 
 </body>
 
