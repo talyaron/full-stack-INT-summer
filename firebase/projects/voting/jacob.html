@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyD9Rh9oPI05FMnF7-rUX9lkaOlT7sq5XVw",
+        authDomain: "jacob-fb1.firebaseapp.com",
+        databaseURL: "https://jacob-fb1.firebaseio.com",
+        projectId: "jacob-fb1",
+        storageBucket: "jacob-fb1.appspot.com",
+        messagingSenderId: "332808747663",
+        appId: "1:332808747663:web:d1edb19a10e4c0770d8efa",
+        measurementId: "G-TG2SHQSXN7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const DB = firebase.firestore();
+    firebase.analytics();
+</script>
+
+<body>
+    <form id='name'>
+        <input type='text' placeholder='Enter your name' name='name' />
+        <input type='submit' name='submit' />
+    </form>
+    <div>
+        <button id='trump'>Trump</button>
+    </div>
+    <div>
+        <button id='biden'>Biden</button>
+    </div>
+    <div id='votes'></div>
+    <script>
+
+const votes = document.getElementById('votes')
+const name = document.getElementById('name')
+        const trump = document.getElementById('trump')
+        const biden = document.getElementById('biden')
+
+       name.addEventListener("submit", e => {
+            try {
+                e.preventDefault()
+                const inputText = e.target.children["name"].value
+                console.log(inputText)
+
+                DB.collection('names')
+                    .add({ name: inputText })
+                    .then(() => { console.log('send to DB') })
+                    .catch(e => { console.error(e) })
+            } catch (e) {
+                console.error(e)
+            }
+            name.reset()
+        })
+
+        DB.collection('names').onSnapshot(namesDB => {
+            trump.addEventListener('submit', e => {
+                console.log(namesDB.data())
+                e.preventDefault()
+                let names = namesDB.data().name
+                votes.innerHTML += addTrumpVote(names)
+            })
+        })
+
+        function addTrumpVote(names) {
+            console.log('aaaa')
+            return `<p style:'color=red'>${names}</p>`
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
