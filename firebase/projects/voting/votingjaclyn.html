@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAd0MGdVXKP1OBrqZgQ984od-XzSQXIXrI",
+            authDomain: "jaclyn-fb1.firebaseapp.com",
+            databaseURL: "https://jaclyn-fb1.firebaseio.com",
+            projectId: "jaclyn-fb1",
+            storageBucket: "jaclyn-fb1.appspot.com",
+            messagingSenderId: "529201359753",
+            appId: "1:529201359753:web:6da3a76e5103bb75378f58"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const DB = firebase.firestore();
+
+    </script>
+</head>
+<style>
+    .button {
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .button1 {
+        background-color: chocolate;
+    }
+
+    .button2 {
+        background-color: cornsilk;
+    }
+</style>
+
+<body>
+    <p>chocolate or vanilla?</p>
+    <form onsubmit='sendMessage(event)' id='theform'>
+        <input type="text" name='name' placeholder="name" />
+        <input type="submit" value="Submit">
+    </form>
+    <p id='nameOfUser'></p>
+    <button id=chocolate class="button button1" onclick='handleClickChocolate(event)'>Chocolate</button>
+    <button id=vanilla class="button button2" onclick='handleClickVanilla(event)'>Vanilla</button>
+    <h3 id="counter-display">chocolate votes: ' '</h3>
+    <h3 id="counter-display2">vanilla votes: ' '</h3>
+    <div id="root"></div>
+
+    <script>
+
+        let name = '';
+
+        function sendMessage(e) {
+            try {
+                e.preventDefault()
+                name = e.target.children.name.value;
+
+                document.getElementById('nameOfUser').innerText = name;
+
+                document.getElementById('theform').style.display = 'none'
+                // DB.collection('voting').doc('bHUNH2DYrrNttQ6Lmx7t').set({ text: name })
+            } catch (e) {
+                console.error(e)
+            }
+        }
+        function handleClickChocolate() {
+            //add a vote to chocolate
+
+            DB.collection('users').doc(name).set({ vote: 'chocolate' })
+            .then(()=>{console.log('register chocoloate')}).catch(e=>{console.error(e)})
+
+        }
+
+        function handleClickVanilla() {
+            //add a vote for vanilla
+            DB.collection('users').doc(name).set({ vote: 'vanilla' })
+            .then(()=>{console.log('register vanilla')}).catch(e=>{console.error(e)})
+        }
+
+        var clicks = 0; 
+        var i = document.getElementById('counter-display'); 
+        i.onclick = function(b) {
+        console.log(++clicks); 
+}
+
+for (i = 0; i < 10; i++) {
+  console.count();
+}
+
+
+//listen and vote how many wvotes were cast to each option
+    </script>
+</body>
+
+</html>
