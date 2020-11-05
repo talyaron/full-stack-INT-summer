@@ -32,18 +32,8 @@
    </script>
 </head>
 <style>
-    #question{
+    #goVote{
         display:none;
-        margin:30px;
-    }
-    .button{
-        width:30%;
-        margin:10px;
-    }
-    #options{
-        width:90%;
-        display:none;        
-        position:absolute;
     }
 </style>
 <body>
@@ -54,15 +44,13 @@
         <p>Option 1: <input id="option1" type="text" placeholder="Write answer here"/></p>
         <p>Option 2: <input id="option2" type="text" placeholder="Write answer here"/></p>
         <p>Option 3: <input id="option3" type="text" placeholder="Write answer here"/></p>
-        <input type="submit" value="Start voting"/>
+        <input type="submit" value="Submit Poll"/>
     </form>
-    <h2 id="question"></h2>
     <br>
-    <div id="options">
-        <button class="button" id="one">1</button>
-        <button class="button" id="two">2</button>
-        <button class="button" id="three">3</button>
-    </div>
+    <p id="submitNotification"></p>
+    <button id="goVote">Start Voting</button>
+
+
 
     <script>
         //stores the voting question and the options in firebase
@@ -77,22 +65,18 @@
             op1=document.getElementById('option1').value;
             op2=document.getElementById('option2').value;
             op3=document.getElementById('option3').value;
+
             DB.collection('voting').doc('question').set({question:question});
-            DB.collection('voting').doc('option1').set({option:op1, numVotes:0});
-            DB.collection('voting').doc('option2').set({option:op2, numVotes:0});
-            DB.collection('voting').doc('option3').set({option:op3, numVotes:0});
-            votingOptions.style.display="none";
+            DB.collection('voting').doc('option1').set({option:op1,numVotes:0});
+            DB.collection('voting').doc('option2').set({option:op2,numVotes:0});
+            DB.collection('voting').doc('option3').set({option:op3,numVotes:0});  
+
+            document.getElementById('submitNotification').innerText="Poll submitted!"
+            document.getElementById('goVote').style.display="inline";
         })
 
-        //outputs that onto the screen
-        let quest="";
-        DB.collection('voting').doc('question').onSnapshot(questionDB=>{
-            quest=questionDB.data().question;
-            document.getElementById('question').innerText=quest;
-            document.getElementById('question').style.display="inline";
-            document.getElementById('options').style.display="inline";
-            
-            
+        document.getElementById('goVote').addEventListener('click', e=>{
+            location.href="/Users/harpergreen/Desktop/BIG IDEA/github/full-stack-INT-summer/firebase/projects/voting/harper/harperVote.html";
         })
 
     </script>
