@@ -32,6 +32,12 @@
     </script>
 </head>
 <style>
+    .box{
+        border:5px solid pink;
+        width: 500px;
+        padding: 15px;
+        margin: 4px;
+    }
     .button {
         border: none;
         color: white;
@@ -51,10 +57,29 @@
     .button2 {
         background-color: cornsilk;
     }
+
+    .header{
+        color: lightblue;
+        font-style: oblique;
+
+    }
+
+    .choc{
+        border: dotted lightgreen;
+        width: 25px;
+        padding: 5px;
+    }
+
+    .van{
+        border: dotted lightgreen;
+        width: 25px;
+        padding: 5px;
+    }
 </style>
 
 <body>
-    <p>chocolate or vanilla?</p>
+    <div class=box>
+    <h1 class=header>chocolate or vanilla?</h1>
     <form onsubmit='sendMessage(event)' id='theform'>
         <input type="text" name='name' placeholder="name" />
         <input type="submit" value="Submit">
@@ -62,10 +87,14 @@
     <p id='nameOfUser'></p>
     <button id=chocolate class="button button1" onclick='handleClickChocolate(event)'>Chocolate</button>
     <button id=vanilla class="button button2" onclick='handleClickVanilla(event)'>Vanilla</button>
-    <h3 id="counter-display">chocolate votes: ' '</h3>
-    <h3 id="counter-display2">vanilla votes: ' '</h3>
+    <h3 id="counter-display">chocolate votes: </h3>
+    <div class = choc id="chocolateVotes"></div>
+    <div id="chocolateNames"></div>
+    <h3 id="counter-display2">vanilla votes: </h3>
+    <div class = van id="vanillaVotes"></div>
+    <div id="vanillaNames"></div>
     <div id="root"></div>
-
+</div>
     <script>
 
         let name = '';
@@ -87,28 +116,50 @@
             //add a vote to chocolate
 
             DB.collection('users').doc(name).set({ vote: 'chocolate' })
-            .then(()=>{console.log('register chocoloate')}).catch(e=>{console.error(e)})
+                .then(() => { console.log('register chocoloate') }).catch(e => { console.error(e) })
 
         }
 
         function handleClickVanilla() {
             //add a vote for vanilla
             DB.collection('users').doc(name).set({ vote: 'vanilla' })
-            .then(()=>{console.log('register vanilla')}).catch(e=>{console.error(e)})
+                .then(() => { console.log('register vanilla') }).catch(e => { console.error(e) })
         }
 
-        var clicks = 0; 
-        var i = document.getElementById('counter-display'); 
-        i.onclick = function(b) {
-        console.log(++clicks); 
-}
+        var clicks = 0;
+        var i = document.getElementById('counter-display');
+        i.onclick = function (b) {
+            console.log(++clicks);
+        }
 
-for (i = 0; i < 10; i++) {
-  console.count();
-}
+        // for (i = 0; i < 10; i++) {
+        //   console.count();
+        //    }
 
 
-//listen and vote how many wvotes were cast to each option
+        //listen and vote how many votes were cast to each option
+        DB.collection('users').onSnapshot(usersDB => {
+            html = ' ';
+            let countVanilla = 0;
+            let countChocolate = 0;
+
+            usersDB.forEach(userDB => {
+                console.log(userDB.data())
+                console.log(`${userDB.data().name}: ${userDB.data().vote}`);
+
+                if(userDB.data().vote === 'vanilla'){ countVanilla++}
+                if(userDB.data().vote === 'chocolate'){ countChocolate++}
+
+                
+            });
+
+            document.getElementById("chocolateVotes").innerHTML = (`${countChocolate}`);
+                document.getElementById("vanillaVotes").innerHTML = (`${countVanilla}`);
+        })
+
+        //count the votes and put it in the divs
+
+
     </script>
 </body>
 
