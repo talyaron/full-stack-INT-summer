@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+   <script>
+   // Your web app's Firebase configuration
+   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+   var firebaseConfig = {
+       apiKey: "AIzaSyDFFKVSC31CZyeKkOmqNP0uZiJ_XVo-d3o",
+       authDomain: "harper-fb1.firebaseapp.com",
+       databaseURL: "https://harper-fb1.firebaseio.com",
+       projectId: "harper-fb1",
+       storageBucket: "harper-fb1.appspot.com",
+       messagingSenderId: "1054303864379",
+       appId: "1:1054303864379:web:203b783fb5132b55a73e1e",
+       measurementId: "G-H7NXGJP8GC"
+   };
+   // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+   firebase.analytics();
+   const DB=firebase.firestore();
+   </script>
+</head>
+<style>
+    #question{
+        display:none;
+        margin:30px;
+    }
+    .button{
+        width:30%;
+        margin:10px;
+    }
+    #options{
+        width:90%;
+        display:none;        
+        position:absolute;
+    }
+</style>
+<body>
+    <h1>Vote!</h1>
+    <form id="voteOptions">
+        <p>What question are you voting on?</p>
+        <input type="text" placeholder="Write question here" id="questionInput"/>
+        <p>Option 1: <input id="option1" type="text" placeholder="Write answer here"/></p>
+        <p>Option 2: <input id="option2" type="text" placeholder="Write answer here"/></p>
+        <p>Option 3: <input id="option3" type="text" placeholder="Write answer here"/></p>
+        <input type="submit" value="Start voting"/>
+    </form>
+    <h2 id="question"></h2>
+    <br>
+    <div id="options">
+        <button class="button" id="one">1</button>
+        <button class="button" id="two">2</button>
+        <button class="button" id="three">3</button>
+    </div>
+
+    <script>
+        //stores the voting question and the options in firebase
+        const votingOptions=document.getElementById('voteOptions');
+        let op1="";
+        let op2="";
+        let op3="";
+        let question="";
+        votingOptions.addEventListener('submit', e=>{
+            e.preventDefault();
+            question=document.getElementById('questionInput').value;
+            op1=document.getElementById('option1').value;
+            op2=document.getElementById('option2').value;
+            op3=document.getElementById('option3').value;
+            DB.collection('voting').doc('question').set({question:question});
+            DB.collection('voting').doc('option1').set({option:op1, numVotes:0});
+            DB.collection('voting').doc('option2').set({option:op2, numVotes:0});
+            DB.collection('voting').doc('option3').set({option:op3, numVotes:0});
+            votingOptions.style.display="none";
+        })
+
+        //outputs that onto the screen
+        let quest="";
+        DB.collection('voting').doc('question').onSnapshot(questionDB=>{
+            quest=questionDB.data().question;
+            document.getElementById('question').innerText=quest;
+            document.getElementById('question').style.display="inline";
+            document.getElementById('options').style.display="inline";
+            
+            
+        })
+
+    </script>
+</body>
+</html>
