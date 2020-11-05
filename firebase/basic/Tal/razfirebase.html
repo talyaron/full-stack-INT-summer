@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+ 
+     <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+ 
+     <script>
+         // Your web app's Firebase configuration
+         var firebaseConfig = {
+             apiKey: "AIzaSyB5GKCs1yMzuxICTHXId5DptNZA1aGQHTY",
+             authDomain: "raz-fb1.firebaseapp.com",
+             databaseURL: "https://raz-fb1.firebaseio.com",
+             projectId: "raz-fb1",
+             storageBucket: "raz-fb1.appspot.com",
+             messagingSenderId: "823131005125",
+             appId: "1:823131005125:web:00b0c01f14f3922b3410ac"
+         };
+         // Initialize Firebase
+         firebase.initializeApp(firebaseConfig);
+         const db = firebase.firestore();
+         </script>
+    <head>
+
+    </head>
+<body>
+<p><a href="'https://firebase.google.com/docs/firestore'"> introduction</a></p>
+<p> User name is: <span id='name'></span></p>
+</p>
+<script>
+    //addition 
+    //db.collection("User").add({
+        // first: "Raz"
+        //last: "Frankel"
+        // born: 2000
+        //})
+        // db.collection ('User').doc('Raz').set({
+            // first: "Raz"
+            // last: "Frankel"
+            // born: 2000
+            //}).then(function (docref) {
+             //  console.log ("Document written with ID": ", docRef.id);
+             //}).catch (function) (error) {
+                 // console.error ("Error adding document": ", error);
+                 //});
+                 //reading a collection
+                 db.collection("user").orderBy('born','desc').where('born','<',2000).limit(4).get().then((usersDB) =>{
+                     usersDB.forEach((userDB) => {
+                         console.log(userDB.data());
+                         
+                     });
+                 }); 
+                 //read a document
+                 db.collection("user").doc('eWGrLLhpHA6hQ5Aj0wJc').onSnapshot(userDB=>{
+                     console.log (userDB.data())
+                     // write the name to the dom 
+                     const name =document.getElementById("name");
+                    name.innerText =userDB.data().User ;
+                 }) 
+                 db.collection("user").onSnapshot(userDB=>{
+                     console.log("user")
+                 })
+            
+</script>
+</body>
+
+</html>
