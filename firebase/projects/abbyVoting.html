@@ -29,7 +29,7 @@
 </head>
 <style>
     .header {
-        font-size: 25px;
+        font-size: 30px;
     }
 
     #bidenName {
@@ -42,21 +42,38 @@
 
     #rootBiden {
         color: blue;
-        font-size: 15px;
+        font-size: 19px;
     }
 
     #rootTrump {
         color: rgb(104, 1, 1);
-        font-size: 15px;
+        font-size: 19px;
+    }
+    #bidenButton {
+        color: cornflowerblue;
+        background-color: white;
+        font-size: 20px;
+    }
+    #trumpButton {
+        color: rgb(230, 60, 60);
+        
+    }
+    .button {
+    background-color: white;
+    font-size: 20px;
+    border-radius: 20px;
+    }
+    #naming {
+        font-size: 20px;
     }
 </style>
 
 <body>
     <!--inputs are user enter name, buttons Biden Trump, obstention-->
     <form onsubmit="handleSubmit(event)">
-        <input type="text" placeholder="name or write anonymous" name="name">
-        <input type="submit" value="Biden" name="bidenButton">
-        <input type="submit" value="Trump" name="trumpButton">
+        <input type="text" placeholder="name or write anonymous" name="name" id="naming">
+        <input type="submit" value="Biden" name="bidenButton" id="bidenButton" class="button">
+        <input type="submit" value="Trump" name="trumpButton" id="trumpButton" class="button">
     </form>
     <h1 id="trumpName" class="header">TRUMP</h1>
     <div id="rootTrump"></div>
@@ -135,9 +152,9 @@
                     console.log(`${voteDB.data().biden}`)
                     
                     if (`${voteDB.data().biden}` == "true") {
-                        htmlBiden += `<div class="bidenVoters>${bidenName}</div>`;
+                        htmlBiden += `<div class="bidenVoters">${bidenName}</div>`;
                     } else {
-                        htmlTrump += `<div class="trumpVoters>${trumpName}</div>`;
+                        htmlTrump += `<div class="trumpVoters">${trumpName}</div>`;
                     }
 
                 });
