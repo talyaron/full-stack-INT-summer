@@ -133,7 +133,22 @@
                 console.log(name)
 
                 if(voterList.includes(name)){
-                    alert("That name has already been used")
+                    alert("That name has already been used. You will be signed in.")
+
+                    //let the user sign in as their name if it has already been chosen
+
+                    document.getElementById("inputContainer").innerHTML = `<p>Name: ${name}</p><p>Anonymous: ${anonymous}`
+
+                    nameSet = true
+                    
+                    DB.collection("voters").doc(name).get().then(element=>{
+                        if(element.data().Vote == "yellow" || element.data().Vote == "red"){
+                            voted = true
+                            document.getElementById("changeVote").style = "visibility: visible" 
+                            vote = element.data().Vote
+                        }
+                    })
+
                 }else{
                     if(document.getElementById("check").checked == true){
                         anonymous = true
@@ -201,7 +216,7 @@
             DB.collection("votes").doc("red").update({Count: 0})
             DB.collection("votes").doc("yellow").update({Count: 0})
 
-            window.location.reload()
+            //window.location.reload()
         })
 
         //checks the database for any changes and adds a div saying the name and their vote, or anonymous if they chose so
