@@ -49,20 +49,24 @@
         color: rgb(104, 1, 1);
         font-size: 19px;
     }
+
     #bidenButton {
         color: cornflowerblue;
         background-color: white;
         font-size: 20px;
     }
+
     #trumpButton {
         color: rgb(230, 60, 60);
-        
+
     }
+
     .button {
-    background-color: white;
-    font-size: 20px;
-    border-radius: 20px;
+        background-color: white;
+        font-size: 20px;
+        border-radius: 20px;
     }
+
     #naming {
         font-size: 20px;
     }
@@ -100,9 +104,9 @@
             }
             return userUID;
         }
-        
+
         const DB = firebase.firestore();
-       
+
         const bidenButton = document.getElementsByName('bidenButton')[0];
         const trumpButton = document.getElementsByName('trumpButton')[0];
         let biden = false;
@@ -110,8 +114,7 @@
 
         let trump = false;
         let trumpName = "";
-        let counterBiden = 0;
-        let counterTrump = 0;
+
 
         bidenButton.addEventListener('click', e => {
             e.preventDefault();
@@ -122,7 +125,7 @@
             biden = true;
             trump = false;
             console.log("Biden: " + biden);
-            counterBiden = counterBiden + 1;
+            // counterBiden = counterBiden + 1;
 
             DB.collection('voting').doc(getUserUID()).set({ name: bidenName, biden: biden, trump: trump })
                 .then(() => { console.log('vote counted') })
@@ -140,7 +143,7 @@
             trump = true;
             biden = false;
             console.log("Trump: " + trump)
-            counterTrump = counterTrump + 1;
+            // counterTrump = counterTrump + 1;
 
 
             DB.collection('voting').doc(getUserUID()).set({ name: trumpName, biden: biden, trump: trump })
@@ -154,21 +157,27 @@
             DB.collection('voting').onSnapshot(votingDB => {
                 let htmlBiden = '';
                 let htmlTrump = '';
+                
+                let counterBiden = 0;
+                let counterTrump = 0;
+
                 votingDB.forEach(voteDB => {
                     console.log(voteDB.data())
                     console.log(`${voteDB.data().biden}`)
-                    
+
                     if (`${voteDB.data().biden}` == "true") {
-                        htmlBiden += `<div class="bidenVoters">${votingDB.data().name}</div>`;        
+                        counterBiden++;
+                        htmlBiden += `<div class="bidenVoters">${voteDB.data().name}</div>`;
                     } else {
-                        htmlTrump += `<div class="trumpVoters">${votingDB.data().name}</div>`;
+                        counterTrump++;
+                        htmlTrump += `<div class="trumpVoters">${voteDB.data().name}</div>`;
                     }
 
                 });
 
-                console.log('htmlBiden: ',htmlBiden);
-                console.log('htmlTrump: ',htmlTrump);
-                document.getElementById('rootBiden').innerHTML= htmlBiden;
+                console.log('htmlBiden: ', htmlBiden);
+                console.log('htmlTrump: ', htmlTrump);
+                document.getElementById('rootBiden').innerHTML = htmlBiden;
                 document.getElementById('rootTrump').innerHTML = htmlTrump;
 
                 document.getElementById('votesBiden').innerHTML = `Votes for Biden: ${counterBiden}`;
