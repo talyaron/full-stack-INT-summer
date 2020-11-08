@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+   <script>
+   // Your web app's Firebase configuration
+   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+   var firebaseConfig = {
+       apiKey: "AIzaSyDFFKVSC31CZyeKkOmqNP0uZiJ_XVo-d3o",
+       authDomain: "harper-fb1.firebaseapp.com",
+       databaseURL: "https://harper-fb1.firebaseio.com",
+       projectId: "harper-fb1",
+       storageBucket: "harper-fb1.appspot.com",
+       messagingSenderId: "1054303864379",
+       appId: "1:1054303864379:web:203b783fb5132b55a73e1e",
+       measurementId: "G-H7NXGJP8GC"
+   };
+   // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+   firebase.analytics();
+   const DB=firebase.firestore();
+   </script>
+</head>
+<style>
+    h1{
+        color:blue;
+        background-color:rgba(255, 0, 0, 0.801);
+        width:fit-content;
+        padding:10px;
+        border-radius:30px;
+        font-size:50px;
+    }
+     #question{
+
+    }
+    .button{
+        margin:10px;
+        width:90%;
+        font-size:24px;
+        border:red solid 2px;
+        border-radius:30px;
+        background-color:rgba(0, 0, 255, 0.384);
+        font-weight:bold;
+        color:blue;
+
+    }
+    .option{
+        margin:10px;
+        font-weight:bolder;
+        font-size:24px;
+        color:red;
+    }
+    .options{
+        width:90%;       
+        display:grid;
+        grid-template-columns:33% 33% 33%;
+        grid-template-rows:70px 70px;
+        border:1px black solid;
+        text-align:center;
+        border:4px blue solid;
+        border-radius:30px;
+    }
+</style>
+<body>
+    <h1>Vote!</h1>
+    <h2 id="question">The question is...</h2>
+    <br>
+    <div class="options">
+        <div id="op1" class="option">
+            <button class="button" id="one"></button>
+        </div>
+        <div id="op2" class="option">
+            <button class="button" id="two"></button>
+        </div>
+        <div id="op3" class="option">
+            <button class="button" id="three"></button>
+        </div>
+        <div class="option" id="oneVotes">0</div>
+        <div class="option" id="twoVotes">0</div>
+        <div class="option" id="threeVotes">0</div>
+    </div>
+    <script>
+        //outputs the question and the options onto the screen
+        DB.collection('voting').doc('question').onSnapshot(questionDB=>{
+            let quest=questionDB.data().question;
+            document.getElementById('question').innerText+= " "+ quest;
+        })
+        DB.collection('voting').doc('option1').onSnapshot(op1DB=>{
+            let op1=op1DB.data().option;
+            document.getElementById('one').innerText=op1;
+        })
+        DB.collection('voting').doc('option2').onSnapshot(op2DB=>{
+            let op2=op2DB.data().option;
+            document.getElementById('two').innerText=op2;
+        })
+        DB.collection('voting').doc('option3').onSnapshot(op3DB=>{
+            let op3=op3DB.data().option;
+            document.getElementById('three').innerText=op3;
+        })
+
+        //create a unique id for the user, and store in the browser
+        const uid = function () {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+        function getUserUID() {
+            //get the uid
+            let userUID = localStorage.getItem('userUID');
+            if (userUID === null) {
+                userUID = uid();
+                //create a uid
+                localStorage.setItem('userUID', userUID);
+            }
+            return userUID;
+        }
+
+        //vote!
+        let voted=false;
+        const one=document.getElementById('one');
+        const two= document.getElementById('two');
+        const three=document.getElementById('three');
+
+
+        //updates the votes on snapshot for everyone
+        DB.collection('voting').doc('option1').onSnapshot(voteDB=>{
+            let num=voteDB.data().numVotes;
+            document.getElementById('oneVotes').innerText=num;
+        })
+
+        DB.collection('voting').doc('option2').onSnapshot(voteDB=>{
+            let num=voteDB.data().numVotes;
+            document.getElementById('twoVotes').innerText=num;
+        })
+
+        DB.collection('voting').doc('option3').onSnapshot(voteDB=>{
+            let num=voteDB.data().numVotes;
+            document.getElementById('threeVotes').innerText=num;
+        })
+        
+        //vote when the button is clicked, only once.
+        one.addEventListener('click', e=>{
+            if(voted==false){
+                DB.collection('voting').doc('option1').get().then(oneDB=>{
+                let oneCount=oneDB.data().numVotes;
+                oneCount++;
+                DB.collection('voting').doc('option1').update({numVotes:oneCount});
+                DB.collection('voting').add({user:getUserUID(), vote:"one"});
+                updateVote('option1', 'oneVotes');
+                voted=true;
+                })
+            }
+            else{
+                alert("You cannot vote twice");
+            }
+            
+        })
+
+        two.addEventListener('click', e=>{
+            if(voted==false){
+                DB.collection('voting').doc('option2').get().then(twoDB=>{
+                let twoCount=twoDB.data().numVotes;
+                twoCount++;
+                DB.collection('voting').doc('option2').update({numVotes:twoCount});
+                DB.collection('voting').add({user:getUserUID(), vote:"two"});
+                updateVote('option2', 'twoVotes');
+                voted=true;
+                })
+            }
+            else{
+                alert("You cannot vote twice");
+            }
+            
+        })
+
+        three.addEventListener('click', e=>{
+            if(voted==false){
+                DB.collection('voting').doc('option3').get().then(threeDB=>{
+                let threeCount=threeDB.data().numVotes;
+                threeCount++;
+                DB.collection('voting').doc('option3').update({numVotes:threeCount});
+                DB.collection('voting').add({user:getUserUID(), vote:"three"});
+                updateVote('option3', 'threeVotes');
+                voted=true;
+                })
+            }
+            else{
+                alert("You cannot vote twice");
+            }
+        })
+
+        
+        //update the HTML vote numbers
+        function updateVote(option, id){
+            DB.collection('voting').doc(option).get().then(updateDB=>{
+                let num=updateDB.data().numVotes;
+                document.getElementById(id).innerText=num;
+            })
+        }
+            
+    </script>
+</body>
+</html>
