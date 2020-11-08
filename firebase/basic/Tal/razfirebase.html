@@ -25,7 +25,7 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+       
     </script>
 </head>
 
@@ -46,7 +46,8 @@
    
     
     <script>
-        //addition 
+        const db = firebase.firestore();
+       //addition 
         //db.collection("User").add({
         // first: "Raz"
         //last: "Frankel"

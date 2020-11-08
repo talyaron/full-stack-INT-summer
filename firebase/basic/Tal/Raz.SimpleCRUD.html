@@ -17,7 +17,7 @@
         // Your web app's Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyCuqXvrC20supCgCk2qdXMV5k0qwiNzCro",
-            authDomain: "abbyfb1.firebaseapp.com", 
+            authDomain: "razfb1.firebaseapp.com", 
             databaseURL: "https://razf1.firebaseio.com",            
             projectId: "razfb1",            
             storageBucket: "razfb1.appspot.com",            
@@ -27,7 +27,7 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        const DB = firebase.firestore();   
+        
     </script>
 </head>
 <style>
@@ -95,6 +95,7 @@
         //create a div with the message
         function writeTheMessageToTheDOM(message){
             return `<div class='message'><p>${message.message}</p><div>${message.sender}</div></div>`
+            
         }
 
     </script>
