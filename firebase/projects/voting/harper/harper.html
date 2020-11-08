@@ -32,7 +32,9 @@
    </script>
 </head>
 <style>
-
+    #goVote{
+        display:none;
+    }
 </style>
 <body>
     <h1>Vote!</h1>
@@ -42,19 +44,41 @@
         <p>Option 1: <input id="option1" type="text" placeholder="Write answer here"/></p>
         <p>Option 2: <input id="option2" type="text" placeholder="Write answer here"/></p>
         <p>Option 3: <input id="option3" type="text" placeholder="Write answer here"/></p>
-        <input type="submit" value="Start voting"/>
+        <input type="submit" value="Submit Poll"/>
     </form>
-    <h2 id="question"></h2>
+    <br>
+    <p id="submitNotification"></p>
+    <button id="goVote">Start Voting</button>
+
+
 
     <script>
+        //stores the voting question and the options in firebase
         const votingOptions=document.getElementById('voteOptions');
         let op1="";
         let op2="";
         let op3="";
         let question="";
         votingOptions.addEventListener('submit', e=>{
-            
+            e.preventDefault();
+            question=document.getElementById('questionInput').value;
+            op1=document.getElementById('option1').value;
+            op2=document.getElementById('option2').value;
+            op3=document.getElementById('option3').value;
+
+            DB.collection('voting').doc('question').set({question:question});
+            DB.collection('voting').doc('option1').set({option:op1,numVotes:0});
+            DB.collection('voting').doc('option2').set({option:op2,numVotes:0});
+            DB.collection('voting').doc('option3').set({option:op3,numVotes:0});  
+
+            document.getElementById('submitNotification').innerText="Poll submitted!"
+            document.getElementById('goVote').style.display="inline";
         })
+
+        document.getElementById('goVote').addEventListener('click', e=>{
+            location.href="/Users/harpergreen/Desktop/BIG IDEA/github/full-stack-INT-summer/firebase/projects/voting/harper/harperVote.html";
+        })
+
     </script>
 </body>
 </html>

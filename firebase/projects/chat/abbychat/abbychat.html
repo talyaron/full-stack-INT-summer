@@ -30,11 +30,11 @@
 <style>
     .messages {
         border: 1px solid black;
-        background-color: lightblue;
         border-radius: 25px;
         padding: 5px;
         max-width: 280px;
         gap: 15px;
+        box-shadow: grey;
     }
 </style>
 
@@ -77,11 +77,21 @@
                 console.log(`${chatDB.data().name}: ${chatDB.data().message}`);
                 let displaying = `${chatDB.data().name}: ${chatDB.data().message}`;
                 const root = document.getElementById('root');
-                html += `<div class="messages">${displaying}</div>`;
+                html += `<div class="messages" style="background:${getRandomColor()}">${displaying}</div>`;
                 console.log(html)
                 root.innerHTML = html;
             });
         })
+
+        function getRandomColor() {
+            var letters = '456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 12)];
+            }
+            return color;
+        }
+
     </script>
 
 

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+               https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCuqXvrC20supCgCk2qdXMV5k0qwiNzCro",
+            authDomain: "abbyfb1.firebaseapp.com",
+            databaseURL: "https://abbyfb1.firebaseio.com",
+            projectId: "abbyfb1",
+            storageBucket: "abbyfb1.appspot.com",
+            messagingSenderId: "868023743677",
+            appId: "1:868023743677:web:cfb2d64ccb6ef557a133d4"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<style>
+    .header {
+        font-size: 30px;
+    }
+
+    #bidenName {
+        color: cornflowerblue;
+    }
+
+    #trumpName {
+        color: rgb(230, 60, 60);
+    }
+
+    #rootBiden {
+        color: blue;
+        font-size: 19px;
+    }
+
+    #rootTrump {
+        color: rgb(104, 1, 1);
+        font-size: 19px;
+    }
+
+    #bidenButton {
+        color: cornflowerblue;
+        background-color: white;
+        font-size: 20px;
+    }
+
+    #trumpButton {
+        color: rgb(230, 60, 60);
+
+    }
+
+    .button {
+        background-color: white;
+        font-size: 20px;
+        border-radius: 20px;
+    }
+
+    #naming {
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <!--inputs are user enter name, buttons Biden Trump, obstention-->
+    <form onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="name or write anonymous" name="name" id="naming">
+        <input type="submit" value="Biden" name="bidenButton" id="bidenButton" class="button">
+        <input type="submit" value="Trump" name="trumpButton" id="trumpButton" class="button">
+    </form>
+    <h1 id="trumpName" class="header">TRUMP</h1>
+    <div id="rootTrump"></div>
+    <h1 id="bidenName" class="header">BIDEN</h1>
+    <div id="rootBiden"></div>
+    <h1 id="votesBiden"></h1>
+    <h1 id="votesTrump"></h1>
+    <!--enters the name or anonymous and the vote into the database-->
+    <!--if press biden then update biden to be true and trump to be false-->
+    <script>
+        //create a unique id for the user, and store in the browser
+        //create unique id:
+        const uid = function () {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+        //store in the local storage
+        function getUserUID() {
+            //get the uid
+            let userUID = localStorage.getItem('userUID');
+            if (userUID === null) {
+                userUID = uid();
+                //create a uid
+                localStorage.setItem('userUID', userUID);
+            }
+            return userUID;
+        }
+
+        const DB = firebase.firestore();
+
+        const bidenButton = document.getElementsByName('bidenButton')[0];
+        const trumpButton = document.getElementsByName('trumpButton')[0];
+        let biden = false;
+        let bidenName = "";
+
+        let trump = false;
+        let trumpName = "";
+
+
+        bidenButton.addEventListener('click', e => {
+            e.preventDefault();
+
+            bidenName = document.getElementsByName('name')[0].value;
+            console.log(bidenName)
+
+            biden = true;
+            trump = false;
+            console.log("Biden: " + biden);
+            // counterBiden = counterBiden + 1;
+
+            DB.collection('voting').doc(getUserUID()).set({ name: bidenName, biden: biden, trump: trump })
+                .then(() => { console.log('vote counted') })
+                .catch(err => { console.error(err) })
+
+            voteWriting()
+        })
+
+        trumpButton.addEventListener('click', e => {
+            e.preventDefault();
+
+            trumpName = document.getElementsByName('name')[0].value;
+            console.log(trumpName)
+
+            trump = true;
+            biden = false;
+            console.log("Trump: " + trump)
+            // counterTrump = counterTrump + 1;
+
+
+            DB.collection('voting').doc(getUserUID()).set({ name: trumpName, biden: biden, trump: trump })
+                .then(() => { console.log('vote counted') })
+                .catch(err => { console.error(err) })
+
+            voteWriting()
+        })
+        //updating who voted for who 
+        function voteWriting() {
+            DB.collection('voting').onSnapshot(votingDB => {
+                let htmlBiden = '';
+                let htmlTrump = '';
+                
+                let counterBiden = 0;
+                let counterTrump = 0;
+
+                votingDB.forEach(voteDB => {
+                    console.log(voteDB.data())
+                    console.log(`${voteDB.data().biden}`)
+
+                    if (`${voteDB.data().biden}` == "true") {
+                        counterBiden++;
+                        htmlBiden += `<div class="bidenVoters">${voteDB.data().name}</div>`;
+                    } else {
+                        counterTrump++;
+                        htmlTrump += `<div class="trumpVoters">${voteDB.data().name}</div>`;
+                    }
+
+                });
+
+                console.log('htmlBiden: ', htmlBiden);
+                console.log('htmlTrump: ', htmlTrump);
+                document.getElementById('rootBiden').innerHTML = htmlBiden;
+                document.getElementById('rootTrump').innerHTML = htmlTrump;
+
+                document.getElementById('votesBiden').innerHTML = `Votes for Biden: ${counterBiden}`;
+                document.getElementById('votesTrump').innerHTML = `Votes for Trump: ${counterTrump}`;
+            })
+        }
+
+    </script>
+
+    <!--onSnapshot it shows who voted for who -- put the name into a div above the president voted for, if biden true then put name there, if trump true then put there-->
+
+</body>
+
+</html>
