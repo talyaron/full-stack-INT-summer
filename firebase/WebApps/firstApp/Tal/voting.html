@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBoYvkPf2q9lFddsgE3KLr3S5rvIPghdys",
+            authDomain: "aryehfirebase1.firebaseapp.com",
+            databaseURL: "https://aryehfirebase1.firebaseio.com",
+            projectId: "aryehfirebase1",
+            storageBucket: "aryehfirebase1.appspot.com",
+            messagingSenderId: "1020894489421",
+            appId: "1:1020894489421:web:82a6d7342a6189ee7fa504"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const DB = firebase.firestore();
+    </script>
+</head>
+
+<body>
+    <div id='wrapper'>
+        <div id='screen'>
+
+        </div>
+        <div id='buttons'>
+
+        </div>
+        <form id='input'>
+            <input type="text" placeholder="what do you want to say" name='input' />
+            <input type="text" placeholder="Username:" name='username' />
+            <input type="submit" name='sumbit' />
+        </form>
+    </div>
+</body>
+<style>
+    #wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+</style>
+<script>
+    let inputText = document.getElementById('input')
+    let counter1 = 0
+    inputText.addEventListener('submit', e => {
+        e.preventDefault()
+        DB.collection('buttons').add({ buttonName: document.getElementsByName('input')[0].value, counter: 0 })
+
+
+
+    })
+    let buttons = document.getElementById('buttons');
+
+    
+    function addName(id){
+        let username = document.getElementsByName('username')[0].value
+        document.getElementById(`${id}-votes`).innerHTML = `<p>${counter1}</p><p>${username}</p>`
+    }
+    function tally(id,nameOfButton) {
+      
+        document.getElementById(nameOfButton).addEventListener('click', e => {
+            DB.collection('buttons').doc(id).get().then(counterDB => {
+                console.log('fdsdafdsafa')
+                counter1 = counterDB.data().counter+1;
+
+                DB.collection('buttons').doc(`${id}`).update({ counter: counter1 })
+                
+                
+
+            })
+        })
+    }
+
+
+    DB.collection('buttons').onSnapshot(buttonDBs => {
+        try {
+            let html = ''
+            buttonDBs.forEach(buttonDB => {
+                
+                html += `<button onclick='tally("${buttonDB.id}","${buttonDB.data().buttonName}"),addName("${buttonDB.data().buttonName}")' id ="${buttonDB.data().buttonName}">${buttonDB.data().buttonName} </button><div id=${buttonDB.data().buttonName}-votes ></div>`
+                buttons.innerHTML = html;
+            })
+
+        } catch (e) {
+            console.log(e)
+        }
+
+
+    })
+</script>
+
+</html>

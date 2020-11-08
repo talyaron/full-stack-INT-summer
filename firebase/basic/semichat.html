@@ -23,7 +23,7 @@
       };
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
-      const DB = firebase.firestore();
+      const db = firebase.firestore();
     </script>
   </head>
   <body>
@@ -43,10 +43,10 @@
             console.log(input)
 
       }
-       // db.collection('input').doc('raz').set({
-        //     first: "Raz",
-        //     last: "Frankel",
-        //     born: 2000
+       db.collection('user').doc('hello').set({
+            first: "Raz",
+            last: "Frankel",
+            born: 2000})
     </script>
   </body>
 </html>
