@@ -48,6 +48,8 @@
         let name;
         let submissionsVar;
         let loggedIn = false;
+        let numberPlayers;
+
 
         //Checking if game is full 
         DB.collection('games').doc('numberPlayers').get().then(e => {
@@ -67,6 +69,12 @@
             console.log('start')
 
             if (loggedIn == false) {
+
+                DB.collection("games").doc("numberPlayers").get().then(e=>{
+                    numberPlayers = e.data().submissions;
+                    console.log(numberPlayers + "hello")
+                })
+
                 name = document.getElementById('name').value
                 console.log(name);
 
@@ -75,18 +83,14 @@
                 DB.collection('games').doc('numberPlayers').set({ submissions: submissionsVar });
 
                 DB.collection('games').doc(name).get().then(elementDB => {
-                    DB.collection('games').doc(name).set({ name: name });
+                    if(numberPlayers == 1){
+                        DB.collection('games').doc(name).set({ name: name, myTurn: true});
+                    }else{
+                        DB.collection('games').doc(name).set({ name: name, myTurn: false});
+                    }
+                    
                     document.getElementById('players').innerHTML += name
                 })
-
-                // DB.collection('games').doc("Players").get().then(elementDB => {
-                //    console.log(elementDB.data())
-                //     for(i in elementDB.data()){
-                //         console.log(i.value)
-                //     }
-                // })
-
-
 
                 loggedIn = true
 
