@@ -38,12 +38,9 @@
         </form>
     </div>
     <div id="gameData" style="visibility: hidden">
-        <div id="player1">
-            Player One:
+        <div id="players">
         </div>
-        <div id="player2">
-            Player Two:
-        </div>
+
     </div>
 
     <script>
@@ -60,7 +57,7 @@
                 console.log('full')
 
                 document.getElementById('form').innerHTML = 'Game is full'
-                
+
             }
         })
         // onsubmit, adding name to database, updating number of players in database
@@ -78,7 +75,7 @@
 
                 DB.collection('games').doc(name).get().then(elementDB => {
                     DB.collection('games').doc(name).set({ name: name });
-
+                    document.getElementById('players').innerHTML += name
                 })
 
                 loggedIn = true
@@ -88,21 +85,15 @@
             <form id="inputForm" onsubmit="startGame(event)">
                 <input type="text" id="name" placeholder="enter your username" />
                 <input type="submit" id="submit" value="submit!" />
-            </form>
-            `
-        
-        } 
-
-        function startGame(e) {
-            e.preventDefault()
+            </form>`
             document.getElementById('gameData').style.visibility = 'visible';
 
-
-
+        } 
+        function startGame(e) {
+            e.preventDefault();
         }
-        
 
-
+       
     </script>
 
 
