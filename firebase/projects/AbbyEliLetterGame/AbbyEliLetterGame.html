@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAO3Q_Y0mlEUAPFx50J4FctFTMr2SwG6iY",
+            authDomain: "abbyelilettergame.firebaseapp.com",
+            databaseURL: "https://abbyelilettergame.firebaseio.com",
+            projectId: "abbyelilettergame",
+            storageBucket: "abbyelilettergame.appspot.com",
+            messagingSenderId: "251432688839",
+            appId: "1:251432688839:web:7f425dd0ad6d2d6930f2e2"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        DB = firebase.firestore();
+    </script>
+</head>
+
+<body>
+    <div id="form">
+        <form id="inputForm" onsubmit="handleSubmit(event)">
+            <input type="text" id="name" placeholder="enter your username" />
+            <input type="submit" id="submit" value="submit!" />
+        </form>
+    </div>
+    <div id="gameData" style="visibility: hidden">
+        <div id="players">
+        </div>
+        <div id="letter"></div>
+    </div>
+
+
+    <script>
+        let name;
+        let submissionsVar;
+        let loggedIn = false;
+
+        //Checking if game is full 
+        DB.collection('games').doc('numberPlayers').get().then(e => {
+            submissionsVar = e.data().submissions
+            console.log(submissionsVar)
+
+            if (e.data().submissions > 2) {
+                console.log('full')
+
+                document.getElementById('form').innerHTML = 'Game is full'
+
+            }
+        })
+        // onsubmit, adding name to database, updating number of players in database
+        function handleSubmit(e) {
+            e.preventDefault();
+            console.log('start')
+
+            if (loggedIn == false) {
+                name = document.getElementById('name').value
+                console.log(name);
+
+                submissionsVar++;
+                console.log("submissionsVar: " + submissionsVar);
+                DB.collection('games').doc('numberPlayers').set({ submissions: submissionsVar });
+
+                DB.collection('games').doc(name).get().then(elementDB => {
+                    DB.collection('games').doc(name).set({ name: name });
+                    document.getElementById('players').innerHTML += name
+                })
+
+                // DB.collection('games').doc("Players").get().then(elementDB => {
+                //    console.log(elementDB.data())
+                //     for(i in elementDB.data()){
+                //         console.log(i.value)
+                //     }
+                // })
+
+
+
+                loggedIn = true
+
+            }
+
+
+            document.getElementById("form").innerHTML = `
+            <form id="inputForm" onsubmit="startGame(event)">
+                <input type="text" id="letter" placeholder="enter your letter" />
+                <input type="submit" id="submit" value="submit!" />
+            </form>`
+            document.getElementById('gameData').style.visibility = 'visible';
+
+        }
+        function startGame(e) {
+            e.preventDefault();
+            let letter = document.getElementById('letter').value
+            console.log("submitted letter: " + letter);
+
+            
+            DB.collection('games').doc("word").get().then(elementDB => {
+                let currentWord = elementDB.data().letter + letter
+            
+                DB.collection('games').doc("word").set({ letter: currentWord });
+                console.log("database word: " + elementDB.data().letter)
+
+            })
+            
+        }
+
+        DB.collection('games').doc("word").onSnapshot(elementDB => {
+                let displayWord = elementDB.data().letter
+                console.log(displayWord)
+                document.getElementById('letter').innerText = displayWord;
+
+            })
+    </script>
+
+
+</body>
+
+</html>

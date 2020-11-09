@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="getVat(event)">
+        <input type='color' step="0.01" placeholder="write the price of the product" name='vat'>
+    </form>
+    <div id='theVat'></div>
+    <script>
+
+
+        // write a function that returns the vat
+        function calcVat(price) {
+            return price * 0.17
+        }
+
+        
+
+        function getVat(e){
+            e.preventDefault()
+            console.log(e)
+            let price = e.target.children.vat.valueAsNumber;
+            console.log(price);
+
+            let vat = calcVat(price);
+
+            vat = Math.round(vat * 1000) / 1000;
+
+
+            console.log(vat);
+
+            let theVat = document.getElementById('theVat')
+            theVat.innerText = vat
+
+        }
+
+    //take a price from the user and return the vat
+
+    </script>
+</body>
+
+</html>
