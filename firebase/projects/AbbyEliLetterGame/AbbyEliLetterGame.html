@@ -52,7 +52,7 @@
 
 
         //Checking if game is full 
-        DB.collection('games').doc('numberPlayers').get().then(e => {
+        DB.collection('games').doc('numberPlayers').onSnapshot(e => {
             submissionsVar = e.data().submissions
             console.log(submissionsVar)
 
