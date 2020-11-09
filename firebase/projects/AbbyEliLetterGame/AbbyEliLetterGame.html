@@ -78,6 +78,10 @@
                     document.getElementById('players').innerHTML += name
                 })
 
+                for (i=0; i<3; i++) {
+                    DB.collection('games').doc(players).set({ name: name });
+                }
+
                 loggedIn = true
             }
 
