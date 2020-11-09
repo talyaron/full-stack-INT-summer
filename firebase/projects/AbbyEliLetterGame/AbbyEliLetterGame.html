@@ -37,11 +37,7 @@
             <input type="submit" id="submit" value="submit!" />
         </form>
     </div>
-    <div id="gameData" style="visibility: hidden">
-        <div id="players">
-        </div>
 
-    </div>
 
     <script>
         let name;
@@ -73,17 +69,21 @@
                 console.log("submissionsVar: " + submissionsVar);
                 DB.collection('games').doc('numberPlayers').set({ submissions: submissionsVar });
 
-                DB.collection('games').doc(name).get().then(elementDB => {
-                    DB.collection('games').doc(name).set({ name: name });
-                    document.getElementById('players').innerHTML += name
-                })
+        
 
-                for (i=0; i<3; i++) {
-                    DB.collection('games').doc(players).set({ name: name });
-                }
+                // DB.collection('games').doc("Players").get().then(elementDB => {
+                //    console.log(elementDB.data())
+                //     for(i in elementDB.data()){
+                //         console.log(i.value)
+                //     }
+                // })
+
+
 
                 loggedIn = true
             }
+         
+
 
             document.getElementById("form").innerHTML = `
             <form id="inputForm" onsubmit="startGame(event)">
@@ -92,12 +92,12 @@
             </form>`
             document.getElementById('gameData').style.visibility = 'visible';
 
-        } 
+        }
         function startGame(e) {
             e.preventDefault();
         }
 
-       
+
     </script>
 
 
