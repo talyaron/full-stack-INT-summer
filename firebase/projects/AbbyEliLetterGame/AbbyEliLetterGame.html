@@ -40,8 +40,9 @@
     <div id="gameData" style="visibility: hidden">
         <div id="players">
         </div>
-
+        <div id="letter"></div>
     </div>
+
 
     <script>
         let name;
@@ -88,12 +89,13 @@
 
 
                 loggedIn = true
+
             }
-            
+
 
             document.getElementById("form").innerHTML = `
             <form id="inputForm" onsubmit="startGame(event)">
-                <input type="text" id="name" placeholder="enter your username" />
+                <input type="text" id="letter" placeholder="enter your letter" />
                 <input type="submit" id="submit" value="submit!" />
             </form>`
             document.getElementById('gameData').style.visibility = 'visible';
@@ -101,9 +103,26 @@
         }
         function startGame(e) {
             e.preventDefault();
+            let letter = document.getElementById('letter').value
+            console.log("submitted letter: " + letter);
+
+            
+            DB.collection('games').doc("word").get().then(elementDB => {
+                let currentWord = elementDB.data().letter + letter
+            
+                DB.collection('games').doc("word").set({ letter: currentWord });
+                console.log("database word: " + elementDB.data().letter)
+
+            })
+            
         }
 
+        DB.collection('games').doc("word").onSnapshot(elementDB => {
+                let displayWord = elementDB.data().letter
+                console.log(displayWord)
+                document.getElementById('letter').innerText = displayWord;
 
+            })
     </script>
 
 
