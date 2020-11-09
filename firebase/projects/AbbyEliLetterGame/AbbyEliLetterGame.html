@@ -81,16 +81,20 @@
 
                 })
 
-                document.getElementById('name').placeholder = 'Enter a letter'
-                document.getElementById('inputForm').onsubmit = 'forms(event)'
                 loggedIn = true
             }
-            
-            startGame()
+
+            document.getElementById("form").innerHTML = `
+            <form id="inputForm" onsubmit="startGame(event)">
+                <input type="text" id="name" placeholder="enter your username" />
+                <input type="submit" id="submit" value="submit!" />
+            </form>
+            `
+        
         } 
 
-        function startGame() {
-            
+        function startGame(e) {
+            e.preventDefault()
             document.getElementById('gameData').style.visibility = 'visible';
 
 
