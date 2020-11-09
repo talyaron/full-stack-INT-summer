@@ -40,7 +40,7 @@
     <div id="gameData" style="visibility: hidden">
         <div id="players">
         </div>
-        <div id="letter"></div>
+        <div id="word"></div>
     </div>
 
 
@@ -124,7 +124,7 @@
         DB.collection('games').doc("word").onSnapshot(elementDB => {
                 let displayWord = elementDB.data().letter
                 console.log(displayWord)
-                document.getElementById('letter').innerText = `Word: ${displayWord}`;
+                document.getElementById('word').innerText = `Word: ${displayWord}`;
 
             })
     </script>
