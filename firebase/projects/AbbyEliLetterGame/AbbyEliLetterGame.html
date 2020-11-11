@@ -125,7 +125,14 @@
 
             })
 
-            // DB.collection('games').doc(name).update({ myTurn: false });
+            DB.collection('games').doc(name).get().then(turnsDB=>{
+                if (turnsDB.data().myTurn == true){
+                    DB.collection('games').doc(name).update({ myTurn: false });
+                }
+                if (turnsDB.data().myTurn == false){
+                    DB.collection('games').doc(name).update({ myTurn: true });
+                }
+            })
 
             //changeTurn()
         }
@@ -136,25 +143,31 @@
             console.log(displayWord)
             document.getElementById('word').innerText = `Word: ${displayWord}`;
 
-            if (nameDB.data().myTurn == false) {
+            /*if (elementDB.data().myTurn == false) {
                     DB.collection('games').doc(name).update({ myTurn: true });
                 } else {
                     DB.collection('games').doc(name).update({ myTurn: false });
-                }
+                }*/
+            
+            try{
+                DB.collection('games').doc(name).get().then(nameDB => {
+                    console.log(nameDB.data().myTurn)
 
-            DB.collection('games').doc(name).get().then(nameDB => {
-                console.log(nameDB.data().myTurn)
-
-                if (nameDB.data().myTurn == false) {
-                    console.log(name + ": false")
-                    document.getElementById("submit").style.visibility = "hidden";
-                    document.getElementById("letter").placeholder = "Wait for your turn";
-                } else {
-                    console.log(name + ": true")
-                    document.getElementById("submit").style.visibility = "visible";
-                    document.getElementById("letter").placeholder = "enter your letter";
-                }
-            })
+                    if (nameDB.data().myTurn == true) {
+                        console.log(name + ": true")
+                        document.getElementById("submit").style.visibility = "visible";
+                        document.getElementById("letter").placeholder = "enter your letter";
+                    } 
+                    if (nameDB.data().myTurn == false) {
+                        console.log(name + ": false")
+                        document.getElementById("submit").style.visibility = "hidden";
+                        document.getElementById("letter").placeholder = "Wait for your turn";
+                    }
+                })
+            }catch{
+                console.log("first")
+            }
+            
 
         })
 
