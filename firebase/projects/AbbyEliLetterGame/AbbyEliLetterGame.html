@@ -190,7 +190,7 @@
                         console.error(e)
                     })
             })
-        }
+        } 
         
         DB.collection('games').doc('word').onSnapshot(wordDB => {
             let wordCurrent = wordDB.data().letter
