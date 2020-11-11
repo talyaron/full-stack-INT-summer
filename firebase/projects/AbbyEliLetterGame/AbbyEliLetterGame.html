@@ -115,11 +115,17 @@
             e.preventDefault();
 
             DB.collection('games').doc(name).get().then(turnsDB=>{
+                let done = false;
                 if (turnsDB.data().myTurn == true){
                     DB.collection('games').doc(name).update({ myTurn: false });
+                    done = true
+                }else{
+                    console.log(turnsDB.data().myTurn + "true?")
                 }
-                if (turnsDB.data().myTurn == false){
+                if (turnsDB.data().myTurn == false && done == false){
                     DB.collection('games').doc(name).update({ myTurn: true });
+                }else{
+                    console.log(turnsDB.data().myTurn + "false?")
                 }
             })
 
@@ -153,7 +159,7 @@
                 }*/
             
             try{
-                DB.collection('games').doc(name).get().then(nameDB => {
+                DB.collection('games').doc(name).onSnapshot(nameDB => {
                     console.log(nameDB.data().myTurn)
 
                     if (nameDB.data().myTurn == true) {
