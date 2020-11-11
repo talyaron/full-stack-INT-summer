@@ -6,6 +6,9 @@ firebase.auth().onAuthStateChanged(user => {
     console.log(user)
     userUID = user.uid;
     userName = user.displayName;
+    if(user){
+        document.getElementById('googleLogin').style.display = 'none'
+    }
     
 });
 
@@ -18,14 +21,15 @@ function getUniqueIdForUser() {
 
 function createPoll(options, pollId) {
     DB.collection('polls').doc(pollId)
-        .set({ options }).then(() => { console.log('created poll') })
+        .set({ options })
+        .then(() => { console.log('created poll') })
         .catch(e => { console.error(e) })
 }
 
 
 
 
-// createPoll(['vanilla', 'chocolate'], 'vanilla-chocolate')
+// createPoll(['vanilla', 'chocolate', 'strawberry'], 'vanilla-chocolate')
 
 
 function getOptions(pollId) {
@@ -41,6 +45,7 @@ function getOptions(pollId) {
 
 function showOptionsOnDOM(options, pollId) {
     let rootOptions = document.getElementById('rootOptions');
+    
     let html = '';
     options.forEach(option => {
         html += `<button onclick='voteOption("${option}","${pollId}")'>${option}</button>`
