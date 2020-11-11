@@ -39,6 +39,12 @@
 
     <input type="submit" value="Submit">
   </form>
+  <h2>Game Number: <span id='gameNumber'></span></h2>
+  <form onsubmit='getGameNumber(event)' id='enterGameNumber'>
+
+    <input type="number" name='gameNumber' placeholder="game number" />
+    <input type="submit" value="Submit">
+  </form>
 
   <form onsubmit='sendLetter(event)' id='letter'>
 
@@ -57,6 +63,7 @@
     const uid = getUserUID();
     let letter = '';
     let gameString = '';
+    let gameNumber = false;
 
     function sendName(e) {
       try {
@@ -67,48 +74,43 @@
         DB.collection('users').doc(uid).set({
           name: name,
           id: uid,
-          
+
         })
-          .then(() => { 
+          .then(() => {
             console.log('user recorded');
             document.getElementById('username').style.display = 'none';
-             }).catch(e => { console.error(e) })
+            gameNumber = uniqueNumber();
+            document.getElementById('gameNumber').innerText = gameNumber;
+          }).catch(e => { console.error(e) })
       } catch (e) {
         console.error(e)
       }
     }
 
-    function sendMessage(e) {
+    function sendLetter(e) {
       e.preventDefault()
       if (e.target.children.letter.value.length == 1) {
-
-
-        document.getElementById('nameOfUser').innerText = name;
-
-        document.getElementById('username').style.display = 'none';
+ 
         letter = e.target.children.letter.value;
 
         document.getElementById('theLetter').innerText = letter;
-       
 
-       
-
-        DB.collection('lettersgame').doc('X318ot4FmYNWXamjFrLy').get().then(lettersDB => {
+        DB.collection('lettersgame').doc(gameNumber).get().then(lettersDB => {
 
           //switch turn
           if (lettersDB.data().counter == 0) {
-            DB.collection('lettersgame').doc('X318ot4FmYNWXamjFrLy').update({
+            DB.collection('lettersgame').doc(gameNumber).update({
               counter: 1
             })
           } else {
-            DB.collection('lettersgame').doc('X318ot4FmYNWXamjFrLy').update({
+            DB.collection('lettersgame').doc(gameNumber).update({
               counter: 0
             })
 
 
             gameString = lettersDB.data().gameWord;
             gameString += letter
-            DB.collection('lettersgame').doc('X318ot4FmYNWXamjFrLy').update({
+            DB.collection('lettersgame').doc(gameNumber).update({
               gameWord: gameString
 
             })
@@ -119,7 +121,7 @@
 
       }
       else {
-        alert('choose one letter')
+        alert('choose one letter only')
       }
       // sendTheLetter()
     }
@@ -142,8 +144,20 @@
       return userUID;
     }
 
+function getGameNumber(e){
+  e.preventDefault();
+  
+  gameNumber = e.target.children.gameNumber.valueAsNumber;
+
+  document.getElementById('enterGameNumber').style.display = 'none';
+  document.getElementById('gameNumber').innerText = gameNumber;
+  
+}
 
 
+    function uniqueNumber() {
+      return Math.round(Math.random() * 100000)
+    }
 
   </script>
 </body>
