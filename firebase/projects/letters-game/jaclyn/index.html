@@ -103,23 +103,25 @@
           console.log(gameDB.data())
           let gameData = gameDB.data();
           console.log(gameData)
-          if ('player1' in gameData) {
+          if (!('player1' in gameData) && !('player2' in gameData)) {
             console.log('p1', gameNumber)
             DB.collection('lettersgame').doc(gameNumber)
-              .update({ player2: name })
-              .then(() => {document.getElementById('playerNumber').innerText = `You are player number 1` })
+              .update({ player1: name })
+              .then(() => { document.getElementById('playerNumber').innerText = `You are player number 1` })
               .catch(e => {
                 console.error(e)
               })
-          } else {
-            console.log('p1', gameNumber)
+          } else if (!('player2' in gameData)) {
+            console.log('p', gameNumber)
 
             DB.collection('lettersgame').doc(gameNumber)
-              .update({ player1: name })
+              .update({ player2: name })
               .then(() => { document.getElementById('playerNumber').innerText = `You are player number 2` })
               .catch(e => {
                 console.error(e)
               })
+          } else {
+            alert('the game is full!')
           }
         })
 
