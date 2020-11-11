@@ -32,7 +32,7 @@
 
 <body>
     <input type="submit" value="reset" id="resetButton">
-    
+
     <div id="form">
         <form id="inputForm" onsubmit="handleSubmit(event)">
             <input type="text" id="name" placeholder="enter your username" />
@@ -72,7 +72,7 @@
 
             if (loggedIn == false) {
 
-                DB.collection("games").doc("numberPlayers").get().then(e=>{
+                DB.collection("games").doc("numberPlayers").get().then(e => {
                     numberPlayers = e.data().submissions;
                     console.log(numberPlayers + "hello")
                 })
@@ -85,12 +85,12 @@
                 DB.collection('games').doc('numberPlayers').set({ submissions: submissionsVar });
 
                 DB.collection('games').doc(name).get().then(elementDB => {
-                    if(numberPlayers == 1){
-                        DB.collection('games').doc(name).set({ name: name, myTurn: true});
-                    }else{
-                        DB.collection('games').doc(name).set({ name: name, myTurn: false});
+                    if (numberPlayers < 1) {
+                        DB.collection('games').doc(name).set({ name: name, myTurn: true });
+                    } else {
+                        DB.collection('games').doc(name).set({ name: name, myTurn: false });
                     }
-                    
+
                     document.getElementById('players').innerHTML += name
                 })
 
@@ -107,59 +107,95 @@
             document.getElementById('gameData').style.visibility = 'visible';
 
         }
+
+        // onsubmit to add the letters to the ongoing word
         function startGame(e) {
             e.preventDefault();
             let letter = document.getElementById('letter').value
             console.log("submitted letter: " + letter);
 
-            
+
             DB.collection('games').doc("word").get().then(elementDB => {
                 let currentWord = elementDB.data().letter + letter
-            
+
                 DB.collection('games').doc("word").set({ letter: currentWord });
                 console.log("database word: " + elementDB.data().letter)
 
             })
-            
+
+            // DB.collection('games').doc(name).update({ myTurn: false });
+
+            changeTurn()
         }
 
+        // displays the word as letters are entered in
         DB.collection('games').doc("word").onSnapshot(elementDB => {
-                let displayWord = elementDB.data().letter
-                console.log(displayWord)
-                document.getElementById('word').innerText = `Word: ${displayWord}`;
+            let displayWord = elementDB.data().letter
+            console.log(displayWord)
+            document.getElementById('word').innerText = `Word: ${displayWord}`;
+
+        })
+
+        document.getElementById("resetButton").addEventListener("click", e => {
+            DB.collection("games").doc("numberPlayers").set({ submissions: 0 })
+            DB.collection("games").doc("word").set({ letter: "" })
+
+            /*DB.collection("games").get().then(function(querySnapshot) {
+                 querySnapshot.forEach(function(doc) {
+                     if(doc.value == "numberPlayers" || doc.value == "word"){
+                         console.log(doc.value)
+                     }else{
+                         //doc.ref.delete();
+                         console.log(doc.value) 
+                     }
+                     
+                 })
+             })*/
+
+        })
+
+
+        // deletes the submit button and changes the placeholder when it isn't your turn so you don't enter a letter
+        function changeTurn() {
+            DB.collection('games').doc(name).onSnapshot(wordDB => {
+
+                if (nameDB.data().myTurn == false) {
+                    console.log(name + "false")
+                    document.getElementById("submit").style.visibility = "hidden";
+                    document.getElementById("letter").placeholder = "Wait for your turn";
+                    DB.collection('games').doc(name).update({ myTurn: true });
+                } else {
+                    console.log(name + "true")
+                    document.getElementById("submit").style.visibility = "visible";
+                    document.getElementById("letter").placeholder = "enter your letter"
+                    DB.collection('games').doc(name).update({ myTurn: false });
+
+                }
 
             })
+            DB.collection('games').doc("word").onSnapshot(wordDB => {
 
-       document.getElementById("resetButton").addEventListener("click", e=>{
-           DB.collection("games").doc("numberPlayers").set({submissions: 0})
-           DB.collection("games").doc("word").set({letter: ""})
-           
-           /*DB.collection("games").get().then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                    if(doc.value == "numberPlayers" || doc.value == "word"){
-                        console.log(doc.value)
-                    }else{
-                        //doc.ref.delete();
-                        console.log(doc.value) 
-                    }
-                    
-                })
-            })*/
-               
-        })
+                if (nameDB.data().myTurn == false) {
+                    DB.collection('games').doc(name).update({ myTurn: true });
+                } else {
+                    DB.collection('games').doc(name).update({ myTurn: false });
 
-        DB.collection('games').doc(name).onSnapshot(elementDB => {
-            if(elementDB.data().myTurn == false){
-                document.getElementById("submit").style.visibility = "hidden";
-                document.getElementById("letter").placeholder = "Wait for your turn"
-            }else{
-                document.getElementById("submit").style.visibility = "visible";
-                document.getElementById("letter").placeholder = "enter your letter"
-            }
+                }
 
-        })
-            
-        
+            })
+        }
+
+        /* function changeTurn(){
+             let myTurn
+
+             DB.collection('games').doc(name).get().then(turnChange=>{
+                 myTurn = turnChange.data().myTurn
+                 console.log(myTurn)
+             })
+
+         } */
+
+
     </script>
 
 
