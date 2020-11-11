@@ -138,13 +138,15 @@
             try{
                 DB.collection('games').doc(name).onSnapshot(nameDB => {
                     console.log(nameDB.data().myTurn)
+                    myTurn = nameDB.data().myTurn
+                    console.log(myTurn)
 
-                    if (nameDB.data().myTurn == true) {
+                    if (myTurn == "true") {
                         console.log(name + ": true")
                         document.getElementById("submit").style.visibility = "visible";
                         document.getElementById("letter").placeholder = "enter your letter";
                     } 
-                    if (nameDB.data().myTurn == false) {
+                    if (myTurn == "false") {
                         console.log(name + ": false")
                         document.getElementById("submit").style.visibility = "hidden";
                         document.getElementById("letter").placeholder = "Wait for your turn";
