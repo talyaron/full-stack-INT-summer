@@ -39,6 +39,9 @@
 
     <input type="submit" value="Submit">
   </form>
+
+  <button id='setGameNumber' onclick="setGameNumber(event)">Set Game Number</button>
+
   <h2>Game Number: <span id='gameNumber'></span></h2>
   <form onsubmit='getGameNumber(event)' id='enterGameNumber'>
 
@@ -79,8 +82,7 @@
           .then(() => {
             console.log('user recorded');
             document.getElementById('username').style.display = 'none';
-            gameNumber = uniqueNumber();
-            document.getElementById('gameNumber').innerText = gameNumber;
+
           }).catch(e => { console.error(e) })
       } catch (e) {
         console.error(e)
@@ -90,7 +92,7 @@
     function sendLetter(e) {
       e.preventDefault()
       if (e.target.children.letter.value.length == 1) {
- 
+
         letter = e.target.children.letter.value;
 
         document.getElementById('theLetter').innerText = letter;
@@ -132,6 +134,12 @@
 
     })
 
+    function setGameNumber() {
+      gameNumber = uniqueNumber();
+      document.getElementById('gameNumber').innerText = gameNumber;
+      document.getElementById('setGameNumber').style.display = 'none'
+    }
+
 
 
 
@@ -144,15 +152,15 @@
       return userUID;
     }
 
-function getGameNumber(e){
-  e.preventDefault();
-  
-  gameNumber = e.target.children.gameNumber.valueAsNumber;
+    function getGameNumber(e) {
+      e.preventDefault();
 
-  document.getElementById('enterGameNumber').style.display = 'none';
-  document.getElementById('gameNumber').innerText = gameNumber;
-  
-}
+      gameNumber = e.target.children.gameNumber.valueAsNumber;
+
+      document.getElementById('enterGameNumber').style.display = 'none';
+      document.getElementById('gameNumber').innerText = gameNumber;
+
+    }
 
 
     function uniqueNumber() {
