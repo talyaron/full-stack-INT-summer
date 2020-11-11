@@ -146,7 +146,9 @@
                         document.getElementById("submit").style.visibility = "hidden";
                         document.getElementById("letter").placeholder = "wait for your turn";
                         DB.collection("games").doc(name).update({myTurn: false});
-                    } 
+                    } else{
+                        console.log("fbsiviwviwviviw")
+                    }
                     if (myTurn == "false") {
                         console.log(name + ": false")
                         document.getElementById("submit").style.visibility = "visible";
