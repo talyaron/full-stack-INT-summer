@@ -157,7 +157,7 @@
 
         // deletes the submit button and changes the placeholder when it isn't your turn so you don't enter a letter
         function changeTurn() {
-            DB.collection('games').doc(name).onSnapshot(elementDB => {
+            DB.collection('games').doc("word").onSnapshot(elementDB => {
 
                 if (elementDB.data().myTurn == false) {
                     console.log(name + "false")
