@@ -136,7 +136,7 @@
             document.getElementById('word').innerText = `Word: ${displayWord}`;
             
             try{
-                DB.collection('games').doc(name).onSnapshot(nameDB => {
+                DB.collection('games').doc(name).get().then(nameDB => {
                     console.log(nameDB.data().myTurn)
                     myTurn = nameDB.data().myTurn
                     console.log(myTurn)
