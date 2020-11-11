@@ -89,6 +89,13 @@
       }
     }
 
+    function listenToGame(){
+      gameNumber = gameNumber.toString();
+      DB.collection('lettersgame').doc(gameNumber).onSnapshot(gameDB=>{
+        console.log(gameDB.data())
+      })
+    }
+
     function sendLetter(e) {
       e.preventDefault()
       if (e.target.children.letter.value.length == 1) {
@@ -96,18 +103,22 @@
         letter = e.target.children.letter.value;
 
         document.getElementById('theLetter').innerText = letter;
-
+        gameNumber = gameNumber.toString();
         DB.collection('lettersgame').doc(gameNumber).get().then(lettersDB => {
 
-          //switch turn
-          if (lettersDB.data().counter == 0) {
-            DB.collection('lettersgame').doc(gameNumber).update({
-              counter: 1
-            })
+          if (!lettersDB.exists) {
+            DB.collection('lettersgame').doc(gameNumber).set({ counter: 0 })
           } else {
-            DB.collection('lettersgame').doc(gameNumber).update({
-              counter: 0
-            })
+            //switch turn
+            if (lettersDB.data().counter == 0) {
+              DB.collection('lettersgame').doc(gameNumber).update({
+                counter: 1
+              })
+            } else {
+              DB.collection('lettersgame').doc(gameNumber).update({
+                counter: 0
+              })
+            }
 
 
             gameString = lettersDB.data().gameWord;
@@ -134,11 +145,7 @@
 
     })
 
-    function setGameNumber() {
-      gameNumber = uniqueNumber();
-      document.getElementById('gameNumber').innerText = gameNumber;
-      document.getElementById('setGameNumber').style.display = 'none'
-    }
+
 
 
 
@@ -158,8 +165,17 @@
       gameNumber = e.target.children.gameNumber.valueAsNumber;
 
       document.getElementById('enterGameNumber').style.display = 'none';
+      document.getElementById('setGameNumber').style.display = 'none';
       document.getElementById('gameNumber').innerText = gameNumber;
+      listenToGame()
+    }
 
+    function setGameNumber() {
+      gameNumber = uniqueNumber();
+      document.getElementById('gameNumber').innerText = gameNumber;
+      document.getElementById('setGameNumber').style.display = 'none';
+      document.getElementById('enterGameNumber').style.display = 'none';
+      listenToGame()
     }
 
 
