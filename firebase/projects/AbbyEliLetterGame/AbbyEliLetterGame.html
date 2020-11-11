@@ -89,6 +89,8 @@
                         DB.collection('games').doc(name).set({ name: name, myTurn: true });
                     } else {
                         DB.collection('games').doc(name).set({ name: name, myTurn: false });
+                        document.getElementById("submit").style.visibility = "hidden";
+                        document.getElementById("letter").placeholder = "Wait for your turn";
                     }
 
                     document.getElementById('players').innerHTML += name
@@ -165,12 +167,12 @@
                         console.log(name + "false")
                         document.getElementById("submit").style.visibility = "hidden";
                         document.getElementById("letter").placeholder = "Wait for your turn";
-                        DB.collection('games').doc(name).update({ myTurn: true });
+                        //DB.collection('games').doc(name).update({ myTurn: true });
                     } else {
                         console.log(name + "true")
                         document.getElementById("submit").style.visibility = "visible";
-                        document.getElementById("letter").placeholder = "enter your letter"
-                        DB.collection('games').doc(name).update({ myTurn: false });
+                        document.getElementById("letter").placeholder = "enter your letter";
+                        //DB.collection('games').doc(name).update({ myTurn: false });
                     }
                 })
 
