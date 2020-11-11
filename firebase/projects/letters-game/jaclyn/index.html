@@ -204,7 +204,7 @@
         document.getElementById('enterGameNumber').style.display = 'none';
         document.getElementById('setGameNumber').style.display = 'none';
         document.getElementById('gameNumber').innerText = gameNumber;
-        setPlayerNumber()
+        setToDBGame()
       }
     }
 
@@ -216,8 +216,16 @@
         document.getElementById('gameNumber').innerText = gameNumber;
         document.getElementById('setGameNumber').style.display = 'none';
         document.getElementById('enterGameNumber').style.display = 'none';
-        setPlayerNumber()
+        setToDBGame()
       }
+    }
+
+    function setToDBGame(){
+      gameNumber = gameNumber.toString();
+      DB.collection('lettersgame').doc(gameNumber).set({game:true})
+      .then(()=>{
+        setPlayerNumber()
+      })
     }
 
 
