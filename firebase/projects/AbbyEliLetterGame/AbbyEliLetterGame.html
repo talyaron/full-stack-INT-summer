@@ -143,13 +143,15 @@
 
                     if (myTurn == "true") {
                         console.log(name + ": true")
-                        document.getElementById("submit").style.visibility = "visible";
-                        document.getElementById("letter").placeholder = "enter your letter";
+                        document.getElementById("submit").style.visibility = "hidden";
+                        document.getElementById("letter").placeholder = "wait for your turn";
+                        DB.collection("games").doc(name).update({myTurn: false});
                     } 
                     if (myTurn == "false") {
                         console.log(name + ": false")
-                        document.getElementById("submit").style.visibility = "hidden";
-                        document.getElementById("letter").placeholder = "Wait for your turn";
+                        document.getElementById("submit").style.visibility = "visible";
+                        document.getElementById("letter").placeholder = "enter your letter";
+                        DB.collection("games").doc(name).update({myTurn: true});
                     }
                 })
             }catch{
