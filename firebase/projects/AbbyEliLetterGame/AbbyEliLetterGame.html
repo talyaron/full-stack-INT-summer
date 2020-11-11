@@ -113,6 +113,16 @@
         // onsubmit to add the letters to the ongoing word
         function startGame(e) {
             e.preventDefault();
+
+            DB.collection('games').doc(name).get().then(turnsDB=>{
+                if (turnsDB.data().myTurn == true){
+                    DB.collection('games').doc(name).update({ myTurn: false });
+                }
+                if (turnsDB.data().myTurn == false){
+                    DB.collection('games').doc(name).update({ myTurn: true });
+                }
+            })
+
             let letter = document.getElementById('letter').value
             console.log("submitted letter: " + letter);
 
@@ -125,14 +135,7 @@
 
             })
 
-            DB.collection('games').doc(name).get().then(turnsDB=>{
-                if (turnsDB.data().myTurn == true){
-                    DB.collection('games').doc(name).update({ myTurn: false });
-                }
-                if (turnsDB.data().myTurn == false){
-                    DB.collection('games').doc(name).update({ myTurn: true });
-                }
-            })
+            
 
             //changeTurn()
         }
