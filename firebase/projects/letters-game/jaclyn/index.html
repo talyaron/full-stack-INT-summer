@@ -89,17 +89,18 @@
       }
     }
 
-    function listenToGame(){
+    function listenToGame() {
       gameNumber = gameNumber.toString();
-      DB.collection('lettersgame').doc(gameNumber).onSnapshot(gameDB=>{
+      DB.collection('lettersgame').doc(gameNumber).onSnapshot(gameDB => {
         console.log(gameDB.data())
+        let gameData = gameDB.data();
 
-      if ('users' == 0) {
-        DB.collection('users').doc(gameNumber).set({user : player one})
-      } else {
-        DB.collection('users').doc(gameNumber).set({user : player two})
-      }
-    })
+        if ('player1' in  gameData) {
+          DB.collection('lettersgame').doc(gameNumber).set({ player2:name })
+        } else {
+          DB.collection('users').doc(gameNumber).set({ player1:name })
+        }
+      })
     }
 
     function sendLetter(e) {
