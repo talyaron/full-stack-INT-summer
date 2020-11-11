@@ -170,12 +170,12 @@
       }
       // sendTheLetter()
     }
-    // DB.collection('users').onSnapshot(lettersgameDB => {
-    //   lettersgameDB.forEach(letterGameDB => {
-    //     console.log(letterGameDB.data())
-    //   })
+    DB.collection('users').onSnapshot(lettersgameDB => {
+      lettersgameDB.forEach(letterGameDB => {
+        console.log(letterGameDB.data())
+      })
 
-    // })
+    })
 
 
 
