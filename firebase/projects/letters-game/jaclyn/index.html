@@ -97,22 +97,22 @@
       if (name == '') {
         alert('please submit your name')
       } else {
-        console.log('listenToGame')
+      
         gameNumber = gameNumber.toString();
         DB.collection('lettersgame').doc(gameNumber).get().then(gameDB => {
           console.log(gameDB.data())
           let gameData = gameDB.data();
           console.log(gameData)
-          if (!('player1' in gameData) && !('player2' in gameData)) {
-            console.log('p1', gameNumber)
+          if (!('player1' in gameData)) {
+          
             DB.collection('lettersgame').doc(gameNumber)
               .update({ player1: name })
               .then(() => { document.getElementById('playerNumber').innerText = `You are player number 1` })
               .catch(e => {
                 console.error(e)
               })
-          } else if (!('player2' in gameData)) {
-            console.log('p', gameNumber)
+          } else if ('player1' in gameData) {
+            console.log('p2', gameNumber)
 
             DB.collection('lettersgame').doc(gameNumber)
               .update({ player2: name })
