@@ -67,11 +67,11 @@
     let letter = '';
     let gameString = '';
     let gameNumber = false;
-
+    let name = '';
     function sendName(e) {
       try {
         e.preventDefault();
-        const name = e.target.children.name.value;
+        name = e.target.children.name.value;
 
 
         DB.collection('users').doc(uid).set({
