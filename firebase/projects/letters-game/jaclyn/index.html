@@ -13,8 +13,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
 
 
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
+
 
   <script>
     // Your web app's Firebase configuration
@@ -35,8 +34,14 @@
 </head>
 
 <body>
-  <form onsubmit='sendMessage(event)' id='username'>
+  <form onsubmit='sendName(event)' id='username'>
     <input type="text" name='name' placeholder="name" />
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <form onsubmit='sendLetter(event)' id='letter'>
+
     <input type="text" name='letter' placeholder="letter" />
     <input type="submit" value="Submit">
   </form>
@@ -45,19 +50,38 @@
 
 
   <script>
-    let name = '';
+
     function createUid() {
       return Date.now().toString(36) + Math.random().toString(36).substr(2);
     }
-    const uid = createUid()
+    const uid = getUserUID();
     let letter = '';
     let gameString = '';
 
+    function sendName(e) {
+      try {
+        e.preventDefault();
+        const name = e.target.children.name.value;
+
+
+        DB.collection('users').doc(uid).set({
+          name: name,
+          id: uid,
+          
+        })
+          .then(() => { 
+            console.log('user recorded');
+            document.getElementById('username').style.display = 'none';
+             }).catch(e => { console.error(e) })
+      } catch (e) {
+        console.error(e)
+      }
+    }
 
     function sendMessage(e) {
       e.preventDefault()
       if (e.target.children.letter.value.length == 1) {
-        name = e.target.children.name.value;
+
 
         document.getElementById('nameOfUser').innerText = name;
 
@@ -65,11 +89,13 @@
         letter = e.target.children.letter.value;
 
         document.getElementById('theLetter').innerText = letter;
-        document.getElementById('username').style.display = 'none';
-        sendName()
+       
+
+       
 
         DB.collection('lettersgame').doc('X318ot4FmYNWXamjFrLy').get().then(lettersDB => {
 
+          //switch turn
           if (lettersDB.data().counter == 0) {
             DB.collection('lettersgame').doc('X318ot4FmYNWXamjFrLy').update({
               counter: 1
@@ -78,6 +104,8 @@
             DB.collection('lettersgame').doc('X318ot4FmYNWXamjFrLy').update({
               counter: 0
             })
+
+
             gameString = lettersDB.data().gameWord;
             gameString += letter
             DB.collection('lettersgame').doc('X318ot4FmYNWXamjFrLy').update({
@@ -99,35 +127,22 @@
       lettersgameDB.forEach(letterGameDB => {
         console.log(letterGameDB.data())
       })
-      
+
     })
 
-    function sendName() {
-      try {
-        DB.collection('users').add({
-          name: name,
-          id: uid,
-          score: 0,
-          letter: letter
-        })
-          .then(() => { console.log('user recorded') }).catch(e => { console.error(e) })
-      } catch (e) {
-        console.error(e)
-      }
-    }
 
 
 
     function getUserUID() {
       let userUID = localStorage.getItem('userUID');
       if (userUID === null) {
-        userUID = uid();
+        userUID = createUid();
         localStorage.setItem('userUID', userUID);
       }
       return userUID;
     }
 
-    
+
 
 
   </script>
