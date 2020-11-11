@@ -127,7 +127,7 @@
 
             // DB.collection('games').doc(name).update({ myTurn: false });
 
-            changeTurn()
+            //changeTurn()
         }
 
         // displays the word as letters are entered in
@@ -136,8 +136,26 @@
             console.log(displayWord)
             document.getElementById('word').innerText = `Word: ${displayWord}`;
 
+            DB.collection('games').doc(name).get().then(nameDB => {
+                console.log(nameDB.data().myTurn)
+
+                if (nameDB.data().myTurn == false) {
+                    console.log(name + "false")
+                    document.getElementById("submit").style.visibility = "hidden";
+                    document.getElementById("letter").placeholder = "Wait for your turn";
+                    DB.collection('games').doc(name).update({ myTurn: true });
+                } else {
+                    console.log(name + "true")
+                    document.getElementById("submit").style.visibility = "visible";
+                    document.getElementById("letter").placeholder = "enter your letter";
+                    DB.collection('games').doc(name).update({ myTurn: false });
+                }
+            })
+
         })
 
+
+        // button to reset database that doesnt work yet
         document.getElementById("resetButton").addEventListener("click", e => {
             DB.collection("games").doc("numberPlayers").set({ submissions: 0 })
             DB.collection("games").doc("word").set({ letter: "" })
@@ -158,7 +176,7 @@
 
 
         // deletes the submit button and changes the placeholder when it isn't your turn so you don't enter a letter
-        function changeTurn() {
+        /*function changeTurn() {
             DB.collection('games').doc("word").onSnapshot(wordDB => {
 
                 DB.collection('games').doc(name).get().then(nameDB => {
@@ -167,17 +185,17 @@
                         console.log(name + "false")
                         document.getElementById("submit").style.visibility = "hidden";
                         document.getElementById("letter").placeholder = "Wait for your turn";
-                        //DB.collection('games').doc(name).update({ myTurn: true });
+                        DB.collection('games').doc(name).update({ myTurn: true });
                     } else {
                         console.log(name + "true")
                         document.getElementById("submit").style.visibility = "visible";
                         document.getElementById("letter").placeholder = "enter your letter";
-                        //DB.collection('games').doc(name).update({ myTurn: false });
+                        DB.collection('games').doc(name).update({ myTurn: false });
                     }
                 })
 
             })
-        }
+        }*/
 
         /* function changeTurn(){
              let myTurn
