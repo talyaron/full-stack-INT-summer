@@ -137,21 +137,15 @@
             
             try{
                 DB.collection('games').doc(name).get().then(nameDB => {
-                    console.log("qwertyuiop")
-                    console.log(nameDB.data().myTurn)
                     myTurn = nameDB.data().myTurn
                     console.log(myTurn)
 
                     if (myTurn.toString() == "true") {
-                        console.log(name + ": true")
                         document.getElementById("submit").style.visibility = "hidden";
                         document.getElementById("letter").placeholder = "wait for your turn";
                         DB.collection("games").doc(name).update({myTurn: false});
-                    } else{
-                        console.log("fbsiviwviwviviw")
                     }
                     if (myTurn.toString() == "false") {
-                        console.log(name + ": false")
                         document.getElementById("submit").style.visibility = "visible";
                         document.getElementById("letter").placeholder = "enter your letter";
                         DB.collection("games").doc(name).update({myTurn: true});
