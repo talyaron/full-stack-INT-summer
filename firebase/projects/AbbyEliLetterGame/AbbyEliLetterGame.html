@@ -134,7 +134,7 @@
            DB.collection("games").doc("numberPlayers").set({submissions: 0})
            DB.collection("games").doc("word").set({letter: ""})
            
-           DB.collection("games").get().then(function(querySnapshot) {
+           /*DB.collection("games").get().then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
                     if(doc.value == "numberPlayers" || doc.value == "word"){
                         console.log(doc.value)
@@ -144,8 +144,19 @@
                     }
                     
                 })
-            })
+            })*/
                
+        })
+
+        DB.collection('games').doc(name).onSnapshot(elementDB => {
+            if(elementDB.data().myTurn == false){
+                document.getElementById("submit").style.visibility = "hidden";
+                document.getElementById("letter").placeholder = "Wait for your turn"
+            }else{
+                document.getElementById("submit").style.visibility = "visible";
+                document.getElementById("letter").placeholder = "enter your letter"
+            }
+
         })
             
         
