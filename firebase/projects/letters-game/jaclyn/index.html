@@ -49,6 +49,8 @@
     <input type="submit" value="Submit">
   </form>
 
+  <h2 id='playerNumber'></h2>
+
   <form onsubmit='sendLetter(event)' id='letter'>
 
     <input type="text" name='letter' placeholder="letter" />
@@ -68,6 +70,7 @@
     let gameString = '';
     let gameNumber = false;
     let name = '';
+
     function sendName(e) {
       try {
         e.preventDefault();
@@ -89,18 +92,38 @@
       }
     }
 
-    function listenToGame() {
-      gameNumber = gameNumber.toString();
-      DB.collection('lettersgame').doc(gameNumber).onSnapshot(gameDB => {
-        console.log(gameDB.data())
-        let gameData = gameDB.data();
+    function setPlayerNumber() {
 
-        if ('player1' in  gameData) {
-          DB.collection('lettersgame').doc(gameNumber).set({ player2:name })
-        } else {
-          DB.collection('users').doc(gameNumber).set({ player1:name })
-        }
-      })
+      if (name == '') {
+        alert('please submit your name')
+      } else {
+        console.log('listenToGame')
+        gameNumber = gameNumber.toString();
+        DB.collection('lettersgame').doc(gameNumber).get().then(gameDB => {
+          console.log(gameDB.data())
+          let gameData = gameDB.data();
+          console.log(gameData)
+          if ('player1' in gameData) {
+            console.log('p1', gameNumber)
+            DB.collection('lettersgame').doc(gameNumber)
+              .update({ player2: name })
+              .then(() => {document.getElementById('playerNumber').innerText = `You are player number 1` })
+              .catch(e => {
+                console.error(e)
+              })
+          } else {
+            console.log('p1', gameNumber)
+
+            DB.collection('lettersgame').doc(gameNumber)
+              .update({ player1: name })
+              .then(() => { document.getElementById('playerNumber').innerText = `You are player number 2` })
+              .catch(e => {
+                console.error(e)
+              })
+          }
+        })
+
+      }
     }
 
     function sendLetter(e) {
@@ -167,22 +190,32 @@
     }
 
     function getGameNumber(e) {
+
       e.preventDefault();
 
-      gameNumber = e.target.children.gameNumber.valueAsNumber;
+      if (name == '') {
+        alert('please submit your name')
+      } else {
 
-      document.getElementById('enterGameNumber').style.display = 'none';
-      document.getElementById('setGameNumber').style.display = 'none';
-      document.getElementById('gameNumber').innerText = gameNumber;
-      listenToGame()
+        gameNumber = e.target.children.gameNumber.valueAsNumber;
+
+        document.getElementById('enterGameNumber').style.display = 'none';
+        document.getElementById('setGameNumber').style.display = 'none';
+        document.getElementById('gameNumber').innerText = gameNumber;
+        setPlayerNumber()
+      }
     }
 
     function setGameNumber() {
-      gameNumber = uniqueNumber();
-      document.getElementById('gameNumber').innerText = gameNumber;
-      document.getElementById('setGameNumber').style.display = 'none';
-      document.getElementById('enterGameNumber').style.display = 'none';
-      listenToGame()
+      if (name == '') {
+        alert('please submit your name')
+      } else {
+        gameNumber = uniqueNumber();
+        document.getElementById('gameNumber').innerText = gameNumber;
+        document.getElementById('setGameNumber').style.display = 'none';
+        document.getElementById('enterGameNumber').style.display = 'none';
+        setPlayerNumber()
+      }
     }
 
 
