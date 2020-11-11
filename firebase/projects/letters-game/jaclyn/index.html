@@ -67,11 +67,11 @@
     let letter = '';
     let gameString = '';
     let gameNumber = false;
-
+    let name = '';
     function sendName(e) {
       try {
         e.preventDefault();
-        const name = e.target.children.name.value;
+        name = e.target.children.name.value;
 
 
         DB.collection('users').doc(uid).set({
@@ -89,10 +89,17 @@
       }
     }
 
-    function listenToGame(){
+    function listenToGame() {
       gameNumber = gameNumber.toString();
-      DB.collection('lettersgame').doc(gameNumber).onSnapshot(gameDB=>{
+      DB.collection('lettersgame').doc(gameNumber).onSnapshot(gameDB => {
         console.log(gameDB.data())
+        let gameData = gameDB.data();
+
+        if ('player1' in  gameData) {
+          DB.collection('lettersgame').doc(gameNumber).set({ player2:name })
+        } else {
+          DB.collection('users').doc(gameNumber).set({ player1:name })
+        }
       })
     }
 
