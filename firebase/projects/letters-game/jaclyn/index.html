@@ -93,7 +93,13 @@
       gameNumber = gameNumber.toString();
       DB.collection('lettersgame').doc(gameNumber).onSnapshot(gameDB=>{
         console.log(gameDB.data())
-      })
+
+      if ('users' == 0) {
+        DB.collection('users').doc(gameNumber).set({user : player one})
+      } else {
+        DB.collection('users').doc(gameNumber).set({user : player two})
+      }
+    })
     }
 
     function sendLetter(e) {
