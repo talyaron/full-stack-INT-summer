@@ -157,19 +157,22 @@
 
         // deletes the submit button and changes the placeholder when it isn't your turn so you don't enter a letter
         function changeTurn() {
-            DB.collection('games').doc("word").onSnapshot(elementDB => {
+            DB.collection('games').doc("word").onSnapshot(wordDB => {
 
-                if (elementDB.data().myTurn == false) {
-                    console.log(name + "false")
-                    document.getElementById("submit").style.visibility = "hidden";
-                    document.getElementById("letter").placeholder = "Wait for your turn";
-                    DB.collection('games').doc(name).update({ myTurn: true });
-                } else {
-                    console.log(name + "true")
-                    document.getElementById("submit").style.visibility = "visible";
-                    document.getElementById("letter").placeholder = "enter your letter"
-                    DB.collection('games').doc(name).update({ myTurn: false });
-                }
+                DB.collection('games').doc(name).get().then(nameDB => {
+
+                    if (nameDB.data().myTurn == false) {
+                        console.log(name + "false")
+                        document.getElementById("submit").style.visibility = "hidden";
+                        document.getElementById("letter").placeholder = "Wait for your turn";
+                        DB.collection('games').doc(name).update({ myTurn: true });
+                    } else {
+                        console.log(name + "true")
+                        document.getElementById("submit").style.visibility = "visible";
+                        document.getElementById("letter").placeholder = "enter your letter"
+                        DB.collection('games').doc(name).update({ myTurn: false });
+                    }
+                })
 
             })
         }
