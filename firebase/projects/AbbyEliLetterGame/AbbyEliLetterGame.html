@@ -103,7 +103,7 @@
 
             document.getElementById("form").innerHTML = `
             <form id="inputForm" onsubmit="startGame(event)">
-                <input type="text" id="letter" placeholder="enter your letter" />
+                <input type="text" id="letter" maxlength="1" placeholder="enter your letter" />
                 <input type="submit" id="submit" value="submit!" />
             </form>`
             document.getElementById('gameData').style.visibility = 'visible';
@@ -161,8 +161,15 @@
 
         // button to reset database that doesnt work yet
         document.getElementById("resetButton").addEventListener("click", e => {
-            DB.collection("games").doc("numberPlayers").set({ submissions: 0 })
-            DB.collection("games").doc("word").set({ letter: "" })
+            DB.collection("games").get().then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                  doc.ref.delete();
+                })
+                DB.collection("games").doc("numberPlayers").set({ submissions: 0 })
+                DB.collection("games").doc("word").set({ letter: "" }) 
+            })
+
+            
 
         })
 
