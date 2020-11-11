@@ -85,7 +85,7 @@
                 DB.collection('games').doc('numberPlayers').set({ submissions: submissionsVar });
 
                 DB.collection('games').doc(name).get().then(elementDB => {
-                    if(numberPlayers == 1){
+                    if(numberPlayers < 1){
                         DB.collection('games').doc(name).set({ name: name, myTurn: true});
                     }else{
                         DB.collection('games').doc(name).set({ name: name, myTurn: false});
@@ -107,6 +107,7 @@
             document.getElementById('gameData').style.visibility = 'visible';
 
         }
+
         function startGame(e) {
             e.preventDefault();
             let letter = document.getElementById('letter').value
@@ -120,7 +121,10 @@
                 console.log("database word: " + elementDB.data().letter)
 
             })
-            
+
+            DB.collection('games').doc(name).update({ myTurn: false });
+
+            changeTurn()
         }
 
         DB.collection('games').doc("word").onSnapshot(elementDB => {
@@ -148,16 +152,33 @@
                
         })
 
-        DB.collection('games').doc(name).onSnapshot(elementDB => {
+
+        
+       function changeTurn() {
+DB.collection('games').doc(name).onSnapshot(elementDB => {
+            
             if(elementDB.data().myTurn == false){
+                console.log(name + "false")
                 document.getElementById("submit").style.visibility = "hidden";
-                document.getElementById("letter").placeholder = "Wait for your turn"
+                document.getElementById("letter").placeholder = "Wait for your turn";
             }else{
+                console.log(name + "true")
                 document.getElementById("submit").style.visibility = "visible";
                 document.getElementById("letter").placeholder = "enter your letter"
-            }
+            }            
 
         })
+       } 
+        
+       /* function changeTurn(){
+            let myTurn
+
+            DB.collection('games').doc(name).get().then(turnChange=>{
+                myTurn = turnChange.data().myTurn
+                console.log(myTurn)
+            })
+
+        } */
             
         
     </script>
