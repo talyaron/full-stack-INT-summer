@@ -45,7 +45,7 @@
   <h2>Game Number: <span id='gameNumber'></span></h2>
   <form onsubmit='getGameNumber(event)' id='enterGameNumber'>
 
-    <input type="number" name='gameNumber' placeholder="game number" />
+    <input type="text" name='gameNumber' placeholder="game number" />
     <input type="submit" value="Submit">
   </form>
 
@@ -100,10 +100,11 @@
       
         gameNumber = gameNumber.toString();
         DB.collection('lettersgame').doc(gameNumber).get().then(gameDB => {
-          console.log(gameDB.data())
+          console.log(JSON.stringify(gameDB.data()))
           let gameData = gameDB.data();
           console.log(gameData)
-          if (!('player1' in gameData)) {
+          console.log({}.hasOwnProperty.call(gameData, 'player1'))
+          if (!({}.hasOwnProperty.call(gameData, 'player1') )) {
           
             DB.collection('lettersgame').doc(gameNumber)
               .update({ player1: name })
@@ -111,7 +112,7 @@
               .catch(e => {
                 console.error(e)
               })
-          } else if ('player1' in gameData) {
+          } else if ({}.hasOwnProperty.call(gameData, 'player1')) {
             console.log('p2', gameNumber)
 
             DB.collection('lettersgame').doc(gameNumber)
@@ -199,7 +200,7 @@
         alert('please submit your name')
       } else {
 
-        gameNumber = e.target.children.gameNumber.valueAsNumber;
+        gameNumber = e.target.children.gameNumber.value;
 
         document.getElementById('enterGameNumber').style.display = 'none';
         document.getElementById('setGameNumber').style.display = 'none';
@@ -212,7 +213,7 @@
       if (name == '') {
         alert('please submit your name')
       } else {
-        gameNumber = uniqueNumber();
+        gameNumber = prompt('set game id');
         document.getElementById('gameNumber').innerText = gameNumber;
         document.getElementById('setGameNumber').style.display = 'none';
         document.getElementById('enterGameNumber').style.display = 'none';
