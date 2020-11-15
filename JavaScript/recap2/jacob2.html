@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id='form'>
+        <input type=text placeholder='Input birth year' name='yearInput' />
+        <input type='submit' name='submit' />
+    </form>
+    <br/>
+    <div id='div'></div>
+    <script>
+        const form = document.getElementById('form')
+        const div = document.getElementById('div')
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            console.log(e)
+            year = e.target.children.yearInput.value
+            console.log(year)
+            div.innerText = `You are ${ageCaculator(year)} years old.`
+            if (year > 2020){
+                div.innerText = "You haven't even been born yet."
+            }
+            if (year==2019){
+                div.innerText = 'You are 1 year old.'
+                //make grammatically correct
+            }
+        })
+
+        function ageCaculator(year) {
+            return (2020 - year)
+        }
+    </script>
+</body>
+
+</html>

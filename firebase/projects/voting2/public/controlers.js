@@ -6,15 +6,19 @@ firebase.auth().onAuthStateChanged(user => {
     console.log(user)
     userUID = user.uid;
     userName = user.displayName;
+<<<<<<< Updated upstream
     if(user){
         document.getElementById('googleLogin').style.display = 'none'
     }
     
+=======
+
+>>>>>>> Stashed changes
 });
 
 function getUniqueIdForUser() {
     const provider = new firebase.auth.GoogleAuthProvider();
-  
+
     firebase.auth().signInWithRedirect(provider);
 }
 
