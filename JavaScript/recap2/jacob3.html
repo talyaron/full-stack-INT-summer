@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id=div>Press any key.</div>
+    <script>
+
+        let counter = 0
+        let div = document.getElementById('div')
+
+        document.addEventListener('keyup', (e) => {
+            counter += 1
+            div.innerText = `You have pressed ${counter} times.`
+            if (counter == 1) {
+                div.innerText = `You have pressed 1 time.`
+            }
+            if (counter > 99) {
+                div.innerText = `You have pressed ${counter} times...how bored are you?`
+            }
+            if (counter > 199) {
+                div.innerText = `You have pressed ${counter} times...yes you are really bored.`
+            }
+            if (counter > 4999) {
+                div.innerText = `You have pressed ${counter} times...dude you're insane.`
+            }
+        })
+
+    </script>
+
+
+</body>
+
+</html>
