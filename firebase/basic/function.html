@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function myFunction(argument){
+            //do something
+            return //something
+        }
+        function add(a,b){ //invokation
+            return a+b;
+        }
+
+        //invokation
+        const x= add(2,5);
+
+        function writeToTheDom(arg){
+            return `<div class= 'card'><div>${message}</div><p>${sender}</p></div>`
+        }
+
+        //when getting new message from DB
+        writeToTheDom(msgDB.data())
+
+        let y= 55;
+
+        function addToY(addition){
+            y+=addition
+        }
+
+        addToY(9);
+
+        function createObject(a,b,c){
+            return {a,b,c}
+        }
+    </script>
+    
+</body>
+</html>
