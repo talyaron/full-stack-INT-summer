@@ -69,17 +69,12 @@
     // listen to a new tasks on firebase (write them to the console)
     DB.collection('tasks').onSnapshot(tasksDB => {
         todoList = []
-<<<<<<< Updated upstream
-        tasksDB.forEach(taskDB => {
+        tasksDB.forEach(taskDB=>{
             todoList.push(taskDB.data());
-        });
+        })
         console.log(todoList)
-=======
-        tasksDB.forEach(taskDB.data=>
-
         
-        todoList.push(taskDB.data());
->>>>>>> Stashed changes
+        
     })
     
 
