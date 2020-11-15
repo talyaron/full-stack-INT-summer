@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-firestore.js"></script>
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCTV1FMjg-X7xeqCSDwnhm2kSkOLGTvBbE",
+    authDomain: "raz-fb1.firebaseapp.com",
+    databaseURL: "https://raz-fb1.firebaseio.com",
+    projectId: "raz-fb1",
+    storageBucket: "raz-fb1.appspot.com",
+    messagingSenderId: "870975017248",
+    appId: "1:870975017248:web:cabb31e02f8c19d1890745",
+    measurementId: "G-KF9D4DLN2L"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const DB=firebase.firestore(); 
+</script>
+<style>
+    form{
+        position: fixed;
+        bottom:0px;
+        left:0px;
+        width:100px;
+        display: grid;
+        grid-template-columns: auto 100px;
+        height: 40px;
+    }
+
+</style>
+
+</head>
+
+
+<body>
+
+    <form onsubmit="handleSubmit(event)">
+    
+        <input type="text" name="task">
+        <input type="submit" value="Add">
+      
+        
+
+    </form>
+</body>
+<script>
+    // get the input after submit write it to the console.log (input)
+function handleSubmit (e){ e.preventDefault();
+      const task= e.target.elements.task.value;
+    DB.collection('tasks').add({task:task, isDone:false})
+    .then(()=>{console.log('added new task to DB')})
+        .catch(e=>{console.error(e)})
+    }
+    // listen to a new tasks on firebase (write them to the console)
+    DB.collection('tasks').onSnapshot(tasksDB=>{
+        todoList = []
+        tasksDB.forEach(taskDB.data());
+        todoList.push(taskDB.data());
+    })
+    console
+
+</script>
+
+</html>
