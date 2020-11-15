@@ -52,7 +52,12 @@
     // get the input aftet submit, write it to the console.log(input)
     function handleSubmit(e){
         e.preventDefault();
-        console.log(e.target.elements.task.value)
+        const task = e.target.elements.task.value;
+
+        //send the task to firebase
+        DB.collection('tasks').add({task:task, isDone:false})
+        .then(()=>{console.log('added new task to DB')})
+        .catch(e=>{console.error(e)})
     }
 </script>
 </body>
