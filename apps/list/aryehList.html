@@ -8,7 +8,7 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
@@ -38,7 +38,7 @@
 
     </div>
     <form id='formList'>
-        <input type='text' name='item' placeholder="add to list:" />
+        <input type='text' name='todo' placeholder="add to list:" />
         <input type='submit' name='submitList' />
     </form>
 </body>
@@ -50,24 +50,33 @@
         console.log(name)
     })
     document.getElementById('formList').addEventListener('submit', e => {
-        e.preventDefault()
-        console.log(name)
-        DB.collection('list').add({ name: name, item: document.getElementsByName('item')[0].value })
+        try {
+            console.dir(e.target)
+            let todo = e.target.elements.todo.value;
+            e.preventDefault()
+            console.log(name, todo)
+            DB.collection('list').add({ name: name, item:todo })
+        } catch (e) {
+            console.error(e)
+        }
 
     })
-    let html = ''
-    DB.collection('list').onSnapshot(e => {
-        e.forEach(e => {
-            let item = e.data().item
+
+    DB.collection('list').onSnapshot(itemsDB => {
+        let html = ''
+        itemsDB.forEach(itemDB => {
+            let item = itemDB.data().item
+            let itemId = itemDB.id;
             console.log(item)
-            html += `<p id='${item}'>${item}</p><button onclick='changeText(${item})'>B</button><button onclick='clear(${item})'>Done</button><p> ${e.data().name}</p>`
-            
+            html += `<p id='${itemId}'>${item}</p><button onclick='changeText(${item})'>B</button><button onclick='handleDelete("${itemId}")'>Done</button><p> ${itemDB.data().name}</p>`
+
         })
         document.getElementById('list').innerHTML = html
     })
-    function clear(item) {
-        console.log(item)
-        document.getElementById(item).innerHTML = ''
+    function handleDelete(itemId) {
+        console.log(itemId)
+        DB.collection('list').doc(itemId).delete().then(()=>console.log('deleted an item', itemId))
+        document.getElementById(itemId).innerHTML = ''
     }
     function changeText(item) {
         document.getElementById(item).style.color = "blue";
