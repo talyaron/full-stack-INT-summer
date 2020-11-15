@@ -28,46 +28,64 @@
     const DB = firebase.firestore();
 </script>
 <style>
-    form{
+    form {
         position: fixed;
         bottom: 0px;
-        left:0px;
+        left: 0px;
         width: 100%;
         display: grid;
         grid-template-columns: auto 100px;
         height: 40px;
     }
-
-    
 </style>
+
 <body>
 
+    <div id="rootTodoList"></div>
+
     <!-- create here input and submit button (without events at the beggining) -->
-<form onsubmit="handleSubmit(event)">
-    <input type="text" name="task" >
-    <input type='submit' value="Add">
-</form>
+    <form onsubmit="handleSubmit(event)">
+        <input type="text" name="task">
+        <input type='submit' value="Add">
+    </form>
 
-<script>
-    // get the input aftet submit, write it to the console.log(input)
-    function handleSubmit(e){
-        e.preventDefault();
-        const task = e.target.elements.task.value;
 
-        //send the task to firebase
-        DB.collection('tasks').add({task:task, isDone:false})
-        .then(()=>{console.log('added new task to DB')})
-        .catch(e=>{console.error(e)})
-    }
+    <script>
 
-    //listen to new tasks on firebase (write them to the console)
-    DB.collection('tasks').onSnapshot(tasksDB=>{
-        tasksDB.forEach(taskDB=>{
-            console.log(taskDB.data())
+        todoList = []
+        // get the input aftet submit, write it to the console.log(input)
+        function handleSubmit(e) {
+            e.preventDefault();
+            const task = e.target.elements.task.value;
+
+            //send the task to firebase
+            DB.collection('tasks').add({ task: task, isDone: false })
+                .then(() => { console.log('added new task to DB') })
+                .catch(e => { console.error(e) })
+        }
+
+        //listen to new tasks on firebase (write them to the console)
+        DB.collection('tasks').onSnapshot(tasksDB => {
+
+            todoList = []
+            tasksDB.forEach(taskDB => {
+                todoList.push(taskDB.data());
+            })
+            console.log(todoList)
+            //render to the DOM
+            renderToDOM()
         })
-    })
 
-</script>
+        function renderToDOM() {
+            const rootTodoList = document.getElementById('rootTodoList');
+            let html;
+            todoList.forEach(todo => {
+                html += `<p>${todo.task}</p>`
+            })
+            rootTodoList.innerHTML = html
+        }
+
+    </script>
 </body>
 
 </html>
