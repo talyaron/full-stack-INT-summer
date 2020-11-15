@@ -27,8 +27,28 @@
     firebase.initializeApp(firebaseConfig);
     const DB = firebase.firestore();
 </script>
+<style>
+    form{
+        position: fixed;
+        bottom: 0px;
+        left:0px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto 100px;
+        height: 40px;
+    }
 
+    
+</style>
 <body>
+
+    <!-- create here input and submit button (without events at the beggining) -->
+<form>
+    <input type="text" name="task" >
+    <input type='submit' value="Add">
+</form>
+
+</body>
 
 </body>
 
