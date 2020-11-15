@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='div'></div>
+    <form id='groceries'>
+        <input type='text' placeholder='Input grocery' name='groceryName' />
+        <input type='submit' name='submit' />
+    </form>
+    <script>
+        const div = document.getElementById('div')
+        const groceries = document.getElementById('groceries')
+        const todos = [];
+
+        groceries.addEventListener('submit', (e) => {
+            e.preventDefault()
+            console.dir(e)
+            let inputText = e.target[0].value
+            console.log(inputText)
+            todos.push({task:inputText, isDone:false})
+            renderToScreen()
+            groceries.reset()
+        })
+
+        function addGrocery(inputText, index) {
+            return `<p id='p'>${inputText} <span><button onclick="getDone(event)"">Done</button></span> <span><button onclick="getDelete(${index})">Delete</button></span></p>`
+        }
+
+        let p = document.getElementById('p')
+
+        function getDelete(numberInArray) {
+            event.preventDefault()
+            console.log(event)
+            //delete from array
+            todos.splice(numberInArray,1);
+            //print again to screen
+            renderToScreen()
+            
+        }
+
+        function renderToScreen(){
+            let html = '';
+            todos.map((task, index)=>{
+                console.log('task',task)
+                html += addGrocery(task.task, index)
+            })
+
+            console.log(todos)
+            div.innerHTML = html;
+        }
+
+    </script>
+</body>
+
+</html>
