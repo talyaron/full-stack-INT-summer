@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='div'></div>
+    <form id='groceries'>
+        <input type='text' placeholder='Input grocery' name='groceryName' />
+        <input type='submit' name='submit' />
+    </form>
+    <script>
+        const div = document.getElementById('div')
+        const groceries = document.getElementById('groceries')
+
+        groceries.addEventListener('submit', (e) => {
+            e.preventDefault()
+            console.dir(e)
+            let inputText = e.target[0].value
+            console.log(inputText)
+            div.innerHTML += addGrocery(inputText)
+            groceries.reset()
+        })
+
+        function addGrocery(inputText) {
+            return `<p id='p'>${inputText} <span><button onclick="getDone(event)"">Done</button></span> <span><button onclick="getDelete(event)">Delete</button></span></p>`
+        }
+
+        let p = document.getElementById('p')
+
+        function getDelete(event) {
+            event.preventDefault()
+            console.log(event)
+            p.style.display = 'none'
+        }
+
+    </script>
+</body>
+
+</html>
