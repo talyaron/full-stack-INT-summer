@@ -43,13 +43,18 @@
 <body>
 
     <!-- create here input and submit button (without events at the beggining) -->
-<form>
+<form onsubmit="handleSubmit(event)">
     <input type="text" name="task" >
     <input type='submit' value="Add">
 </form>
 
-</body>
-
+<script>
+    // get the input aftet submit, write it to the console.log(input)
+    function handleSubmit(e){
+        e.preventDefault();
+        console.log(e.target.elements.task.value)
+    }
+</script>
 </body>
 
 </html>
