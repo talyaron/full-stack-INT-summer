@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+
+
+
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyC1uGi8tYNH1O1yrIpC6t1900S3jcCA-G0",
+      authDomain: "dictionaryjh-1fa79.firebaseapp.com",
+      databaseURL: "https://dictionaryjh-1fa79.firebaseio.com",
+      projectId: "dictionaryjh-1fa79",
+      storageBucket: "dictionaryjh-1fa79.appspot.com",
+      messagingSenderId: "638425783433",
+      appId: "1:638425783433:web:8316cf2c0820849d127a58"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const DB = firebase.firestore();
+  </script>
+
+</head>
+
+<body>
+  <form onsubmit='sendName(event)' id='username'>
+    <input type="text" name='name' placeholder="name" />
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <button id='setGameNumber' onclick="setGameNumber(event)">Set Game Number</button>
+
+  <h2>Game Number: <span id='gameNumber'></span></h2>
+  <form onsubmit='getGameNumber(event)' id='enterGameNumber'>
+
+    <input type="text" name='gameNumber' placeholder="game number" />
+    <input type="submit" value="Submit">
+  </form>
+
+  <h2 id='playerNumber'></h2>
+
+  <form onsubmit='sendLetter(event)' id='letter'>
+
+    <input type="text" name='letter' placeholder="letter" />
+    <input type="submit" value="Submit">
+  </form>
+  <p id='nameOfUser'></p>
+  <p id='theLetter'></p>
+
+
+  <script>
+
+    function createUid() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2);
+    }
+    const uid = getUserUID();
+    let letter = '';
+    let gameString = '';
+    let gameNumber = false;
+    let name = '';
+
+    function sendName(e) {
+      try {
+        e.preventDefault();
+        name = e.target.children.name.value;
+
+
+        DB.collection('users').doc(uid).set({
+          name: name,
+          id: uid,
+
+        })
+          .then(() => {
+            console.log('user recorded');
+            document.getElementById('username').style.display = 'none';
+
+          }).catch(e => { console.error(e) })
+      } catch (e) {
+        console.error(e)
+      }
+    }
+
+    function setPlayerNumber() {
+
+      if (name == '') {
+        alert('please submit your name')
+      } else {
+      
+        gameNumber = gameNumber.toString();
+        DB.collection('lettersgame').doc(gameNumber).get().then(gameDB => {
+          console.log(JSON.stringify(gameDB.data()))
+          let gameData = gameDB.data();
+          console.log(gameData)
+          console.log({}.hasOwnProperty.call(gameData, 'player1'))
+          if (!({}.hasOwnProperty.call(gameData, 'player1') )) {
+          
+            DB.collection('lettersgame').doc(gameNumber)
+              .update({ player1: name })
+              .then(() => { document.getElementById('playerNumber').innerText = `You are player number 1` })
+              .catch(e => {
+                console.error(e)
+              })
+          } else if ({}.hasOwnProperty.call(gameData, 'player1')) {
+            console.log('p2', gameNumber)
+
+            DB.collection('lettersgame').doc(gameNumber)
+              .update({ player2: name })
+              .then(() => { document.getElementById('playerNumber').innerText = `You are player number 2` })
+              .catch(e => {
+                console.error(e)
+              })
+          } else {
+            alert('the game is full!')
+          }
+        })
+
+      }
+    }
+
+    function sendLetter(e) {
+      e.preventDefault()
+      if (e.target.children.letter.value.length == 1) {
+
+        letter = e.target.children.letter.value;
+
+        document.getElementById('theLetter').innerText = letter;
+        gameNumber = gameNumber.toString();
+        DB.collection('lettersgame').doc(gameNumber).get().then(lettersDB => {
+
+          if (!lettersDB.exists) {
+            DB.collection('lettersgame').doc(gameNumber).set({ counter: 0 })
+          } else {
+            //switch turn
+            if (lettersDB.data().counter == 0) {
+              DB.collection('lettersgame').doc(gameNumber).update({
+                counter: 1
+              })
+            } else {
+              DB.collection('lettersgame').doc(gameNumber).update({
+                counter: 0
+              })
+            }
+
+
+            gameString = lettersDB.data().gameWord;
+            gameString += letter
+            DB.collection('lettersgame').doc(gameNumber).update({
+              gameWord: gameString
+
+            })
+          }
+
+        })
+
+
+      }
+      else {
+        alert('choose one letter only')
+      }
+      // sendTheLetter()
+    }
+    DB.collection('users').onSnapshot(lettersgameDB => {
+      lettersgameDB.forEach(letterGameDB => {
+        console.log(letterGameDB.data())
+      })
+
+    })
+
+
+
+
+
+
+    function getUserUID() {
+      let userUID = localStorage.getItem('userUID');
+      if (userUID === null) {
+        userUID = createUid();
+        localStorage.setItem('userUID', userUID);
+      }
+      return userUID;
+    }
+
+    function getGameNumber(e) {
+
+      e.preventDefault();
+
+      if (name == '') {
+        alert('please submit your name')
+      } else {
+
+        gameNumber = e.target.children.gameNumber.value;
+
+        document.getElementById('enterGameNumber').style.display = 'none';
+        document.getElementById('setGameNumber').style.display = 'none';
+        document.getElementById('gameNumber').innerText = gameNumber;
+        setToDBGame()
+      }
+    }
+
+    function setGameNumber() {
+      if (name == '') {
+        alert('please submit your name')
+      } else {
+        gameNumber = prompt('set game id');
+        document.getElementById('gameNumber').innerText = gameNumber;
+        document.getElementById('setGameNumber').style.display = 'none';
+        document.getElementById('enterGameNumber').style.display = 'none';
+        setToDBGame()
+      }
+    }
+
+    function setToDBGame(){
+      gameNumber = gameNumber.toString();
+      DB.collection('lettersgame').doc(gameNumber).set({game:true})
+      .then(()=>{
+        setPlayerNumber()
+      })
+    }
+
+
+    function uniqueNumber() {
+      return Math.round(Math.random() * 100000)
+    }
+
+  </script>
+</body>
+
+</html>

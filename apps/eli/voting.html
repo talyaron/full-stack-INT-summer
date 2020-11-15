@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBY8IrNKv5RVMGyyM1F9bpL2vsBT6JYKZc",
+    authDomain: "voting-2fc80.firebaseapp.com",
+    databaseURL: "https://voting-2fc80.firebaseio.com",
+    projectId: "voting-2fc80",
+    storageBucket: "voting-2fc80.appspot.com",
+    messagingSenderId: "389195048802",
+    appId: "1:389195048802:web:3827742aa8af74dc876e3b",
+    measurementId: "G-XEL72CG5JD"
+  };
+  // Initialize Firebase
+
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  const DB = firebase.firestore();
+</script>
+
+<style>
+    #questionContainer{
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        gap: 5px;
+        position: absolute;
+        bottom: 100px;
+    }
+
+    .question{
+        width: 100px;
+        height: 50px;
+        border: 2px solid black;
+    }
+
+    #votesContainer{
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .people{
+        width: 100%;
+        height: fit-content;
+        border: 2px dashed purple
+    }
+
+</style>
+
+<body>
+    <div id="firstDiv">
+        <input type="submit" value="delete users" id="delete">
+        <button id="changeVote" style="visibility: hidden;">Change Vote</button>
+    </div>
+
+    <div id="inputContainer">
+        <form onsubmit="setName(event)">
+            <input type="text" placeholder="Enter Name" id="name"/>
+            <br>
+            <input type="checkbox" id="check">Stay Anonymous</input>
+            <br>
+            <input type="submit">
+        </form>
+    </div>
+
+    <div id="questionContainer">Click on a box to vote
+        <div class="question" style="background-color: yellow;" id="yellow">
+            Yellow
+        </div>
+        <div class="question" style="background-color: red;" id="red">
+            Red
+        </div>
+    </div>
+
+    <div id="votesContainer">
+        
+    </div>
+
+
+    <script>
+        //initialise variables at start so they are global
+        let name = ""
+        let anonymous = false
+        let nameSet = false
+        let vote = ""
+        let voted = false
+        let voterList = []
+        let redCount = 0
+        let yellowCount = 0
+
+        //set the count of how many votes each has
+        DB.collection("votes").doc("yellow").onSnapshot(e=>{
+            yellowCount = e.data().Count
+            console.log("vj"+yellowCount)
+            document.getElementById("yellow").innerText = yellowCount
+        })
+
+        DB.collection("votes").doc("red").onSnapshot(e=>{
+            redCount = e.data().Count
+            document.getElementById("red").innerText = redCount
+        })
+
+        //set the list of users to see what names have already been used
+        DB.collection("voters").onSnapshot(e=>{
+            e.forEach(event=>{
+                voterList.push(event.data().Name)
+                console.log(voterList)
+
+            })
+        })
+
+        //get the input for the users name ans whether or not they want to be anonymous
+        let setName = function(e){
+            e.preventDefault()
+            if(nameSet == false){
+                name = document.getElementById("name").value
+                console.log(name)
+
+                if(voterList.includes(name)){
+                    alert("That name has already been used. You will be signed in.")
+
+                    //let the user sign in as their name if it has already been chosen
+
+                    document.getElementById("inputContainer").innerHTML = `<p>Name: ${name}</p><p>Anonymous: ${anonymous}`
+
+                    nameSet = true
+                    
+                    DB.collection("voters").doc(name).get().then(element=>{
+                        if(element.data().Vote == "yellow" || element.data().Vote == "red"){
+                            voted = true
+                            document.getElementById("changeVote").style = "visibility: visible" 
+                            vote = element.data().Vote
+                        }
+                    })
+
+                }else{
+                    if(document.getElementById("check").checked == true){
+                        anonymous = true
+                    }
+                    console.log(anonymous)
+
+                    document.getElementById("inputContainer").innerHTML = `<p>Name: ${name}</p><p>Anonymous: ${anonymous}`
+
+                    nameSet = true
+
+                    DB.collection("voters").doc(name).set({Name: name})
+                }
+            }else{
+                console.log("changed")
+            }
+            
+        }
+
+        //add event listener to see when the choice has been clicked
+        document.querySelectorAll(".question").forEach(e=>{
+            e.addEventListener("click", event=>{
+                if(voted == false && nameSet == true){
+                    vote = e.id
+                    console.log(vote)
+                    
+                    voted = true 
+
+                    addToDB()
+                    addToDBCount()
+
+                    document.getElementById("changeVote").style = "visibility: visible" 
+                }
+
+            })
+        })
+
+        //function to update the users document with their name, their vote, and whether they are anonuymous or not
+        let addToDB = function(){
+            DB.collection("voters").doc(name).update({Name: name, Vote: vote, Anonymous: anonymous}) 
+        }
+
+        //function to update the count of how many votes each has
+        let addToDBCount = function(){
+            if(vote == "yellow"){
+                yellowCount += 1
+                DB.collection("votes").doc("yellow").update({Count: yellowCount})
+            }
+            if(vote == "red"){
+                redCount += 1
+                DB.collection("votes").doc("red").update({Count: redCount})
+            }            
+        }
+
+        //add event listener to delete button to delete all users and votes
+        document.getElementById("delete").addEventListener("click", event=>{
+
+            DB.collection("voters").get().then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    doc.ref.delete();
+                    voterList = []
+                    console.log(voterList)
+                })
+            })
+
+            DB.collection("votes").doc("red").update({Count: 0})
+            DB.collection("votes").doc("yellow").update({Count: 0})
+
+            //window.location.reload()
+        })
+
+        //checks the database for any changes and adds a div saying the name and their vote, or anonymous if they chose so
+        DB.collection("voters").onSnapshot(event=>{
+            document.getElementById("votesContainer").innerHTML = ""
+
+            event.forEach(e=>{
+                console.log(e.data().Anonymous+"vjvjh")
+                if(e.data().Anonymous == true){
+                    document.getElementById("votesContainer").innerHTML += `<div class="people" style="background-color: ${e.data().Vote}">Name: anonymous</div>`
+                }
+                if(e.data().Anonymous == false){
+                    document.getElementById("votesContainer").innerHTML += `<div class="people" style="background-color: ${e.data().Vote}">Name: ${e.data().Name}</div>`
+
+                }
+            })
+        })
+
+        //change the vote
+        document.getElementById("changeVote").addEventListener("click", e=>{
+            document.getElementById("changeVote").style = "visibility: hidden"
+            console.log(name, vote)
+
+            DB.collection("voters").doc(name).update({Vote: ""})
+            
+            if(vote == "yellow"){
+                yellowCount -= 1
+                DB.collection("votes").doc("yellow").update({Count: yellowCount})
+            }
+            if(vote == "red"){
+                redCount -= 1
+                DB.collection("votes").doc("red").update({Count: redCount})
+            }
+
+            voted = false
+        })
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCLItNMF-w_p8MJ4KUCPA5L9uDOC473w_U",
+            authDomain: "abbyconnectfour.firebaseapp.com",
+            databaseURL: "https://abbyconnectfour.firebaseio.com",
+            projectId: "abbyconnectfour",
+            storageBucket: "abbyconnectfour.appspot.com",
+            messagingSenderId: "232439533677",
+            appId: "1:232439533677:web:79c58310e402af759f6f64"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<style>
+    #wrapper {
+        display: inline-grid;
+        grid-template-columns: auto auto auto auto auto auto auto;
+        gap: 5px;
+    }
+
+    #wrapper .item {
+        width: 80px;
+        height: 80px;
+        background-color: black;
+        border: 1px solid white;
+    }
+</style>
+
+<body>
+    <div id="wrapper">
+        <div id="column1">
+            <div class="item" ; data-col="1" ; class="one" ; id="item1"></div>
+            <div class="item" ; data-col="2" ; class="two" ; id="item2"></div>
+            <div class="item" ; data-col="3" ; class="three" ; id="item3"></div>
+            <div class="item" ; data-col="4" ; class="four" ; id="item4"></div>
+            <div class="item" ; data-col="5" ; class="five" ; id="item5"></div>
+            <div class="item" ; data-col="6" ; class="six" ; id="item6"></div>
+
+            <input type="submit" ; value="column 1" ; name="c1" ; class="inputs">
+        </div>
+        <div id="column2">
+            <div class="item" ; data-col="1" ; class="one" ; id="item7"></div>
+            <div class="item" ; data-col="2" ; class="two" ; id="item8"></div>
+            <div class="item" ; data-col="3" ; class="three" ; id="item9"></div>
+            <div class="item" ; data-col="4" ; class="four" ; id="item10"></div>
+            <div class="item" ; data-col="5" ; class="five" ; id="item11"></div>
+            <div class="item" ; data-col="6" ; class="six" ; id="item12"></div>
+
+            <input type="submit" ; value="column 2" ; name="c2" ; class="inputs">
+        </div>
+        <div id="column3">
+            <div class="item" ; data-col="1" ; class="one" ; id="item13"></div>
+            <div class="item" ; data-col="2" ; class="two" ; id="item14"></div>
+            <div class="item" ; data-col="3" ; class="three" ; id="item15"></div>
+            <div class="item" ; data-col="4" ; class="four" ; id="item16"></div>
+            <div class="item" ; data-col="5" ; class="five" ; id="item17"></div>
+            <div class="item" ; data-col="6" ; class="six" ; id="item18"></div>
+
+            <input type="submit" ; value="column 3" ; name="c3" ; class="inputs">
+        </div>
+        <div id="column4">
+            <div class="item" ; data-col="1" ; class="one" ; id="item19"></div>
+            <div class="item" ; data-col="2" ; class="two" ; id="item20"></div>
+            <div class="item" ; data-col="3" ; class="three" ; id="item21"></div>
+            <div class="item" ; data-col="4" ; class="four" ; id="item22"></div>
+            <div class="item" ; data-col="5" ; class="five" ; id="item23"></div>
+            <div class="item" ; data-col="6" ; class="six" ; id="item24"></div>
+
+            <input type="submit" ; value="column 4" ; name="c4" ; class="inputs">   
+        </div>
+        <div id="column5">
+            <div class="item" ; data-col="1" ; class="one" ; id="item25"></div>
+            <div class="item" ; data-col="2" ; class="two" ; id="item26"></div>
+            <div class="item" ; data-col="3" ; class="three" ; id="item27"></div>
+            <div class="item" ; data-col="4" ; class="four" ; id="item28"></div>
+            <div class="item" ; data-col="5" ; class="five" ; id="item29"></div>
+            <div class="item" ; data-col="6" ; class="six" ; id="item30"></div>
+
+            <input type="submit" ; value="column 5" ; name="c5" ; class="inputs">
+
+        </div>
+        <div id="column6">
+            <div class="item" ; data-col="1" ; class="one"; id="item31"></div>
+            <div class="item" ; data-col="2" ; class="two"; id="item32"></div>
+            <div class="item" ; data-col="3" ; class="three"; id="item33"></div>
+            <div class="item" ; data-col="4" ; class="four"; id="item34"></div>
+            <div class="item" ; data-col="5" ; class="five"; id="item35"></div>
+            <div class="item" ; data-col="6" ; class="six"; id="item36"></div>
+
+            <input type="submit" ; value="column 6" ; name="c6" ; class="inputs">
+
+        </div>
+        <div id="column7">
+            <div class="item" ; data-col="1" ; class="one"; id="item37"></div>
+            <div class="item" ; data-col="2" ; class="two"; id="item38"></div>
+            <div class="item" ; data-col="3" ; class="three"; id="item39"></div>
+            <div class="item" ; data-col="4" ; class="four"; id="item40"></div>
+            <div class="item" ; data-col="5" ; class="five"; id="item41"></div>
+            <div class="item" ; data-col="6" ; class="six"; id="item42"></div>
+            
+            <input type="submit" ; value="column 7" ; name="c7" ; class="inputs">
+        </div>
+
+       
+       
+    </div>
+
+    <!--make the board 7 x 6; 3 images XX-->
+    <!--when player1 clicks on circle turns red (onClick) -->
+    <script>
+        let turn = 0
+
+        const inputs = document.querySelectorAll('.inputs');
+        //make it so that it is only input 1 column 1 
+        inputs.forEach(inputs => {
+            inputs.addEventListener('click', e => {
+                console.log(e.target.value);
+                let column = e.target.name;
+                if (turn % 2 == 0) {
+                    console.log("player1");
+                    let item6 = document.getElementById('item6');
+                    item6.style.backgroundColor="red"; 
+                    //get the right div and turn the color to red 
+                    turn++;
+
+                }
+                else {
+                    console.log("player2");
+                    let item6 = document.getElementById('item6');
+                    item6.style.backgroundColor="yellow"; 
+                    turn++;
+                }
+            })
+        })
+
+
+    </script>
+    <!--one function for when a column button is clicked - use parameters and use that function for each one, then make another funciton within it and use parameters for player1 vs player 2 and use if else depending on which player clicks and which color to turn-->
+    <!--when player2 clicks on circle turns yellow (onClick) -->
+    <!-- counter to determine which player's turn it is -->
+    <!--when four in a row vertical then playerx wins -->
+    <!-- counter; when four in a row horizontal then playerx wins -->
+    <!-- counter; when four in a row diagonal then playerx wins -->
+    <!-- you win -->
+
+</body>
+
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyDFFKVSC31CZyeKkOmqNP0uZiJ_XVo-d3o",
+        authDomain: "harper-fb1.firebaseapp.com",
+        databaseURL: "https://harper-fb1.firebaseio.com",
+        projectId: "harper-fb1",
+        storageBucket: "harper-fb1.appspot.com",
+        messagingSenderId: "1054303864379",
+        appId: "1:1054303864379:web:203b783fb5132b55a73e1e",
+        measurementId: "G-H7NXGJP8GC"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const DB=firebase.firestore();
+    </script>
+    <script src="entities.js"></script>
+</head>
+<style>
+
+  #playGame{
+    display:none;
+  }
+
+  #playerInfo{
+    font-weight:bold;
+  }
+
+  #play{
+    display:inline;
+  }
+
+  #existingWord{
+    margin-right:4px;
+    font-weight:bold;
+    font-size:20px;
+  }
+
+  #winner{
+    font-weight:bolder;
+    font-size:30px;
+    width:fit-content;
+    padding:10px;
+    color:red;
+    border:dotted 3px red;
+    display:none;
+
+  }
+</style>
+<body>
+    <h1>Let's play the letter game!</h1>
+    <form id="login">
+      <p>Enter your username: <input type="text" id="user"/></p>
+      <input type="submit" value="Start Game"/>
+    </form>
+    <div id="playGame">
+      <p id="playerInfo">Welcome <span id='playerName'></span>!! You are player <span id="playerNum"></span>.</p>
+      <p><span id="playerTurn">Player 1:</span> Add a letter to the word!</p>
+
+      <div id=counter></div>
+
+      <form id="play">
+        <p id="word"><span id="existingWord"></span><input type="text" id="addLetter"/></p>
+        <input type="submit" value="Add Letter"/>
+      </form>
+      <button id="giveUp">I can't make a word</button>
+
+      <p id="winner"></p>
+
+    </div>
+    
+
+    <script>
+      //THINGS TO FIX LATER
+      /*
+      the player turn and the counter need to update on the page at the same time.
+      */
+
+      //submit the username from the form
+      const loginForm=document.getElementById('login');
+      let playNum=0;
+      loginForm.addEventListener('submit', e=>{
+        e.preventDefault();
+        let username=document.getElementById('user').value;
+        addUser(username);//test
+        loginForm.style.display="none";
+        document.getElementById('playGame').style.display="block";
+        document.getElementById('playerName').innerText=username;
+      })
+
+      //submits a new letter
+      const gameForm=document.getElementById('play');
+      gameForm.addEventListener('submit', e=>{
+        e.preventDefault();
+        let letter=document.getElementById('addLetter').value;
+        gameForm.reset();
+        clearTimeout(timerIdGlobal);//test
+        switchTurn();
+        DB.collection('games').doc('letterGame').get().then(letterGameDB=>{
+          let word=letterGameDB.data().word;
+          let newWord=word+letter;
+          DB.collection('games').doc('letterGame').update({word:newWord});
+        })
+      })
+
+      //if I cant make a word button clicked, calculates points
+      const giveUp=document.getElementById('giveUp');
+      giveUp.addEventListener('click',e=>{
+        clearTimeout(timerIdGlobal);
+        DB.collection('games').doc('letterGame').update({counter:0});
+        //calculatePoints();
+      })
+
+      //onSnapshot, outputs it to the screen for both players
+      DB.collection('games').doc('letterGame').onSnapshot(letterGameDB=>{
+        //updates the word
+        let word=letterGameDB.data().word;
+        document.getElementById('existingWord').innerText=word;
+        //updates the counter
+        let seconds=letterGameDB.data().counter;
+        if(playNum==letterGameDB.data().turnCount){
+         // document.getElementById('counter').innerHTML= seconds + ' seconds remaining';
+          document.getElementById('counter').innerHTML= "It is your turn";
+        }
+        else{
+          document.getElementById('counter').innerHTML= "It is the other player's turn right now."
+        }
+        //if time runs out, calculate winner
+        if(seconds==0){
+          calculatePoints();
+        }
+        //update's who's turn it is
+        let turn=letterGameDB.data().turnCount;
+        document.getElementById('playerTurn').innerText= `Player ${turn}:`;
+
+      })
+
+      //updates the switch counter and player turn
+      let playerTurn=1;
+      function switchTurn(){
+        DB.collection("games").doc('letterGame').get().then(letterGameDB=>{
+          let pastTurn=letterGameDB.data().turnCount;
+          if(pastTurn==1){
+            playerTurn=2;
+            DB.collection("games").doc('letterGame').update({turnCount:2});
+          }
+          else if(pastTurn==2){
+            playerTurn=1;
+            DB.collection("games").doc('letterGame').update({turnCount:1});
+          }
+          timerIdGlobal=startCounter();
+        })
+      }
+
+      //actual timer output
+      let timerIdGlobal;
+      function startCounter(){
+        let timeLeft=30;
+        DB.collection('games').doc('letterGame').update({counter:timeLeft});
+        let timer = document.getElementById('counter');
+        clearTimeout(timerIdGlobal);
+        var timerId = setInterval(countdown, 1000);
+        
+        function countdown() {
+          if (timeLeft == -1) {
+            clearTimeout(timerId);
+            DB.collection('games').doc('letterGame').update({counter:0});
+          } else {
+            DB.collection('games').doc('letterGame').update({counter:timeLeft});
+            timeLeft--;
+          }
+        }
+        return timerId;
+    }
+
+    //checks for the winner and their points
+    function calculatePoints(){
+      DB.collection('games').doc('letterGame').get().then(letterGameDB=>{
+        let finalWord=letterGameDB.data().word;
+        let points=finalWord.length;
+        let winner;
+        let lastTurn=letterGameDB.data().turnCount;
+        if(lastTurn==1){
+          winner=2;
+        }
+        else{
+          winner=1;
+        }
+        document.getElementById('winner').innerText=`Player ${winner} won with ${points} points!`;
+        document.getElementById('winner').style.display="block";
+      })
+    }
+
+      //checks to see if the user is player 1, player 2, or cannot join the game
+      function addUser(name){
+        DB.collection('games').doc('letterGame').get().then(letterGameDB=>{
+          let user1=letterGameDB.data().player1.username;
+          let user2=letterGameDB.data().player2.username;
+          if(user1==""){
+            DB.collection('games').doc('letterGame').update({player1:{username:name}});
+            document.getElementById('playerNum').innerText=1;
+            playNum=1;
+          }
+          else if(user2==""){
+            DB.collection('games').doc('letterGame').update({player2:{username:name}});
+            document.getElementById('playerNum').innerText=2;
+            playNum=2
+          }
+          else{
+            alert("There are already 2 players in this game. Try again later");
+            document.getElementById('playerInfo').innerText=`${name}, you cannot play at this time`;
+          }
+        })
+      }
+
+    </script>
+
+
+</body>
+</html>

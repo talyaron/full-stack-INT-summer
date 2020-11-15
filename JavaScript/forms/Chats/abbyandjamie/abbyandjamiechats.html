@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<a href='abbyandjamielogin.html'></a>
+<body>
+    <h1>Chats</h1>
+    <form id='chatInput' class="input">
+        <input type="text" placeholder="text message" name='input' />
+        <input type='submit' value="Send" />
+    </form>
+    <div id="chatMessages"></div>
+    <div id="profilePicture"></div>
+
+
+    <script>
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+        const profilePicture = document.getElementById('profilePicture');
+
+        chatInput.addEventListener('submit', e => {
+            e.preventDefault();
+            const input = e.target.children['input'].value;
+            const profilePic = localStorage.getItem('profilePic')
+            chatMessages.innerHTML += createNewParagraph(input);
+            chatInput.reset();
+            profilePicture.innerHTML += addProfilePic(${profilePic})
+        })
+
+        function createNewParagraph(input){
+            return `<p> ${input}</p>`
+        }
+        function addProfilePic(profilePic){
+            return `<img src=${profilePic}/>` 
+        }
+        let userInfo = localStorage.getItem('userInfo')
+        console.log(userInfo);
+
+        console.log(userInfo.imgUrl)
+        userInfo = JSON.parse(userInfo);
+        console.log(userInfo);
+        console.log(userInfo.imgUrl)
+
+
+        document.getElementById('name').innerText = userInfo.name;
+        document.getElementById('img').src = userInfo.imgUrl
+    </script>
+</body>
+
+</html>
