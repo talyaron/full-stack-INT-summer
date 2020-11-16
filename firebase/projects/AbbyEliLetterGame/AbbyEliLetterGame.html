@@ -174,7 +174,29 @@
 
         })
 
+        function getWord(word) {
+            return new Promise((resolve, reject) => {
+                fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+                    .then((w) => {
+                        // console.log(w)
+                        if (w.ok) {
+                            resolve(true)
+                            // return w.json().then(w2 => console.log(w2))
+                        } else {
+                            // console.error('no word')
+                            resolve(false)
+                        }
+                    }).catch(e => {
+                        console.error(e)
+                    })
+            })
+        } 
+        
+        DB.collection('games').doc('word').onSnapshot(wordDB => {
+            let wordCurrent = wordDB.data().letter
+            getWord(wordCurrent).then(result => console.log(result)) //true if there is such a word, else it will be false
 
+        })
         
 
 
