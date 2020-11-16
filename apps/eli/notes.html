@@ -53,6 +53,7 @@
         <div id="inputBox" class="bigBox">
             <input type="text" id="noteName" placeholder="Enter the name of the note">
             <input type="submit" id="submit">
+            <input type="submit" id="delete" value="Delete Note">
             <br>
             <p id="whichNote"></p>
             <textarea id="noteText" cols="30" rows="10" style="visibility: hidden;"></textarea> 
@@ -99,20 +100,28 @@
 
         document.getElementById("submit").addEventListener("click", event=>{
             noteName = document.getElementById("noteName").value
+            document.getElementById("noteText").innerText = ""
 
             document.getElementById("whichNote").innerText = `Editing Note: ${noteName}`
 
             document.getElementById("noteText").style.visibility = "visible"
 
             DB.collection("notes").doc(noteName).get().then(currentNoteDB=>{
-                currentNote = currentNoteDB.data().value
-
-                document.getElementById("noteText").innerText = currentNote
+                try{
+                   currentNote = currentNoteDB.data().value
+                   document.getElementById("noteText").innerText = currentNote 
+                }catch{
+                    document.getElementById("noteText").innerText = "New note"
+                }
+                
             })
-            
-            
         })
         
+        document.getElementById("delete").addEventListener("click", event=>{
+            DB.collection("notes").doc(noteName).get().then(doc=>{
+                doc.ref.delete()
+            })
+        })
 
 
     </script>
